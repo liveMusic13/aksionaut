@@ -1,0 +1,33 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__zoom {
+	position: absolute;
+	right: 3%;
+	top: 50%;
+	z-index: 6;
+	transform: translateY(-50%);
+	width: func.adapt(48px, 1920px);
+	height: func.adapt(148px, 1920px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	> button {
+		width: 100%;
+		height: func.adapt(45px, 1920px);
+		background-color: rgba($color: vars.$white, $alpha: 0.08);
+		border-radius: func.adapt(4px, 1920px);
+		color: vars.$white;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	> p {
+		font-size: 0.875rem;
+		color: vars.$white;
+	}
+}

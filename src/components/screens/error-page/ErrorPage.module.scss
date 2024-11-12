@@ -1,0 +1,103 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.logo__image {
+	width: func.adapt(162.55px, 1920px);
+	height: func.adapt(161px, 1920px);
+	margin: func.adapt(132px, 1920px) 0px func.adapt(54px, 1920px);
+
+	@media (max-width: 991.98px) {
+		width: func.adapt(162.55px, 991px);
+		height: func.adapt(161px, 991px);
+	}
+
+	@media (max-width: 767.98px) {
+		width: func.adapt(162.55px, 767px);
+		height: func.adapt(161px, 767px);
+	}
+
+	@media (max-width: 390.98px) {
+		width: func.adapt(120px, 390px);
+		height: func.adapt(118.86px, 390px);
+		margin: func.adapt(91px, 390px) 0px func.adapt(46px, 390px);
+	}
+}
+
+.block__error {
+	position: relative;
+	width: func.adapt(650px, 1920px);
+	height: func.adapt(344px, 1920px);
+	border-radius: func.adapt(24px, 1920px);
+	border-bottom-left-radius: func.adapt(4px, 1920px);
+	background-color: rgba($color: vars.$middle_dark_blue, $alpha: 0.5);
+	backdrop-filter: blur(2px); // Размытие фона
+	-webkit-backdrop-filter: blur(2px); // Для поддержки в Safari
+	border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	@media (max-width: 991.98px) {
+		width: func.adapt(650px, 991px);
+		height: func.adapt(344px, 991px);
+		border-radius: func.adapt(24px, 991px);
+	}
+
+	@media (max-width: 767.98px) {
+		width: func.adapt(344px, 767px);
+		height: func.adapt(344px, 767px);
+		border-radius: func.adapt(24px, 767px);
+	}
+
+	@media (max-width: 390.98px) {
+		width: func.adapt(358px, 390px);
+		height: func.adapt(366px, 390px);
+		border-radius: func.adapt(24px, 390px);
+	}
+}
+
+.num__error {
+	font-size: 5.625rem;
+	font-weight: 800;
+	margin-bottom: func.adapt(16px, 1920px);
+
+	@media (max-width: 390.98px) {
+		margin-bottom: func.adapt(16px, 390px);
+	}
+}
+
+.text__error {
+	font-size: 1rem;
+	text-align: center;
+	margin-bottom: func.adapt(46px, 1920px);
+
+	@media (max-width: 390.98px) {
+		margin-bottom: func.adapt(46px, 390px);
+	}
+}
+
+.astronaut {
+	position: absolute;
+	top: func.adapt(214px, 1920px);
+	left: func.adapt(-253px, 1920px);
+	width: func.adapt(253px, 1920px);
+	height: func.adapt(253px, 1920px);
+
+	@media (max-width: 991.98px) {
+		left: 50%;
+		top: 100%;
+		transform: translateX(-60%);
+		width: func.adapt(253px, 991px);
+		height: func.adapt(253px, 991px);
+	}
+
+	@media (max-width: 767.98px) {
+		width: func.adapt(253px, 767px);
+		height: func.adapt(253px, 767px);
+	}
+
+	@media (max-width: 390.98px) {
+		width: func.adapt(177.65px, 390px);
+		height: func.adapt(177.65px, 390px);
+	}
+}

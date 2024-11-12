@@ -1,0 +1,35 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__estimate {
+	position: absolute;
+	left: 3%;
+	z-index: 6;
+	width: func.adapt(345px, 1920px);
+	height: func.adapt(394px, 1920px);
+	border-radius: func.adapt(24px, 1920px);
+	background-color: vars.$very_dark_blue;
+	padding: func.adapt(24px, 1920px) func.adapt(24px, 1920px)
+		func.adapt(32px, 1920px);
+
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		display: none; /* Скрытие скролла для WebKit (Chrome, Safari) */
+	}
+	-ms-overflow-style: none; /* Скрытие скролла для Internet Explorer и Edge */
+	scrollbar-width: none;
+}
+
+.title {
+	font-size: 1.25rem;
+	font-weight: 500;
+	margin-bottom: func.adapt(24px, 1920px);
+}
+
+.block__statistics {
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(16px, 1920px);
+}

@@ -1,0 +1,47 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.wrapper_map {
+	width: 100vw !important;
+	height: 100vh !important;
+	// position: absolute !important;
+	// top: 50% !important;
+	// left: 50% !important;
+	// transform: translate(-50%, -50%) !important;
+}
+
+.map {
+	// width: func.adapt(1894px, 1920px);
+	// height: func.adapt(1039px, 1920px);
+	width: func.adapt(1322px, 1920px);
+	height: func.adapt(723px, 1920px);
+	// position: absolute;
+	// top: 30%;
+	// left: 27%;
+	// z-index: 1;
+
+	// // Широкий экран (например, соотношение больше 16:9)
+	// @media (min-aspect-ratio: 16/9) {
+	// 	top: 15%; // значения можно корректировать
+	// 	left: 25%; // значения можно корректировать
+	// }
+
+	// // Высокий экран (например, соотношение меньше 16:9)
+	// @media (max-aspect-ratio: 16/9) {
+	// 	top: 30%;
+	// 	left: 27%;
+	// }
+
+	> g {
+		> path {
+			&:hover {
+				cursor: pointer;
+				stroke: vars.$blue;
+			}
+		}
+	}
+}
+
+.test {
+	background-color: red;
+}

@@ -1,0 +1,49 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.header {
+	width: func.adapt(866px, 1920px);
+	height: func.adapt(60px, 1920px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: rgba($color: vars.$middle_dark_blue, $alpha: 0.6);
+	backdrop-filter: blur(2px); // Размытие фона
+	-webkit-backdrop-filter: blur(2px); // Для поддержки в Safari
+	border-radius: func.adapt(16px, 1920px);
+	position: fixed;
+	z-index: 5;
+	top: func.adapt(44px, 1920px);
+	left: 50%;
+	transform: translateX(-50%);
+	padding: func.adapt(11px, 1920px) func.adapt(24px, 1920px);
+}
+
+.logo {
+	width: func.adapt(131px, 1920px);
+	height: func.adapt(59.71px, 1920px);
+}
+
+.block__right {
+	display: flex;
+	align-items: center;
+	gap: func.adapt(16px, 1920px);
+}
+
+.button {
+	color: vars.$white;
+	display: flex;
+	align-items: center;
+	gap: func.adapt(8px, 1920px);
+	font-family: 'Manrope', sans-serif;
+	font-weight: 500;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.logout__image {
+	width: func.adapt(20px, 1920px);
+	height: func.adapt(20px, 1920px);
+}

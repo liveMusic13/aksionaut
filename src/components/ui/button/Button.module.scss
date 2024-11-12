@@ -1,0 +1,23 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.button {
+	color: vars.$white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: func.adapt(8px, 1920px);
+	font-family: 'Manrope', sans-serif;
+	background-color: vars.$blue;
+	width: func.adapt(96px, 1920px);
+	height: func.adapt(52px, 1920px);
+	border-radius: func.adapt(8px, 1920px);
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:active {
+		background-color: vars.$blue_dark;
+	}
+}

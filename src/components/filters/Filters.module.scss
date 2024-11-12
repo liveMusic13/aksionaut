@@ -1,0 +1,57 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.wrapper_filters {
+	background-color: rgba($color: vars.$middle_dark_blue, $alpha: 0.6);
+	backdrop-filter: blur(2px); // Размытие фона
+	-webkit-backdrop-filter: blur(2px); // Для поддержки в Safari
+	border-radius: func.adapt(16px, 1920px);
+	// position: fixed;
+	// z-index: 5;
+	// top: func.adapt(120px, 1920px);
+	// left: 50%;
+	// transform: translateX(-50%);
+	width: func.adapt(866px, 1920px);
+	padding: func.adapt(32px, 1920px);
+	position: relative;
+	z-index: 6;
+}
+
+.title {
+	font-weight: 700;
+	font-size: 1.75rem;
+	text-align: center;
+	margin-bottom: func.adapt(12px, 1920px);
+}
+
+.forExample {
+	margin-bottom: func.adapt(12px, 1920px);
+	font-weight: 500;
+	font-size: 1rem;
+	text-align: center;
+}
+
+.popular__queries {
+	display: flex;
+	gap: func.adapt(12px, 1920px);
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-bottom: func.adapt(24px, 1920px);
+}
+
+.queries {
+	padding: func.adapt(12px, 1920px) func.adapt(16px, 1920px);
+	background-color: vars.$black_background;
+}
+
+.block__aiInput {
+	margin-bottom: func.adapt(24px, 1920px);
+	display: flex;
+	justify-content: space-between;
+}
+
+.block__selects {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

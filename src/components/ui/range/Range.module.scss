@@ -1,0 +1,37 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__range {
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(16px, 1920px);
+	width: 100%;
+}
+
+.block__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title {
+	font-size: 0.875rem;
+}
+
+.percent {
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.full__range {
+	background-color: rgba($color: vars.$white, $alpha: 0.2);
+	width: 100%;
+	height: func.adapt(7px, 1920px);
+	border-radius: func.adapt(8px, 1920px);
+}
+
+.percent__range {
+	border-radius: func.adapt(8px, 1920px);
+	height: 100%;
+	background-color: vars.$white;
+}

@@ -1,0 +1,60 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.block__worth {
+	// width: func.adapt(469px, 1920px);
+	// height: func.adapt(305px, 1920px);
+	width: func.adapt(529px, 1920px);
+	height: func.adapt(330px, 1920px);
+	background-image: url('/images/backgrounds/graph.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: func.adapt(32px, 1920px) func.adapt(32px, 1920px)
+		func.adapt(32px, 1920px) func.adapt(28px, 1920px);
+}
+
+.block__content {
+	display: flex;
+	justify-content: space-between;
+}
+
+.block__graph {
+	width: func.adapt(310px, 1920px);
+	position: relative;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 1.25rem;
+	text-transform: uppercase;
+	margin-bottom: func.adapt(8px, 1920px);
+}
+
+.block__source {
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin-left: func.adapt(-40px, 1920px);
+	@include mix.hidden_scroll();
+}
+
+.source {
+	font-size: 0.875rem;
+	display: flex;
+	align-items: center;
+}
+
+.color {
+	display: inline-block;
+	width: func.adapt(10px, 1920px);
+	height: func.adapt(7px, 1920px);
+	border-radius: func.adapt(8px, 1920px);
+	margin-right: func.adapt(7px, 1920px);
+}
+
+.percent {
+	font-weight: 700;
+	font-size: 0.875rem;
+	margin-left: func.adapt(4px, 1920px);
+}

@@ -1,0 +1,12 @@
+@use '@st/functions' as func;
+
+.block__location {
+	display: flex;
+	align-items: center;
+	gap: func.adapt(4px, 1920px);
+
+	> img {
+		width: func.adapt(20px, 1920px);
+		height: func.adapt(20px, 1920px);
+	}
+}
