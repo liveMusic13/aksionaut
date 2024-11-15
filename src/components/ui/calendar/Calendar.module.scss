@@ -1,0 +1,82 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.wrapper_calendar {
+	@include mix.style_filters_params(
+		func.adapt(192px, 1920px),
+		func.adapt(43px, 1920px)
+	);
+}
+
+@include mix.target_style();
+
+.block__calendar {
+	position: absolute;
+	right: 0;
+	top: func.adapt(51px, 1920px);
+	width: func.adapt(272px, 1920px);
+	height: func.adapt(199px, 1920px);
+	border-radius: func.adapt(8px, 1920px);
+	border: 1px solid vars.$white;
+	background-color: vars.$middle_dark_blue;
+	padding: func.adapt(16px, 1920px);
+}
+
+.block__year {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: func.adapt(16px, 1920px);
+}
+
+.button {
+	background-color: transparent;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	> img {
+		width: func.adapt(16px, 1920px);
+		height: func.adapt(16px, 1920px);
+	}
+}
+
+.prev {
+	transform: rotate(90deg);
+}
+
+.next {
+	transform: rotate(-90deg);
+}
+
+.year {
+	font-weight: 500;
+	font-size: 1rem;
+}
+
+.block__month {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: func.adapt(31px, 1920px);
+}
+
+.month {
+	font-size: 0.875rem;
+	background-color: transparent;
+	color: vars.$white;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:disabled {
+		color: rgba($color: vars.$white, $alpha: 0.3);
+		cursor: default;
+	}
+}
+
+.selected {
+	color: vars.$blue;
+}

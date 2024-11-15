@@ -5,6 +5,7 @@ import { useEstimateData } from '../../hooks/useEstimateData';
 import { useGetAllRegions } from '../../hooks/useGetAllRegions';
 import { getEstimateForRequest } from '../../utils/editRequestData';
 import Button from '../ui/button/Button';
+import Calendar from '../ui/calendar/Calendar';
 import Input from '../ui/input/Input';
 import Select from '../ui/select/Select';
 
@@ -62,6 +63,7 @@ const Filters: FC = () => {
 					title='Выберите не более 2 регионов'
 					isEstimate={false}
 				/>
+				<Calendar />
 			</div>
 		</div>
 	);
