@@ -1,15 +1,29 @@
-import { FC, Suspense } from 'react';
+import { FC, Suspense, useState } from 'react';
 
 import { useEstimateData } from '../../../hooks/useEstimateData';
 import CustomMap from '../../custom-map/CustomMap';
 import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
+import PopupRegion from '../../popup-region/PopupRegion';
 import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
 
 const Home: FC = () => {
 	const { data, error, isSuccess, refetch, isError } = useEstimateData();
+
+	const [targetRegion, setTargetRegion] = useState([
+		{
+			name: 'Corn',
+			data: [387749, 280000, 129000, 64300, 54000, 34300],
+			color: 'rgba(255,255,255, 0.8)',
+		},
+		{
+			name: 'Wheat',
+			data: [45321, 140000, 10000, 140500, 19500, 113500],
+			color: '#A2BFF5',
+		},
+	]);
 
 	console.log(data);
 
@@ -50,6 +64,8 @@ const Home: FC = () => {
 			<Suspense>
 				<CustomMap />
 			</Suspense>
+
+			<PopupRegion targetRegion={targetRegion} />
 			{/* <Button>Найти</Button> */}
 			{/* <h1>APP</h1> */}
 		</Layout>
