@@ -3,18 +3,10 @@
 @use '@st/mixins' as mix;
 
 .wrapper_select {
-	position: relative;
-	padding: func.adapt(12px, 1920px);
-	width: func.adapt(296px, 1920px);
-	height: func.adapt(43px, 1920px);
-	border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
-	background-color: vars.$middle_dark_blue;
-	display: flex;
-	align-items: center;
-	border-radius: func.adapt(8px, 1920px);
-	transition:
-		background-color 0.2s ease-in-out,
-		border-color 0.2s ease-in-out;
+	@include mix.style_filters_params(
+		func.adapt(296px, 1920px),
+		func.adapt(43px, 1920px)
+	);
 }
 
 .block__select {
@@ -33,24 +25,7 @@
 	@include mix.hidden_scroll();
 }
 
-.block__target {
-	// border-radius: func.adapt(8px, 1920px);
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	// padding: func.adapt(12px, 1920px);
-
-	&:hover {
-		cursor: pointer;
-	}
-}
-
-.target {
-	font-size: 1rem;
-	font-weight: 500;
-}
+@include mix.target_style();
 
 .target__input {
 	outline: none;

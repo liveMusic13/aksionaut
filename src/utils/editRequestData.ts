@@ -22,3 +22,24 @@ export const editTopEstimateInCountry = (
 ): ITopEstimateInCountryEdit[] => {
 	return data.map(el => ({ name: el.name, y: el.value }));
 };
+
+export const getDateInData = (
+	data: IFullEstimateData[],
+	monthNames: string[],
+): string[][] => {
+	return data.map(item => {
+		const [year, month] = item.month.split('-');
+		const monthIndex = parseInt(month, 10) - 1;
+		const monthName = monthNames[monthIndex];
+		return [year, monthName];
+	});
+};
+
+export const extractUniqueYears = (dateInfo: string[][]): string[] => {
+	const yearSet = new Set<string>();
+	dateInfo.forEach(item => {
+		const year = item[0];
+		yearSet.add(year);
+	});
+	return Array.from(yearSet);
+};

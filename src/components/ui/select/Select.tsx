@@ -9,43 +9,53 @@ import styles from './Select.module.scss';
 const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const [isViewOptions, setIsViewOptions] = useState<boolean>(false);
 	const [searchTerm, setSearchTerm] = useState<string>('');
-
 	const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+	const [inputValue, setInputValue] = useState<string>('');
 
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	// const onChange = (
-	// 	setValue: Dispatch<SetStateAction<boolean>>,
-	// 	value: boolean,
-	// ) => setValue(!value);
-
+	// Обработчик для чекбоксов
 	const onChange = (name: string) => {
 		setSelectedOptions(prev => {
+			let updatedOptions;
 			if (prev.includes(name)) {
-				// Если значение уже выбрано, убираем его из массива
-				return prev.filter(item => item !== name);
+				// Убираем значение, если оно уже выбрано
+				updatedOptions = prev.filter(item => item !== name);
 			} else if (prev.length < 2) {
-				// Если выбрано меньше 2 значений, добавляем новое
-				return [...prev, name];
+				// Добавляем новое значение, если выбрано меньше 2
+				updatedOptions = [...prev, name];
+			} else {
+				return prev;
 			}
-			return prev; // Если уже 2 значения выбрано, ничего не делаем
+
+			return updatedOptions;
 		});
 	};
 
+	// Обновляем inputValue при изменении выбранных опций
+	useEffect(() => {
+		if (searchTerm === '') {
+			setInputValue(selectedOptions.join(', '));
+		}
+	}, [selectedOptions, searchTerm]);
+
+	// Обработчик изменения значения input
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setSearchTerm(value);
+		setInputValue(value); // Синхронизируем inputValue и searchTerm
+	};
+
+	// Открытие/закрытие выпадающего списка
 	const onClick = () => setIsViewOptions(!isViewOptions);
 
+	// Сброс фокуса и строки поиска при закрытии
 	useEffect(() => {
 		if (!isViewOptions && inputRef.current) {
 			inputRef.current.blur();
+			setSearchTerm('');
 		}
 	}, [isViewOptions]);
-
-	// Обновляем значение поля input, объединяя выбранные значения через запятую
-	useEffect(() => {
-		if (!isEstimate && inputRef.current) {
-			inputRef.current.value = selectedOptions.join(', ');
-		}
-	}, [selectedOptions, isEstimate]);
 
 	const styleWrapper = isViewOptions
 		? {
@@ -56,6 +66,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 
 	const target = isEstimate ? 'Ценности' : '';
 
+	// Фильтрация данных на основе поискового запроса
 	const filteredData = isEstimate
 		? data
 		: data?.filter(item =>
@@ -72,8 +83,8 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 						ref={inputRef}
 						type='text'
 						className={styles.target__input}
-						value={searchTerm}
-						onChange={e => setSearchTerm(e.target.value)}
+						value={inputValue}
+						onChange={handleInputChange}
 					/>
 				)}
 				<img

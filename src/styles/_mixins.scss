@@ -1,3 +1,6 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
 @mixin hidden_scroll() {
 	overflow: -moz-scrollbars-none;
 	-ms-overflow-style: none; /* IE and Edge */
@@ -5,4 +8,41 @@
 		display: none; /* Chrome, Safari, and Opera */
 	}
 	scrollbar-width: none; /* Firefox */
+}
+
+@mixin style_filters_params($width, $height) {
+	position: relative;
+	padding: func.adapt(12px, 1920px);
+	width: $width;
+	height: $height;
+	border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+	background-color: vars.$middle_dark_blue;
+	display: flex;
+	align-items: center;
+	border-radius: func.adapt(8px, 1920px);
+	transition:
+		background-color 0.2s ease-in-out,
+		border-color 0.2s ease-in-out;
+}
+
+@mixin target_style() {
+	.block__target {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.target {
+		font-size: 1rem;
+		font-weight: 500;
+		white-space: nowrap; /* Запрещаем перенос строк */
+		overflow: hidden; /* Скрываем переполненный текст */
+		text-overflow: ellipsis;
+	}
 }
