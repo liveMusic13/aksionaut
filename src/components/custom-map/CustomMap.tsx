@@ -7,6 +7,7 @@ import ZoomControl from '../ui/zoom-control/ZoomControl';
 import styles from './CustomMap.module.scss';
 
 const CustomMap: FC<ICustomMap> = ({ onClick }) => {
+	console.log('dsd');
 	return (
 		<TransformWrapper
 			initialScale={1}
