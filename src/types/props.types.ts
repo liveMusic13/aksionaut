@@ -26,7 +26,7 @@ export interface IInput {
 }
 
 export interface ICustomMap {
-	onClick?: () => void;
+	onClick: (event: any) => void;
 }
 
 export interface IRange {

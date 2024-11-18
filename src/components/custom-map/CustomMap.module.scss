@@ -1,5 +1,6 @@
 @use '@st/functions' as func;
 @use '@st/variables' as vars;
+@use '@st/mixins' as mix;
 
 .wrapper_map {
 	width: 100vw !important;
@@ -32,16 +33,49 @@
 	// 	left: 27%;
 	// }
 
-	> g {
-		> path {
-			&:hover {
-				cursor: pointer;
-				stroke: vars.$blue;
-			}
-		}
-	}
+	// > g {
+	// 	> path {
+	// 		&:hover {
+	// 			cursor: pointer;
+	// 			stroke: vars.$blue;
+	// 		}
+	// 	}
+	// }
 }
 
-.test {
-	background-color: red;
+.republic__sakha,
+.chukotka__ao,
+.sakhalin,
+.kamchatka,
+.magadan,
+.khabarovsk,
+.jewish_aut_region,
+.amur__region,
+.republic_of_buryatia,
+.transbaikal__territory,
+.irkutsk__region,
+.republic_of_tuva,
+.krasnoyarsk__region,
+.republic_of_khakassia,
+.kemerovo__region,
+.altai__republick,
+.altai__region,
+.novosibirsk__region,
+.tomsk__region,
+.omsk__region,
+.tyumen__region,
+.khantyMansiysk,
+.yamaloNenets,
+.kurgan__region,
+.sverdlovsk__region {
+	@include mix.hover_region_style();
+}
+
+.ds {
+	> path {
+		stroke: red;
+		cursor: pointer;
+		stroke: vars.$blue;
+		fill: red;
+	}
 }

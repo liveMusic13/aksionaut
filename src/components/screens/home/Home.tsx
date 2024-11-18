@@ -2,11 +2,8 @@ import { FC, Suspense, useState } from 'react';
 
 import { useEstimateData } from '../../../hooks/useEstimateData';
 import CustomMap from '../../custom-map/CustomMap';
-import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
-import PopupRegion from '../../popup-region/PopupRegion';
-import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
 
 const Home: FC = () => {
@@ -26,6 +23,15 @@ const Home: FC = () => {
 	]);
 
 	console.log(data);
+
+	const onClick = (e: any) => {
+		const groupElement = e.currentTarget.closest('g');
+		if (groupElement) {
+			console.log(groupElement.id);
+		} else {
+			console.log('Родительский элемент не найден.');
+		}
+	};
 
 	if (isError) {
 		return <ErrorPage />;
@@ -54,18 +60,18 @@ const Home: FC = () => {
 					gap: 'calc(46/1920*100vw)',
 				}}
 			>
-				<Suspense>
+				{/* <Suspense>
 					<Filters />
-				</Suspense>
-				<Suspense>
+				</Suspense> */}
+				{/* <Suspense>
 					<WorthBlock />
-				</Suspense>
+				</Suspense> */}
 			</div>
 			<Suspense>
-				<CustomMap />
+				<CustomMap onClick={onClick} />
 			</Suspense>
 
-			<PopupRegion targetRegion={targetRegion} />
+			{/* <PopupRegion targetRegion={targetRegion} /> */}
 			{/* <Button>Найти</Button> */}
 			{/* <h1>APP</h1> */}
 		</Layout>

@@ -46,3 +46,15 @@
 		text-overflow: ellipsis;
 	}
 }
+
+@mixin hover_region_style() {
+	stroke: #e7efff;
+	stroke-width: 0.5;
+	transition: stroke 0.3s;
+
+	&:hover > path {
+		cursor: pointer;
+		stroke: vars.$blue;
+		fill: red;
+	}
+}
