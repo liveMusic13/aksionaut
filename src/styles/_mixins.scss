@@ -46,3 +46,17 @@
 		text-overflow: ellipsis;
 	}
 }
+
+@mixin hover_region_style() {
+	stroke: vars.$white_stroke_map;
+	stroke-width: 0.5;
+	fill: vars.$black_background;
+
+	transition: stroke 0.3s;
+
+	&:hover > path {
+		cursor: pointer;
+		stroke: vars.$blue;
+		// fill: red;
+	}
+}

@@ -26,7 +26,7 @@ export interface IInput {
 }
 
 export interface ICustomMap {
-	onClick?: () => void;
+	onClick: (event: any) => void;
 }
 
 export interface IRange {
@@ -51,4 +51,16 @@ export interface ICheckbox {
 
 export interface IPieChartGraph {
 	data: ITopEstimateInCountry[];
+}
+
+export interface IPopupRegion {
+	targetRegion: {
+		name: string;
+		data: number[];
+		color: string;
+	}[];
+	position: {
+		x: number;
+		y: number;
+	};
 }

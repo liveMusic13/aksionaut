@@ -1,0 +1,14 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__popup {
+	position: absolute;
+	z-index: 20;
+	backdrop-filter: blur(6px); // Размытие фона
+	-webkit-backdrop-filter: blur(6px); // Для поддержки в Safari
+	background-color: rgba($color: vars.$white, $alpha: 0.08);
+	width: func.adapt(358px, 1920px);
+	height: func.adapt(363px, 1920px);
+	border-radius: func.adapt(16px, 1920px);
+	border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+}
