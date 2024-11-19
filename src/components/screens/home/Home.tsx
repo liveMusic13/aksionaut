@@ -4,6 +4,7 @@ import { useEstimateData } from '../../../hooks/useEstimateData';
 import CustomMap from '../../custom-map/CustomMap';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
+import PopupRegion from '../../popup-region/PopupRegion';
 import ErrorPage from '../error-page/ErrorPage';
 
 const Home: FC = () => {
@@ -22,12 +23,15 @@ const Home: FC = () => {
 		},
 	]);
 
+	const [position, setPosition] = useState({ x: 0, y: 0 });
+
 	console.log(data);
 
 	const onClick = (e: any) => {
 		const groupElement = e.currentTarget.closest('g');
 		if (groupElement) {
-			console.log(groupElement.id);
+			console.log(groupElement.id, e.clientX, e.clientY);
+			setPosition({ x: e.clientX, y: e.clientY });
 		} else {
 			console.log('Родительский элемент не найден.');
 		}
@@ -71,7 +75,7 @@ const Home: FC = () => {
 				<CustomMap onClick={onClick} />
 			</Suspense>
 
-			{/* <PopupRegion targetRegion={targetRegion} /> */}
+			<PopupRegion targetRegion={targetRegion} position={position} />
 			{/* <Button>Найти</Button> */}
 			{/* <h1>APP</h1> */}
 		</Layout>

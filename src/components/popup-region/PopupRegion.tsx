@@ -1,8 +1,11 @@
 import { FC } from 'react';
 
+import { IPopupRegion } from '../../types/props.types';
 import ColumnChart from '../graphs/column-chart/ColumnChart';
 
-const PopupRegion: FC = ({ targetRegion }) => {
+import styles from './PopupRegion.module.scss';
+
+const PopupRegion: FC<IPopupRegion> = ({ targetRegion, position }) => {
 	// const data = [
 	// 	{
 	// 		name: 'Corn',
@@ -18,15 +21,10 @@ const PopupRegion: FC = ({ targetRegion }) => {
 
 	return (
 		<div
+			className={styles.block__popup}
 			style={{
-				width: 'calc(358/1920*100vw',
-				height: 'calc(363/1920*100vw)',
-				position: 'absolute',
-				top: '25%',
-				left: '25%',
-				zIndex: '20',
-				backdropFilter: 'blur(4px)',
-				backgroundColor: 'rgba(28, 37, 57, 0.6)',
+				top: position.y,
+				left: position.x,
 			}}
 		>
 			<ColumnChart data={targetRegion} />
