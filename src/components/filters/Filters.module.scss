@@ -6,14 +6,14 @@
 	backdrop-filter: blur(2px); // Размытие фона
 	-webkit-backdrop-filter: blur(2px); // Для поддержки в Safari
 	border-radius: func.adapt(16px, 1920px);
-	// position: fixed;
-	// z-index: 5;
-	// top: func.adapt(120px, 1920px);
-	// left: 50%;
-	// transform: translateX(-50%);
+	position: fixed;
+	z-index: 5;
+	top: func.adapt(120px, 1920px);
+	left: 50%;
+	transform: translateX(-50%);
 	width: func.adapt(866px, 1920px);
 	padding: func.adapt(32px, 1920px);
-	position: relative;
+	// position: relative;
 	z-index: 6;
 }
 

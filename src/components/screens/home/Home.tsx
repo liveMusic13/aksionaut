@@ -1,15 +1,24 @@
 import { FC, Suspense, useState } from 'react';
 
 import { useEstimateData } from '../../../hooks/useEstimateData';
+import {
+	useCalendarStore,
+	useEstimateStore,
+	useRegionStore,
+} from '../../../store/store';
 import CustomMap from '../../custom-map/CustomMap';
+import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import PopupRegion from '../../popup-region/PopupRegion';
+import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
 
 const Home: FC = () => {
 	const { data, error, isSuccess, refetch, isError } = useEstimateData();
-
+	const region = useRegionStore(store => store.region);
+	const estimate = useEstimateStore(store => store.estimate);
+	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const [targetRegion, setTargetRegion] = useState([
 		{
 			name: 'Corn',
@@ -25,7 +34,7 @@ const Home: FC = () => {
 
 	const [position, setPosition] = useState({ x: 0, y: 0 });
 
-	console.log(data);
+	console.log(region, estimate);
 
 	const onClick = (e: any) => {
 		const groupElement = e.currentTarget.closest('g');
@@ -50,27 +59,17 @@ const Home: FC = () => {
 			}}
 		>
 			<Header />
-			{/* <BlockEstimate /> */}
-			<div
-				style={{
-					position: 'absolute',
-					zIndex: '5',
-					left: '50%',
-					top: 'calc(120/1920*100vw)',
-					transform: 'translateX(-50%)',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: 'calc(46/1920*100vw)',
-				}}
-			>
-				{/* <Suspense>
-					<Filters />
-				</Suspense> */}
-				{/* <Suspense>
-					<WorthBlock />
-				</Suspense> */}
-			</div>
+			<Suspense>
+				<Filters />
+			</Suspense>
+			<Suspense>
+				{!(
+					region.length > 0 ||
+					estimate.length > 0 ||
+					selectedRange.start ||
+					selectedRange.end
+				) && <WorthBlock />}
+			</Suspense>
 			<Suspense>
 				<CustomMap onClick={onClick} />
 			</Suspense>

@@ -13,6 +13,12 @@
 	background-position: center;
 	padding: func.adapt(32px, 1920px) func.adapt(32px, 1920px)
 		func.adapt(32px, 1920px) func.adapt(28px, 1920px);
+
+	position: fixed;
+	z-index: 5;
+	top: func.adapt(560px, 1920px);
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .block__content {
