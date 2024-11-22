@@ -43,3 +43,15 @@ export const extractUniqueYears = (dateInfo: string[][]): string[] => {
 	});
 	return Array.from(yearSet);
 };
+
+export const filteredMonth = (
+	dateString: string,
+	dateArray: string[],
+	months: string[],
+): boolean => {
+	const [year, month] = dateString.split('-'); // Разделяем год и месяц из строки формата "YYYY-MM"
+	const monthIndex = parseInt(month, 10) - 1; // Получаем индекс месяца // Создаем строку в формате "Месяц YYYY"
+	const formattedDate = `${months[monthIndex]} ${year}`; // Сравниваем с каждым элементом массива
+
+	return dateArray.includes(formattedDate);
+};
