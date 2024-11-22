@@ -60,6 +60,7 @@ export interface IPopupRegion {
 		color: string;
 	}[];
 	position: {
+		id: string;
 		x: number;
 		y: number;
 	};

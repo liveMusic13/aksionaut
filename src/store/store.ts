@@ -4,6 +4,7 @@ import {
 	ICalendarState,
 	IEstimateStore,
 	IRegionStore,
+	IRegionsCoordinateStore,
 } from '../types/store.types';
 
 export const useEstimateStore = create<IEstimateStore>(set => ({
@@ -16,6 +17,19 @@ export const useEstimateStore = create<IEstimateStore>(set => ({
 		}
 	},
 }));
+
+export const useRegionsCoordinateStore = create<IRegionsCoordinateStore>(
+	set => ({
+		regions: [],
+		setRegions: regions => set({ regions }),
+		updateRegionById: (id, newX, newY) =>
+			set(state => ({
+				regions: state.regions.map(region =>
+					region.id === id ? { ...region, x: newX, y: newY } : region,
+				),
+			})),
+	}),
+);
 
 export const useRegionStore = create<IRegionStore>(set => ({
 	region: [],

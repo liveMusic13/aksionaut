@@ -4,12 +4,40 @@ import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import { FC, useMemo } from 'react';
 
 import { colors } from '../../../app.constants';
+import { useCalendar } from '../../../hooks/useCalendar';
 import { useCheckWidth } from '../../../hooks/useCheckWidth';
+import {
+	useCalendarStore,
+	useEstimateStore,
+	useRegionStore,
+} from '../../../store/store';
 
 HighchartsAccessibility(Highcharts);
 
 const ColumnChart: FC = ({ data }) => {
 	const { windowSize } = useCheckWidth();
+	const selectedRange = useCalendarStore(store => store.selectedRange);
+	const region = useRegionStore(store => store.region);
+	const estimate = useEstimateStore(store => store.estimate);
+	const { getSelectedMonths } = useCalendar();
+
+	const arr_month_full = useMemo(
+		() => [
+			'Январь',
+			'Февраль',
+			'Март',
+			'Апрель',
+			'Май',
+			'Июнь',
+			'Июль',
+			'Август',
+			'Сентябрь',
+			'Октябрь',
+			'Ноябрь',
+			'Декабрь',
+		],
+		[],
+	);
 
 	const widthGraph = (356 / 1920) * windowSize.width;
 	const heightGraph = (303 / 1920) * windowSize.width;
@@ -29,7 +57,8 @@ const ColumnChart: FC = ({ data }) => {
 				text: null,
 			},
 			xAxis: {
-				categories: ['USA', 'China', 'Brazil', 'EU', 'Argentina', 'India'],
+				// categories: ['USA', 'China', 'Brazil', 'EU', 'Argentina', 'India'],
+				categories: getSelectedMonths(arr_month_full, selectedRange),
 				crosshair: true,
 				accessibility: {
 					description: 'Countries',
@@ -83,7 +112,7 @@ const ColumnChart: FC = ({ data }) => {
 			},
 			series: data,
 		}),
-		[],
+		[data, selectedRange, region, estimate],
 	);
 
 	return (

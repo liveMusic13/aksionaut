@@ -22,8 +22,6 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const onChange = (name: string) => {
 		const changeState = isEstimate ? setEstimateState : setRegionState;
 
-		console.log(isEstimate);
-
 		changeState(prev => {
 			if (prev.includes(name)) {
 				// Убираем выбранный элемент
