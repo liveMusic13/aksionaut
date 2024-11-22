@@ -5,6 +5,7 @@ import {
 	IEstimateData,
 	ITopEstimateInCountry,
 } from './requests.types';
+import { IRegionCoordinate } from './store.types';
 import { IDataForSelectOption } from './transformData.types';
 
 export interface ILayoutProps extends PropsWithChildren {
@@ -59,9 +60,5 @@ export interface IPopupRegion {
 		data: number[];
 		color: string;
 	}[];
-	position: {
-		id: string;
-		x: number;
-		y: number;
-	};
+	position: IRegionCoordinate;
 }

@@ -1,4 +1,4 @@
-import { FC, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, Suspense, useCallback, useState } from 'react';
 
 import { useEstimateData } from '../../../hooks/useEstimateData';
 import { useFilters } from '../../../hooks/useFilters';
@@ -21,6 +21,10 @@ const Home: FC = () => {
 	const { data, error, isSuccess, refetch, isError } = useEstimateData();
 	const region = useRegionStore(store => store.region);
 	const setRegion = useRegionStore(store => store.setRegion);
+	const updateRegionById = useRegionsCoordinateStore(
+		store => store.updateRegionById,
+	);
+	const regionsCoordinate = useRegionsCoordinateStore(state => state.regions);
 	const estimate = useEstimateStore(store => store.estimate);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const [targetRegion, setTargetRegion] = useState([
@@ -36,31 +40,8 @@ const Home: FC = () => {
 		// },
 	]);
 
-	const arr_month_full = useMemo(
-		() => [
-			'Январь',
-			'Февраль',
-			'Март',
-			'Апрель',
-			'Май',
-			'Июнь',
-			'Июль',
-			'Август',
-			'Сентябрь',
-			'Октябрь',
-			'Ноябрь',
-			'Декабрь',
-		],
-		[],
-	);
+	useFilters(data ? data : { values: [] }, setTargetRegion);
 
-	useFilters(data ? data : { values: [] }, arr_month_full, setTargetRegion);
-	useEffect(
-		() => console.log('testtesttest', targetRegion, estimate),
-		[targetRegion],
-	);
-
-	const regionsCoordinate = useRegionsCoordinateStore(state => state.regions);
 	const getPositionsFunck = (
 		regionsCoordinate: IRegionCoordinate[],
 	): IRegionCoordinate[] => {
@@ -77,9 +58,6 @@ const Home: FC = () => {
 		return [firstRegion, secondRegion];
 	};
 
-	const updateRegionById = useRegionsCoordinateStore(
-		store => store.updateRegionById,
-	);
 	const onClick = useCallback((e: any) => {
 		const groupElement = e.currentTarget.closest('g');
 		if (groupElement) {
@@ -90,6 +68,11 @@ const Home: FC = () => {
 			console.log('Родительский элемент не найден.');
 		}
 	}, []);
+
+	const isFirstPopup =
+		targetRegion && targetRegion && targetRegion.length === 1;
+	const isSecondPopup =
+		targetRegion && targetRegion && targetRegion.length === 2;
 
 	if (isError) {
 		return <ErrorPage />;
@@ -119,13 +102,13 @@ const Home: FC = () => {
 				<CustomMap onClick={onClick} />
 			</Suspense>
 
-			{targetRegion && targetRegion && targetRegion.length === 1 && (
+			{isFirstPopup && (
 				<PopupRegion
 					targetRegion={targetRegion[0]}
 					position={getPositionsFunck(regionsCoordinate)[0]}
 				/>
 			)}
-			{targetRegion && targetRegion && targetRegion.length === 2 && (
+			{isSecondPopup && (
 				<>
 					<PopupRegion
 						targetRegion={targetRegion[0]}

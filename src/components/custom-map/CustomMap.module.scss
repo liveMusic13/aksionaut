@@ -135,11 +135,16 @@
 	@include mix.hover_region_style();
 }
 
-// .ds {
-// 	> path {
-// 		stroke: red;
-// 		cursor: pointer;
-// 		stroke: vars.$blue;
-// 		fill: red;
-// 	}
-// }
+.target {
+	fill: vars.$blue;
+
+	> path {
+		fill: vars.$blue;
+	}
+
+	// > mask {
+	// 	> path {
+	// 		fill: vars.$blue;
+	// 	}
+	// }
+}

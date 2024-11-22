@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
+import { arr_month_full } from '../data/calendar.data';
 import { useCalendarStore } from '../store/store';
 import { ISelectedRange } from '../types/calendar.types';
 
@@ -11,7 +12,6 @@ export const useCalendar = () => {
 		monthIndex: number,
 		uniqueYear: string[],
 		currentIndex: number,
-		arr_month_full: string[],
 	) => {
 		if (!selectedRange.start) {
 			setStart(`${arr_month_full[monthIndex]} ${uniqueYear[currentIndex]}`);
