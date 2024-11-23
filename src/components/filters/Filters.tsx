@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useCallback, useState } from 'react';
 
 import { arrPopularQueries } from '../../data/popular.data';
-import { useEstimateData } from '../../hooks/useEstimateData';
+import { useFilterFinalData } from '../../hooks/useFilterFinalData';
 import { useGetAllRegions } from '../../hooks/useGetAllRegions';
 import { getEstimateForRequest } from '../../utils/editRequestData';
 import Button from '../ui/button/Button';
@@ -19,7 +19,7 @@ const Filters: FC = () => {
 		[],
 	);
 
-	const { data, error, isSuccess, refetch } = useEstimateData();
+	const { finalData: data } = useFilterFinalData();
 	const { data: regions, isSuccess: isSuccess_regions } = useGetAllRegions();
 
 	const dataAllRegions = regions && regions.regions;

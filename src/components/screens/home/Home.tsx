@@ -1,6 +1,6 @@
 import { FC, Suspense, useCallback, useState } from 'react';
 
-import { useEstimateData } from '../../../hooks/useEstimateData';
+import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useFilters } from '../../../hooks/useFilters';
 import {
 	useCalendarStore,
@@ -18,7 +18,8 @@ import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
 
 const Home: FC = () => {
-	const { data, error, isSuccess, refetch, isError } = useEstimateData();
+	// const { data, error, isSuccess, refetch, isError } = useEstimateData();
+	const { finalData: data, isError } = useFilterFinalData();
 	const region = useRegionStore(store => store.region);
 	const setRegion = useRegionStore(store => store.setRegion);
 	const updateRegionById = useRegionsCoordinateStore(

@@ -1,21 +1,16 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 import { useGetPositionRegions } from '../../hooks/useGetPositionRegions';
-import { useRegionStore, useRegionsCoordinateStore } from '../../store/store';
+import { useRegionStore } from '../../store/store';
 import { ICustomMap } from '../../types/props.types';
 import ZoomControl from '../ui/zoom-control/ZoomControl';
 
 import styles from './CustomMap.module.scss';
 
 const CustomMap: FC<ICustomMap> = ({ onClick }) => {
-	const regions = useRegionsCoordinateStore(state => state.regions);
 	const { containerRef } = useGetPositionRegions();
 	const region = useRegionStore(store => store.region);
-
-	useEffect(() => {
-		console.log('regions', regions);
-	}, [regions]);
 
 	const checkTargetRegion = (region: string[], id: string) => {
 		if (region.length === 1) {

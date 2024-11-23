@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 import {
+	IActiveEstimateStore,
 	ICalendarState,
 	IEstimateStore,
 	IRegionStore,
@@ -59,4 +60,9 @@ export const useCalendarStore = create<ICalendarState>(set => ({
 		set(() => ({
 			selectedRange: { start: null, end: null },
 		})),
+}));
+
+export const useActiveEstimateStore = create<IActiveEstimateStore>(set => ({
+	activeButton: 'ЧГЧ',
+	setActiveButton: but => set({ activeButton: but }),
 }));

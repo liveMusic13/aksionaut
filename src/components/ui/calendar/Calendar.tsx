@@ -3,7 +3,7 @@ import { FC, useMemo, useState } from 'react';
 import { colors } from '../../../app.constants';
 import { arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
-import { useEstimateData } from '../../../hooks/useEstimateData';
+import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useCalendarStore } from '../../../store/store';
 import {
 	extractUniqueYears,
@@ -14,7 +14,7 @@ import styles from './Calendar.module.scss';
 
 const Calendar: FC = () => {
 	const [isViewCalendar, setIsViewCalendar] = useState<boolean>(false);
-	const { data } = useEstimateData();
+	const { finalData: data } = useFilterFinalData();
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
 	const { selectedRange } = useCalendarStore();

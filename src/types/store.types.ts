@@ -28,3 +28,8 @@ export interface IRegionsCoordinateStore {
 	setRegions: (region: IRegionCoordinate[]) => void;
 	updateRegionById: (id: string, newX: number, newY: number) => void;
 }
+
+export interface IActiveEstimateStore {
+	activeButton: string;
+	setActiveButton: (but: string) => void;
+}
