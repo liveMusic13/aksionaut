@@ -8,7 +8,54 @@
 	-webkit-backdrop-filter: blur(6px); // Для поддержки в Safari
 	background-color: rgba($color: vars.$white, $alpha: 0.08);
 	width: func.adapt(358px, 1920px);
-	height: func.adapt(363px, 1920px);
+	// height: func.adapt(363px, 1920px);
 	border-radius: func.adapt(16px, 1920px);
 	border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+}
+
+.block__title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: func.adapt(16px, 1920px) func.adapt(16px, 1920px) 0px;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 1.25rem;
+}
+
+.block__stats {
+	display: flex;
+	gap: func.adapt(24px, 1920px);
+}
+
+.block__content {
+	&:first-child {
+		padding-left: func.adapt(16px, 1920px);
+	}
+}
+
+.title__stats {
+	font-weight: 500;
+	font-size: 0.75rem;
+	color: rgba($color: vars.$white, $alpha: 0.6);
+}
+
+.value__stats {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.exit {
+	background-color: transparent;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	> img {
+		width: func.adapt(20px, 1920px);
+		height: func.adapt(20px, 1920px);
+	}
 }

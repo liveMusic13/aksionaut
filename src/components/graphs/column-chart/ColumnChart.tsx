@@ -4,6 +4,7 @@ import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import { FC, useMemo } from 'react';
 
 import { colors } from '../../../app.constants';
+import { arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
 import { useCheckWidth } from '../../../hooks/useCheckWidth';
 import {
@@ -11,33 +12,16 @@ import {
 	useEstimateStore,
 	useRegionStore,
 } from '../../../store/store';
+import { IColumnChart } from '../../../types/graph.types';
 
 HighchartsAccessibility(Highcharts);
 
-const ColumnChart: FC = ({ data }) => {
+const ColumnChart: FC<IColumnChart> = ({ data }) => {
 	const { windowSize } = useCheckWidth();
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const region = useRegionStore(store => store.region);
 	const estimate = useEstimateStore(store => store.estimate);
 	const { getSelectedMonths } = useCalendar();
-
-	const arr_month_full = useMemo(
-		() => [
-			'Январь',
-			'Февраль',
-			'Март',
-			'Апрель',
-			'Май',
-			'Июнь',
-			'Июль',
-			'Август',
-			'Сентябрь',
-			'Октябрь',
-			'Ноябрь',
-			'Декабрь',
-		],
-		[],
-	);
 
 	const widthGraph = (356 / 1920) * windowSize.width;
 	const heightGraph = (303 / 1920) * windowSize.width;
@@ -57,7 +41,6 @@ const ColumnChart: FC = ({ data }) => {
 				text: null,
 			},
 			xAxis: {
-				// categories: ['USA', 'China', 'Brazil', 'EU', 'Argentina', 'India'],
 				categories: getSelectedMonths(arr_month_full, selectedRange),
 				crosshair: true,
 				accessibility: {
@@ -85,9 +68,6 @@ const ColumnChart: FC = ({ data }) => {
 				gridLineWidth: 0,
 				lineWidth: 0, // скрыть основную линию оси x
 			},
-			tooltip: {
-				valueSuffix: ' (1000 MT)',
-			},
 			plotOptions: {
 				colors: ['rgba(255,255,255, 0.8)', '#A2BFF5'],
 				column: {
@@ -97,6 +77,7 @@ const ColumnChart: FC = ({ data }) => {
 				},
 			},
 			legend: {
+				enabled: data.length === 1 ? false : data.length === 2 ? true : true,
 				itemStyle: {
 					color: colors.white,
 					fontSize: '0.875rem',

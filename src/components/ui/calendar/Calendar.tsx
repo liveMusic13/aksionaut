@@ -1,6 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 
 import { colors } from '../../../app.constants';
+import { arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
 import { useEstimateData } from '../../../hooks/useEstimateData';
 import { useCalendarStore } from '../../../store/store';
@@ -32,24 +33,6 @@ const Calendar: FC = () => {
 			'Окт',
 			'Ноя',
 			'Дек',
-		],
-		[],
-	);
-
-	const arr_month_full = useMemo(
-		() => [
-			'Январь',
-			'Февраль',
-			'Март',
-			'Апрель',
-			'Май',
-			'Июнь',
-			'Июль',
-			'Август',
-			'Сентябрь',
-			'Октябрь',
-			'Ноябрь',
-			'Декабрь',
 		],
 		[],
 	);
@@ -146,12 +129,7 @@ const Calendar: FC = () => {
 									className={`${styles.month} ${isSelected ? styles.selected : ''}`}
 									disabled={!isActive}
 									onClick={() =>
-										handleSelectMonth(
-											ind,
-											uniqueYear,
-											currentIndex,
-											arr_month_full,
-										)
+										handleSelectMonth(ind, uniqueYear, currentIndex)
 									}
 								>
 									{month}

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { arr_month_full } from '../data/calendar.data';
 import {
 	useCalendarStore,
 	useEstimateStore,
@@ -54,7 +55,7 @@ import { useCalendar } from './useCalendar';
 
 export const useFilters = (
 	{ values: data }: { values: IFullEstimateData[] },
-	arr_month_full: string[],
+
 	setTargetRegion: any,
 ) => {
 	const { getSelectedMonths } = useCalendar();
