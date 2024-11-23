@@ -3,7 +3,7 @@ import { FC, useMemo, useState } from 'react';
 import { colors } from '../../../app.constants';
 import { useCalendar } from '../../../hooks/useCalendar';
 import { useEstimateData } from '../../../hooks/useEstimateData';
-import { ISelectedRange } from '../../../types/calendar.types';
+import { useCalendarStore } from '../../../store/store';
 import {
 	extractUniqueYears,
 	getDateInData,
@@ -16,11 +16,7 @@ const Calendar: FC = () => {
 	const { data } = useEstimateData();
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-	// Для хранения выбранного периода
-	const [selectedRange, setSelectedRange] = useState<ISelectedRange>({
-		start: null,
-		end: null,
-	});
+	const { selectedRange } = useCalendarStore();
 
 	const arr_month = useMemo(
 		() => [
@@ -127,19 +123,22 @@ const Calendar: FC = () => {
 					</div>
 					<div className={styles.block__month}>
 						{arr_month.map((month, ind) => {
-							// Проверяем, есть ли совпадение по текущему году и месяцу в массиве editData
 							const isActive = editData.some(
 								([year, monthName]) =>
 									year === uniqueYear[currentIndex] && monthName === month,
 							);
 
-							// Проверяем, что выбранный месяц и год совпадают с текущим
 							const isSelected =
+								// Проверяем, что это старт диапазона
 								(selectedRange.start?.includes(arr_month_full[ind]) &&
 									selectedRange.start.includes(uniqueYear[currentIndex])) ||
+								// Проверяем, что это конец диапазона
 								(selectedRange.end?.includes(arr_month_full[ind]) &&
 									selectedRange.end.includes(uniqueYear[currentIndex])) ||
-								selectedMonths.includes(arr_month_full[ind]);
+								// Проверяем, что месяц и год находятся внутри диапазона
+								selectedMonths.includes(
+									`${arr_month_full[ind]} ${uniqueYear[currentIndex]}`,
+								);
 
 							return (
 								<button
@@ -152,8 +151,6 @@ const Calendar: FC = () => {
 											uniqueYear,
 											currentIndex,
 											arr_month_full,
-											selectedRange,
-											setSelectedRange,
 										)
 									}
 								>

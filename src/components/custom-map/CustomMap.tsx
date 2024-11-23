@@ -1,12 +1,21 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
+import { useGetPositionRegions } from '../../hooks/useGetPositionRegions';
+import { useRegionsCoordinateStore } from '../../store/store';
 import { ICustomMap } from '../../types/props.types';
 import ZoomControl from '../ui/zoom-control/ZoomControl';
 
 import styles from './CustomMap.module.scss';
 
 const CustomMap: FC<ICustomMap> = ({ onClick }) => {
+	const regions = useRegionsCoordinateStore(state => state.regions);
+	const { containerRef } = useGetPositionRegions();
+
+	useEffect(() => {
+		console.log('regions', regions);
+	}, [regions]);
+
 	return (
 		<TransformWrapper
 			initialScale={1}
@@ -24,7 +33,7 @@ const CustomMap: FC<ICustomMap> = ({ onClick }) => {
 								fill='none'
 								xmlns='http://www.w3.org/2000/svg'
 							>
-								<g filter='url(#filter0_dd_931_32482)'>
+								<g filter='url(#filter0_dd_931_32482)' ref={containerRef}>
 									<g
 										id='Республика Саха (Якутия)'
 										className={styles.republic__sakha}

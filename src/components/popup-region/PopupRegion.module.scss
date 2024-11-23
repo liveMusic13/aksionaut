@@ -3,7 +3,7 @@
 
 .block__popup {
 	position: absolute;
-	z-index: 20;
+	z-index: 5;
 	backdrop-filter: blur(6px); // Размытие фона
 	-webkit-backdrop-filter: blur(6px); // Для поддержки в Safari
 	background-color: rgba($color: vars.$white, $alpha: 0.08);
