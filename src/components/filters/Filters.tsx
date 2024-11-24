@@ -20,6 +20,8 @@ const Filters: FC = () => {
 	);
 
 	const { finalData: data } = useFilterFinalData();
+	// const { data, error, isSuccess, refetch, isError, data_grl, data_ukaz } =
+	// 	useEstimateData();
 	const { data: regions, isSuccess: isSuccess_regions } = useGetAllRegions();
 
 	const dataAllRegions = regions && regions.regions;

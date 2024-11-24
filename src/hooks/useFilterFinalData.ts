@@ -9,13 +9,15 @@ export const useFilterFinalData = () => {
 		useEstimateData();
 	const activeButton = useActiveEstimateStore(store => store.activeButton);
 	const finalData = useMemo(() => {
-		console.log(activeButton);
+		// console.log(activeButton);
 		if (activeButton === 'ГРЛ') {
 			return data_grl;
 		} else if (activeButton === 'ЧГЧ') {
 			return data;
-		} else {
+		} else if (activeButton === '809') {
 			return data_ukaz;
+		} else {
+			return { values: [] };
 		}
 	}, [data, data_grl, data_ukaz, activeButton]);
 
