@@ -7,11 +7,8 @@
 	height: 100vh !important;
 
 	@media (max-width: 425px) {
-		position: absolute;
-		top: func.adapt(100px, 390px);
-		left: 0;
-		bottom: 0;
-		right: 0;
+		width: 100vw !important;
+		height: func.adapt(202px, 390px) !important;
 	}
 }
 

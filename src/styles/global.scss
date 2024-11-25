@@ -81,6 +81,10 @@ body {
 		font-size: vars.$fz;
 		overflow-y: auto;
 	}
+
+	@media (max-width: 425px) {
+		overflow: auto;
+	}
 }
 
 #root {

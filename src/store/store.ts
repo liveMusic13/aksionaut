@@ -6,6 +6,7 @@ import {
 	IEstimateStore,
 	IRegionStore,
 	IRegionsCoordinateStore,
+	ISettingsStore,
 } from '../types/store.types';
 
 export const useEstimateStore = create<IEstimateStore>(set => ({
@@ -65,4 +66,9 @@ export const useCalendarStore = create<ICalendarState>(set => ({
 export const useActiveEstimateStore = create<IActiveEstimateStore>(set => ({
 	activeButton: 'ЧГЧ',
 	setActiveButton: but => set({ activeButton: but }),
+}));
+
+export const useSettingsStore = create<ISettingsStore>(set => ({
+	isSettings: false,
+	setIsSettings: bol => set({ isSettings: bol }),
 }));

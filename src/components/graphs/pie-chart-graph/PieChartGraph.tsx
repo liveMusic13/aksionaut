@@ -23,19 +23,21 @@ const PieChartGraph: FC<IPieChartGraph> = ({ data }) => {
 	});
 
 	const { windowSize } = useCheckWidth();
-
+	const isMobile = windowSize.width <= 425;
 	const formatData = editTopEstimateInCountry(cashingData);
 
 	const widthGraph = (263 / 1920) * windowSize.width;
 	const heightGraph = (258 / 1920) * windowSize.width;
+	const widthGraphMobile = (260 / 390) * windowSize.width;
+	const heightGraphMobile = (260 / 390) * windowSize.width;
 
 	const options = useMemo(
 		() => ({
 			chart: {
 				type: 'pie',
 				backgroundColor: 'transparent', // Делаем фон графика прозрачным
-				height: heightGraph, // Устанавливаем фиксированную высоту
-				width: widthGraph,
+				height: isMobile ? heightGraphMobile : heightGraph, // Устанавливаем фиксированную высоту
+				width: isMobile ? widthGraphMobile : widthGraph,
 			},
 			accessibility: {
 				point: {

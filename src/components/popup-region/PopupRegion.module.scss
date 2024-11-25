@@ -11,6 +11,14 @@
 	// height: func.adapt(363px, 1920px);
 	border-radius: func.adapt(16px, 1920px);
 	border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+
+	@media (max-width: 425px) {
+		width: func.adapt(358px, 390px);
+		position: static;
+		margin-top: func.adapt(-200px, 390px);
+		border-radius: func.adapt(16px, 390px);
+		margin-bottom: func.adapt(103px, 390px);
+	}
 }
 
 .block__title {
@@ -18,6 +26,10 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: func.adapt(16px, 1920px) func.adapt(16px, 1920px) 0px;
+
+	@media (max-width: 425px) {
+		padding: func.adapt(16px, 390px) func.adapt(16px, 390px) 0px;
+	}
 }
 
 .title {
@@ -28,11 +40,20 @@
 .block__stats {
 	display: flex;
 	gap: func.adapt(24px, 1920px);
+
+	@media (max-width: 425px) {
+		gap: func.adapt(24px, 390px);
+		margin-top: func.adapt(12px, 390px);
+	}
 }
 
 .block__content {
 	&:first-child {
 		padding-left: func.adapt(16px, 1920px);
+
+		@media (max-width: 425px) {
+			padding-left: func.adapt(16px, 390px);
+		}
 	}
 }
 
@@ -57,5 +78,10 @@
 	> img {
 		width: func.adapt(20px, 1920px);
 		height: func.adapt(20px, 1920px);
+
+		@media (max-width: 425px) {
+			width: func.adapt(20px, 390px);
+			height: func.adapt(20px, 390px);
+		}
 	}
 }

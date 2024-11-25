@@ -9,12 +9,14 @@ import {
 	useEstimateStore,
 	useRegionStore,
 	useRegionsCoordinateStore,
+	useSettingsStore,
 } from '../../../store/store';
 import { IRegionCoordinate } from '../../../types/store.types';
 import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import PopupRegion from '../../popup-region/PopupRegion';
+import SettingsBlock from '../../settings-block/SettingsBlock';
 import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
 
@@ -34,18 +36,8 @@ const Home: FC = () => {
 	const regionsCoordinate = useRegionsCoordinateStore(state => state.regions);
 	const estimate = useEstimateStore(store => store.estimate);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
-	const [targetRegion, setTargetRegion] = useState([
-		// {
-		// 	name: 'Corn',
-		// 	data: [387749, 280000, 129000, 64300, 54000, 34300],
-		// 	color: 'rgba(255,255,255, 0.8)',
-		// },
-		// {
-		// 	name: 'Wheat',
-		// 	data: [45321, 140000, 10000, 140500, 19500, 113500],
-		// 	color: '#A2BFF5',
-		// },
-	]);
+	const isSettings = useSettingsStore(store => store.isSettings);
+	const [targetRegion, setTargetRegion] = useState([]);
 
 	useFilters(data ? data : { values: [] }, setTargetRegion);
 
@@ -89,7 +81,8 @@ const Home: FC = () => {
 		<Layout
 			style={{
 				backgroundImage: 'url("/images/backgrounds/stars_home.jpg")',
-				backgroundRepeat: 'no-repeat',
+				backgroundRepeat: isMobile ? 'repeat-y' : 'no-repeat',
+				height: isMobile ? 'auto' : undefined,
 				backgroundSize: 'cover',
 				flexDirection: isMobile ? 'column' : undefined,
 				gap: isMobile ? 'calc(8/390*100vw)' : undefined,
@@ -100,6 +93,11 @@ const Home: FC = () => {
 			<Suspense fallback={<div>Loading...</div>}>
 				<Filters />
 			</Suspense>
+
+			<Suspense fallback={<div>Loading...</div>}>
+				<CustomMap onClick={onClick} />
+			</Suspense>
+
 			<Suspense fallback={<div>Loading...</div>}>
 				{!(
 					region.length > 0 ||
@@ -107,9 +105,6 @@ const Home: FC = () => {
 					selectedRange.start ||
 					selectedRange.end
 				) && <WorthBlock />}
-			</Suspense>
-			<Suspense fallback={<div>Loading...</div>}>
-				<CustomMap onClick={onClick} />
 			</Suspense>
 
 			{isFirstPopup && (
@@ -130,6 +125,7 @@ const Home: FC = () => {
 					/>
 				</>
 			)}
+			{isMobile && isSettings && <SettingsBlock />}
 		</Layout>
 	);
 };

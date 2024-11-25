@@ -33,3 +33,8 @@ export interface IActiveEstimateStore {
 	activeButton: string;
 	setActiveButton: (but: string) => void;
 }
+
+export interface ISettingsStore {
+	isSettings: boolean;
+	setIsSettings: (bol: boolean) => void;
+}
