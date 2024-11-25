@@ -10,6 +10,14 @@ export const regionsService = {
 		const { data } = await $axios.get('/data_by_cennosti/');
 		return data;
 	},
+	getDataGrl: async (): Promise<{ values: IFullEstimateData[] }> => {
+		const { data } = await $axios.get('/data_by_cennosti_GRL');
+		return data;
+	},
+	getDataUkaz: async (): Promise<{ values: IFullEstimateData[] }> => {
+		const { data } = await $axios.get('/data_by_cennosti_ukaz');
+		return data;
+	},
 	getAllRegions: async (): Promise<{ regions: IAllRegions[] }> => {
 		const { data } = await $axios.get('/regions');
 		return data;

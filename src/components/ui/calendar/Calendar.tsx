@@ -1,8 +1,9 @@
 import { FC, useMemo, useState } from 'react';
 
 import { colors } from '../../../app.constants';
+import { arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
-import { useEstimateData } from '../../../hooks/useEstimateData';
+import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useCalendarStore } from '../../../store/store';
 import {
 	extractUniqueYears,
@@ -13,7 +14,9 @@ import styles from './Calendar.module.scss';
 
 const Calendar: FC = () => {
 	const [isViewCalendar, setIsViewCalendar] = useState<boolean>(false);
-	const { data } = useEstimateData();
+	const { finalData: data } = useFilterFinalData();
+	// const { data, error, isSuccess, refetch, isError, data_grl, data_ukaz } =
+	// 	useEstimateData();
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
 	const { selectedRange } = useCalendarStore();
@@ -32,24 +35,6 @@ const Calendar: FC = () => {
 			'Окт',
 			'Ноя',
 			'Дек',
-		],
-		[],
-	);
-
-	const arr_month_full = useMemo(
-		() => [
-			'Январь',
-			'Февраль',
-			'Март',
-			'Апрель',
-			'Май',
-			'Июнь',
-			'Июль',
-			'Август',
-			'Сентябрь',
-			'Октябрь',
-			'Ноябрь',
-			'Декабрь',
 		],
 		[],
 	);
@@ -146,12 +131,7 @@ const Calendar: FC = () => {
 									className={`${styles.month} ${isSelected ? styles.selected : ''}`}
 									disabled={!isActive}
 									onClick={() =>
-										handleSelectMonth(
-											ind,
-											uniqueYear,
-											currentIndex,
-											arr_month_full,
-										)
+										handleSelectMonth(ind, uniqueYear, currentIndex)
 									}
 								>
 									{month}

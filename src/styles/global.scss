@@ -49,24 +49,32 @@ body {
 	font-size: vars.$fz;
 	overflow: hidden;
 
-	@media (max-width: 1720px) {
+	@media (max-width: 1822px) {
 		font-size: 15px;
 	}
 
-	@media (max-width: 1520px) {
+	@media (max-width: 1710px) {
 		font-size: 14px;
 	}
 
-	@media (max-width: 1320px) {
+	@media (max-width: 1594px) {
+		font-size: 12px;
+	}
+
+	@media (max-width: 1366px) {
+		font-size: 11px;
+	}
+
+	@media (max-width: 1257px) {
 		font-size: 10px;
 	}
 
-	// @media (max-width: 1120px) {
-	// 	font-size: 10px;
-	// }
-
-	@media (max-width: 1040px) {
+	@media (max-width: 1154px) {
 		font-size: 9px;
+	}
+
+	@media (max-width: 1032px) {
+		font-size: 8px;
 	}
 
 	@media (max-width: 767.98px) {

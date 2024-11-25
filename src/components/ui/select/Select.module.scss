@@ -25,6 +25,62 @@
 	@include mix.hidden_scroll();
 }
 
+.estimate {
+	width: func.adapt(600px, 1920px);
+}
+
+.multi__block {
+	display: flex;
+	gap: func.adapt(12px, 1920px);
+}
+
+.block__dataEstimate {
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(8px, 1920px);
+	width: func.adapt(246px, 1920px);
+	padding-right: func.adapt(24px, 1920px);
+	border-right: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+}
+
+.button__estimate {
+	display: flex;
+	align-items: center;
+	width: 100%;
+
+	padding: func.adapt(4px, 1920px) func.adapt(8px, 1920px);
+	border-radius: func.adapt(4px, 1920px);
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.block__text {
+	display: flex;
+	gap: func.adapt(8px, 1920px);
+
+	> p {
+		color: vars.$white;
+		font-size: 0.875rem;
+	}
+
+	> span {
+		color: rgba($color: vars.$white, $alpha: 0.6);
+	}
+}
+
+.active {
+	background-color: rgba($color: vars.$white, $alpha: 0.08);
+	justify-content: space-between;
+}
+
+.image__active {
+	width: func.adapt(10px, 1920px);
+	height: func.adapt(10px, 1920px);
+	justify-self: flex-end;
+}
+
 @include mix.target_style();
 
 .target__input {

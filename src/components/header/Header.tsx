@@ -1,19 +1,25 @@
 import { FC } from 'react';
 
-import Geolocation from '../geolocation/Geolocation';
+import { useCheckWidth } from '../../hooks/useCheckWidth';
 
 import styles from './Header.module.scss';
 
 const Header: FC = () => {
+	const { windowSize } = useCheckWidth();
+
 	return (
 		<header className={styles.header}>
 			<img
-				src='/images/icons/logo_full.svg'
+				src={
+					windowSize.width <= 425
+						? '/images/icons/logo.svg'
+						: '/images/icons/logo_full.svg'
+				}
 				alt='logo'
-				className={styles.logo}
+				className={`${styles.logo} ${styles.logo_mobile}`}
 			/>
 			<div className={styles.block__right}>
-				<Geolocation />
+				{/* <Geolocation /> */}
 				<button className={styles.button}>
 					Выйти
 					<img

@@ -17,11 +17,25 @@
 	left: 50%;
 	transform: translateX(-50%);
 	padding: func.adapt(11px, 1920px) func.adapt(24px, 1920px);
+
+	@media (max-width: 425px) {
+		position: static;
+		transform: translateX(0%);
+		width: 100%;
+		height: func.adapt(46px, 390px);
+		border-radius: func.adapt(16px, 390px);
+		padding: func.adapt(11px, 1920px) func.adapt(13px, 390px);
+	}
 }
 
 .logo {
-	width: func.adapt(131px, 1920px);
-	height: func.adapt(59.71px, 1920px);
+	width: func.adapt(121px, 1920px);
+	height: func.adapt(50.71px, 1920px);
+
+	@media (max-width: 425px) {
+		width: func.adapt(29.63px, 390px);
+		height: func.adapt(46px, 390px);
+	}
 }
 
 .block__right {
@@ -46,4 +60,9 @@
 .logout__image {
 	width: func.adapt(20px, 1920px);
 	height: func.adapt(20px, 1920px);
+
+	@media (max-width: 425px) {
+		width: func.adapt(20px, 390px);
+		height: func.adapt(20px, 390px);
+	}
 }

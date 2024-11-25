@@ -1,6 +1,8 @@
-import { FC, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, Suspense, lazy, useCallback, useState } from 'react';
 
-import { useEstimateData } from '../../../hooks/useEstimateData';
+// import CustomMap from '../../custom-map/CustomMap';
+import { useCheckWidth } from '../../../hooks/useCheckWidth';
+import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useFilters } from '../../../hooks/useFilters';
 import {
 	useCalendarStore,
@@ -9,7 +11,6 @@ import {
 	useRegionsCoordinateStore,
 } from '../../../store/store';
 import { IRegionCoordinate } from '../../../types/store.types';
-import CustomMap from '../../custom-map/CustomMap';
 import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
@@ -17,10 +18,20 @@ import PopupRegion from '../../popup-region/PopupRegion';
 import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
 
+const CustomMap = lazy(() => import('../../custom-map/CustomMap'));
+
 const Home: FC = () => {
-	const { data, error, isSuccess, refetch, isError } = useEstimateData();
+	const {
+		windowSize: { width },
+	} = useCheckWidth();
+	const isMobile = width <= 425;
+	const { finalData: data, isError } = useFilterFinalData();
 	const region = useRegionStore(store => store.region);
 	const setRegion = useRegionStore(store => store.setRegion);
+	const updateRegionById = useRegionsCoordinateStore(
+		store => store.updateRegionById,
+	);
+	const regionsCoordinate = useRegionsCoordinateStore(state => state.regions);
 	const estimate = useEstimateStore(store => store.estimate);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const [targetRegion, setTargetRegion] = useState([
@@ -36,31 +47,8 @@ const Home: FC = () => {
 		// },
 	]);
 
-	const arr_month_full = useMemo(
-		() => [
-			'Январь',
-			'Февраль',
-			'Март',
-			'Апрель',
-			'Май',
-			'Июнь',
-			'Июль',
-			'Август',
-			'Сентябрь',
-			'Октябрь',
-			'Ноябрь',
-			'Декабрь',
-		],
-		[],
-	);
+	useFilters(data ? data : { values: [] }, setTargetRegion);
 
-	useFilters(data ? data : { values: [] }, arr_month_full, setTargetRegion);
-	useEffect(
-		() => console.log('testtesttest', targetRegion, estimate),
-		[targetRegion],
-	);
-
-	const regionsCoordinate = useRegionsCoordinateStore(state => state.regions);
 	const getPositionsFunck = (
 		regionsCoordinate: IRegionCoordinate[],
 	): IRegionCoordinate[] => {
@@ -77,9 +65,6 @@ const Home: FC = () => {
 		return [firstRegion, secondRegion];
 	};
 
-	const updateRegionById = useRegionsCoordinateStore(
-		store => store.updateRegionById,
-	);
 	const onClick = useCallback((e: any) => {
 		const groupElement = e.currentTarget.closest('g');
 		if (groupElement) {
@@ -91,6 +76,11 @@ const Home: FC = () => {
 		}
 	}, []);
 
+	const isFirstPopup =
+		targetRegion && targetRegion && targetRegion.length === 1;
+	const isSecondPopup =
+		targetRegion && targetRegion && targetRegion.length === 2;
+
 	if (isError) {
 		return <ErrorPage />;
 	}
@@ -101,13 +91,16 @@ const Home: FC = () => {
 				backgroundImage: 'url("/images/backgrounds/stars_home.jpg")',
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
+				flexDirection: isMobile ? 'column' : undefined,
+				gap: isMobile ? 'calc(8/390*100vw)' : undefined,
+				justifyContent: isMobile ? 'flex-start' : undefined,
 			}}
 		>
 			<Header />
-			<Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
 				<Filters />
 			</Suspense>
-			<Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
 				{!(
 					region.length > 0 ||
 					estimate.length > 0 ||
@@ -115,17 +108,17 @@ const Home: FC = () => {
 					selectedRange.end
 				) && <WorthBlock />}
 			</Suspense>
-			<Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
 				<CustomMap onClick={onClick} />
 			</Suspense>
 
-			{targetRegion && targetRegion && targetRegion.length === 1 && (
+			{isFirstPopup && (
 				<PopupRegion
 					targetRegion={targetRegion[0]}
 					position={getPositionsFunck(regionsCoordinate)[0]}
 				/>
 			)}
-			{targetRegion && targetRegion && targetRegion.length === 2 && (
+			{isSecondPopup && (
 				<>
 					<PopupRegion
 						targetRegion={targetRegion[0]}

@@ -1,0 +1,29 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__selects_mobile {
+	display: none;
+
+	@media (max-width: 425px) {
+		margin-top: func.adapt(16px, 390px);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: func.adapt(46px, 390px);
+		border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+		background-color: vars.$very_dark_blue;
+		border-radius: func.adapt(8px, 390px);
+		padding: func.adapt(12px, 390px) func.adapt(8px, 390px);
+	}
+}
+
+.target {
+	font-size: 0.9375rem;
+	font-weight: 500;
+}
+
+.image {
+	width: func.adapt(20px, 390px);
+	height: func.adapt(20px, 390px);
+}

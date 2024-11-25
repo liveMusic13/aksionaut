@@ -1,7 +1,11 @@
 import { FC, useEffect, useRef, useState } from 'react';
 
 import { colors } from '../../../app.constants';
-import { useEstimateStore, useRegionStore } from '../../../store/store';
+import {
+	useActiveEstimateStore,
+	useEstimateStore,
+	useRegionStore,
+} from '../../../store/store';
 import { ISelect } from '../../../types/props.types';
 import Checkbox from '../checkbox/Checkbox';
 
@@ -11,6 +15,11 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const [isViewOptions, setIsViewOptions] = useState<boolean>(false);
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [inputValue, setInputValue] = useState<string>('');
+	// const [activeButton, setActiveButton] = useState<string>('');
+	const activeButton = useActiveEstimateStore(store => store.activeButton);
+	const setActiveButton = useActiveEstimateStore(
+		store => store.setActiveButton,
+	);
 	const setEstimateState = useEstimateStore(store => store.setEstimate);
 	const estimate = useEstimateStore(store => store.estimate);
 	const setRegionState = useRegionStore(store => store.setRegion);
@@ -52,6 +61,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 
 	// Открытие/закрытие выпадающего списка
 	const onClick = () => setIsViewOptions(!isViewOptions);
+	const onActiveButton = (but: string) => setActiveButton(but);
 
 	// Сброс фокуса и строки поиска при закрытии
 	useEffect(() => {
@@ -98,20 +108,76 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 				/>
 			</div>
 			{isViewOptions && (
-				<div className={styles.block__select}>
+				<div
+					className={`${styles.block__select} ${isEstimate ? styles.estimate : ''}`}
+				>
 					<h2 className={styles.title}>{title}</h2>
-					<div className={styles.block__checkboxes}>
-						{filteredData?.map(box => {
-							const check = isEstimate ? estimate : region;
-							return (
-								<Checkbox
-									key={box.id}
-									checkbox={box}
-									onChange={() => onChange(box.name)}
-									isCheck={check.includes(box.name)}
-								/>
-							);
-						})}
+					<div className={`${isEstimate ? styles.multi__block : ''}`}>
+						{isEstimate && (
+							<div className={styles.block__dataEstimate}>
+								<button
+									className={`${styles.button__estimate} ${activeButton === 'ГРЛ' ? styles.active : ''}`}
+									onClick={() => onActiveButton('ГРЛ')}
+								>
+									<div className={styles.block__text}>
+										<p>ГРЛ</p>
+										<span>(12)</span>
+									</div>
+									{activeButton === 'ГРЛ' && (
+										<img
+											className={styles.image__active}
+											src='/images/icons/checkbox.svg'
+											alt='active'
+										/>
+									)}
+								</button>
+								<button
+									className={`${styles.button__estimate} ${activeButton === 'ЧГЧ' ? styles.active : ''}`}
+									onClick={() => onActiveButton('ЧГЧ')}
+								>
+									<div className={styles.block__text}>
+										<p>ЧГЧ</p>
+										<span>(24)</span>
+									</div>
+									{activeButton === 'ЧГЧ' && (
+										<img
+											className={styles.image__active}
+											src='/images/icons/checkbox.svg'
+											alt='active'
+										/>
+									)}
+								</button>
+								<button
+									className={`${styles.button__estimate} ${activeButton === '809' ? styles.active : ''}`}
+									onClick={() => onActiveButton('809')}
+								>
+									<div className={styles.block__text}>
+										<p>809</p>
+										<span>(48)</span>
+									</div>
+									{activeButton === '809' && (
+										<img
+											className={styles.image__active}
+											src='/images/icons/checkbox.svg'
+											alt='active'
+										/>
+									)}
+								</button>
+							</div>
+						)}
+						<div className={styles.block__checkboxes}>
+							{filteredData?.map(box => {
+								const check = isEstimate ? estimate : region;
+								return (
+									<Checkbox
+										key={box.id}
+										checkbox={box}
+										onChange={() => onChange(box.name)}
+										isCheck={check.includes(box.name)}
+									/>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			)}

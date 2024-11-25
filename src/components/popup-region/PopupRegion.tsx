@@ -1,63 +1,56 @@
 import { FC, useEffect, useState } from 'react';
 
+import { useDraggingPopup } from '../../hooks/useDraggingPopup';
 import { useRegionStore } from '../../store/store';
 import { IPopupRegion } from '../../types/props.types';
+import { IRegionCoordinate } from '../../types/store.types';
+import { truncateDescription } from '../../utils/egitText';
 import ColumnChart from '../graphs/column-chart/ColumnChart';
 
 import styles from './PopupRegion.module.scss';
 
 const PopupRegion: FC<IPopupRegion> = ({ targetRegion, position }) => {
 	const setRegion = useRegionStore(store => store.setRegion);
-	const [positionNew, setPositionNew] = useState(position);
-	const [dragging, setDragging] = useState(false);
-	const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(
-		null,
-	);
+	const region = useRegionStore(store => store.region);
+	const [positionNew, setPositionNew] = useState<IRegionCoordinate>(position);
 
 	useEffect(() => {
 		setPositionNew(position);
 	}, [position]);
 
-	const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-		setDragging(true);
-		setDragStart({
-			x: e.clientX - positionNew.x,
-			y: e.clientY - positionNew.y,
-		});
-	};
+	const { dragging, handleMouseDown } = useDraggingPopup(
+		positionNew,
+		setPositionNew,
+	);
 
-	const handleMouseMove = (e: MouseEvent) => {
-		if (dragging && dragStart) {
-			setPositionNew({
-				id: positionNew.id,
-				x: e.clientX - dragStart.x,
-				y: e.clientY - dragStart.y,
-			});
-			console.log('e.currentTarget.closest()', e);
-		}
-	};
-
-	const handleMouseUp = () => {
-		setDragging(false);
-		setDragStart(null);
-		// Здесь вы можете сохранить позицию в глобальное состояние или сделать другой нужный вам запрос
-		console.log('Новая позиция:', positionNew);
-	};
-
-	useEffect(() => {
-		if (dragging) {
-			window.addEventListener('mousemove', handleMouseMove);
-			window.addEventListener('mouseup', handleMouseUp);
+	const removePopup = () => {
+		if (region.length === 1) {
+			setRegion([]);
 		} else {
-			window.removeEventListener('mousemove', handleMouseMove);
-			window.removeEventListener('mouseup', handleMouseUp);
+			const targetClose = region.filter(el => el !== position.id);
+			console.log(targetClose);
+			setRegion(targetClose);
 		}
+	};
 
-		return () => {
-			window.removeEventListener('mousemove', handleMouseMove);
-			window.removeEventListener('mouseup', handleMouseUp);
-		};
-	}, [dragging]);
+	const findMaxDataValue = (
+		targetRegion: {
+			name: string;
+			data: number[];
+			color: string;
+		}[],
+	): number => {
+		// let maxValue = -Infinity;
+		let maxValue = 0;
+		targetRegion.forEach(region => {
+			region.data.forEach(value => {
+				if (value > maxValue) {
+					maxValue = value;
+				}
+			});
+		});
+		return maxValue;
+	};
 
 	return (
 		<div
@@ -69,8 +62,30 @@ const PopupRegion: FC<IPopupRegion> = ({ targetRegion, position }) => {
 			}}
 			onMouseDown={handleMouseDown}
 		>
-			<h2>{position.id}</h2>
-			<p onClick={() => setRegion([])}>test</p>
+			<div className={styles.block__title}>
+				<h2 className={styles.title}>{truncateDescription(position.id, 21)}</h2>
+				<button onClick={removePopup} className={styles.exit}>
+					<img src='/images/icons/exit.svg' alt='exit' />
+				</button>
+			</div>
+			<div className={styles.block__stats}>
+				<div className={styles.block__content}>
+					<h3 className={styles.title__stats}>Ценность</h3>
+					{targetRegion.map((est, ind) => (
+						<p key={ind} className={styles.value__stats}>
+							{est.name}
+						</p>
+					))}
+				</div>
+				<div className={styles.block__content}>
+					<h3 className={styles.title__stats}>
+						Максимальное значение за период
+					</h3>
+					<p className={styles.value__stats}>
+						{findMaxDataValue(targetRegion)}
+					</p>
+				</div>
+			</div>
 			<ColumnChart data={targetRegion} />
 		</div>
 	);

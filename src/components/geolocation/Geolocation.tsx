@@ -7,7 +7,7 @@ import { ILocationData } from '../../types/requests.types';
 import styles from './Geolocation.module.scss';
 
 const Geolocation: FC = () => {
-	const { data, isError, isSuccess } = useQuery({
+	const { data, isSuccess } = useQuery({
 		queryKey: ['location'],
 		queryFn: () => {
 			return new Promise<ILocationData>((resolve, reject) => {
