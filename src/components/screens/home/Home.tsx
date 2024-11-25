@@ -16,7 +16,6 @@ import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import PopupRegion from '../../popup-region/PopupRegion';
 import WorthBlock from '../../worth-block/WorthBlock';
-import ErrorPage from '../error-page/ErrorPage';
 
 const CustomMap = lazy(() => import('../../custom-map/CustomMap'));
 
@@ -81,9 +80,9 @@ const Home: FC = () => {
 	const isSecondPopup =
 		targetRegion && targetRegion && targetRegion.length === 2;
 
-	if (isError) {
-		return <ErrorPage />;
-	}
+	// if (isError) {
+	// 	return <ErrorPage />;
+	// }
 
 	return (
 		<Layout
