@@ -5,8 +5,7 @@ import { useActiveEstimateStore } from '../store/store';
 import { useEstimateData } from './useEstimateData';
 
 export const useFilterFinalData = () => {
-	const { data, error, isSuccess, refetch, isError, data_grl, data_ukaz } =
-		useEstimateData();
+	const { data, isError, data_grl, data_ukaz } = useEstimateData();
 	const activeButton = useActiveEstimateStore(store => store.activeButton);
 	const finalData = useMemo(() => {
 		// console.log(activeButton);

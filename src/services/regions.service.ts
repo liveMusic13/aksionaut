@@ -11,7 +11,7 @@ export const regionsService = {
 		return data;
 	},
 	getDataGrl: async (): Promise<{ values: IFullEstimateData[] }> => {
-		const { data } = await $axios.get('/data_by_regions_GRL/');
+		const { data } = await $axios.get('/data_by_cennosti_GRL');
 		return data;
 	},
 	getDataUkaz: async (): Promise<{ values: IFullEstimateData[] }> => {

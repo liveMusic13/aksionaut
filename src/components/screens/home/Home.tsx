@@ -1,4 +1,4 @@
-import { FC, Suspense, useCallback, useState } from 'react';
+import { FC, Suspense, lazy, useCallback, useState } from 'react';
 
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useFilters } from '../../../hooks/useFilters';
@@ -9,13 +9,22 @@ import {
 	useRegionsCoordinateStore,
 } from '../../../store/store';
 import { IRegionCoordinate } from '../../../types/store.types';
-import CustomMap from '../../custom-map/CustomMap';
+// import CustomMap from '../../custom-map/CustomMap';
 import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import PopupRegion from '../../popup-region/PopupRegion';
 import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
+
+const CustomMap = lazy(() => import('../../custom-map/CustomMap'));
+
+// const CustomMap = lazy(
+// 	() =>
+// 		new Promise(resolve => {
+// 			setTimeout(() => resolve(import('../../custom-map/CustomMap')), 2000); // Задержка 2 секунды
+// 		}),
+// );
 
 const Home: FC = () => {
 	// const { data, error, isSuccess, refetch, isError } = useEstimateData();
@@ -99,7 +108,7 @@ const Home: FC = () => {
 					selectedRange.end
 				) && <WorthBlock />}
 			</Suspense>
-			<Suspense>
+			<Suspense fallback={<div>Loading map...</div>}>
 				<CustomMap onClick={onClick} />
 			</Suspense>
 
