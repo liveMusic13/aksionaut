@@ -1,5 +1,7 @@
 import { FC, Suspense, lazy, useCallback, useState } from 'react';
 
+// import CustomMap from '../../custom-map/CustomMap';
+import { useCheckWidth } from '../../../hooks/useCheckWidth';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useFilters } from '../../../hooks/useFilters';
 import {
@@ -9,7 +11,6 @@ import {
 	useRegionsCoordinateStore,
 } from '../../../store/store';
 import { IRegionCoordinate } from '../../../types/store.types';
-// import CustomMap from '../../custom-map/CustomMap';
 import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
@@ -19,15 +20,11 @@ import ErrorPage from '../error-page/ErrorPage';
 
 const CustomMap = lazy(() => import('../../custom-map/CustomMap'));
 
-// const CustomMap = lazy(
-// 	() =>
-// 		new Promise(resolve => {
-// 			setTimeout(() => resolve(import('../../custom-map/CustomMap')), 2000); // Задержка 2 секунды
-// 		}),
-// );
-
 const Home: FC = () => {
-	// const { data, error, isSuccess, refetch, isError } = useEstimateData();
+	const {
+		windowSize: { width },
+	} = useCheckWidth();
+	const isMobile = width <= 425;
 	const { finalData: data, isError } = useFilterFinalData();
 	const region = useRegionStore(store => store.region);
 	const setRegion = useRegionStore(store => store.setRegion);
@@ -94,13 +91,16 @@ const Home: FC = () => {
 				backgroundImage: 'url("/images/backgrounds/stars_home.jpg")',
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
+				flexDirection: isMobile ? 'column' : undefined,
+				gap: isMobile ? 'calc(8/390*100vw)' : undefined,
+				justifyContent: isMobile ? 'flex-start' : undefined,
 			}}
 		>
 			<Header />
-			<Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
 				<Filters />
 			</Suspense>
-			<Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
 				{!(
 					region.length > 0 ||
 					estimate.length > 0 ||
@@ -108,7 +108,7 @@ const Home: FC = () => {
 					selectedRange.end
 				) && <WorthBlock />}
 			</Suspense>
-			<Suspense fallback={<div>Loading map...</div>}>
+			<Suspense fallback={<div>Loading...</div>}>
 				<CustomMap onClick={onClick} />
 			</Suspense>
 

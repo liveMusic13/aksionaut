@@ -5,42 +5,24 @@
 .wrapper_map {
 	width: 100vw !important;
 	height: 100vh !important;
-	// position: absolute !important;
-	// top: 50% !important;
-	// left: 50% !important;
-	// transform: translate(-50%, -50%) !important;
+
+	@media (max-width: 425px) {
+		position: absolute;
+		top: func.adapt(100px, 390px);
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
 }
 
 .map {
-	// width: func.adapt(1894px, 1920px);
-	// height: func.adapt(1039px, 1920px);
 	width: func.adapt(1322px, 1920px);
 	height: func.adapt(723px, 1920px);
-	// position: absolute;
-	// top: 30%;
-	// left: 27%;
-	// z-index: 1;
 
-	// // Широкий экран (например, соотношение больше 16:9)
-	// @media (min-aspect-ratio: 16/9) {
-	// 	top: 15%; // значения можно корректировать
-	// 	left: 25%; // значения можно корректировать
-	// }
-
-	// // Высокий экран (например, соотношение меньше 16:9)
-	// @media (max-aspect-ratio: 16/9) {
-	// 	top: 30%;
-	// 	left: 27%;
-	// }
-
-	// > g {
-	// 	> path {
-	// 		&:hover {
-	// 			cursor: pointer;
-	// 			stroke: vars.$blue;
-	// 		}
-	// 	}
-	// }
+	@media (max-width: 425px) {
+		width: func.adapt(369.49px, 390px);
+		height: func.adapt(202px, 390px);
+	}
 }
 
 .republic__sakha,
