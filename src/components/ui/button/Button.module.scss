@@ -20,4 +20,8 @@
 	&:active {
 		background-color: vars.$blue_dark;
 	}
+
+	@media (max-width: 425px) {
+		border-radius: func.adapt(8px, 390px);
+	}
 }
