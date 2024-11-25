@@ -19,6 +19,13 @@ import ErrorPage from '../error-page/ErrorPage';
 
 const CustomMap = lazy(() => import('../../custom-map/CustomMap'));
 
+// const CustomMap = lazy(
+// 	() =>
+// 		new Promise(resolve => {
+// 			setTimeout(() => resolve(import('../../custom-map/CustomMap')), 2000); // Задержка 2 секунды
+// 		}),
+// );
+
 const Home: FC = () => {
 	// const { data, error, isSuccess, refetch, isError } = useEstimateData();
 	const { finalData: data, isError } = useFilterFinalData();
