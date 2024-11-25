@@ -24,7 +24,7 @@ const Home: FC = () => {
 		windowSize: { width },
 	} = useCheckWidth();
 	const isMobile = width <= 425;
-	const { finalData: data, isError } = useFilterFinalData();
+	const { finalData: data } = useFilterFinalData();
 	const region = useRegionStore(store => store.region);
 	const setRegion = useRegionStore(store => store.setRegion);
 	const updateRegionById = useRegionsCoordinateStore(
