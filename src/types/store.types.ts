@@ -38,3 +38,10 @@ export interface ISettingsStore {
 	isSettings: boolean;
 	setIsSettings: (bol: boolean) => void;
 }
+
+export interface IViewFilters {
+	isEstimate: boolean;
+	isRegion: boolean;
+	isCalendar: boolean;
+	setIsFilter: (id: number, bul: boolean) => void;
+}

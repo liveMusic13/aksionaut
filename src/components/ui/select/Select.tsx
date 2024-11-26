@@ -15,7 +15,6 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const [isViewOptions, setIsViewOptions] = useState<boolean>(false);
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [inputValue, setInputValue] = useState<string>('');
-	// const [activeButton, setActiveButton] = useState<string>('');
 	const activeButton = useActiveEstimateStore(store => store.activeButton);
 	const setActiveButton = useActiveEstimateStore(
 		store => store.setActiveButton,

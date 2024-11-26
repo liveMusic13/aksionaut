@@ -12,3 +12,21 @@ export const selectsArr = [
 		name: 'Период',
 	},
 ];
+
+export const estimateArr = [
+	{
+		id: 0,
+		name: 'ЧГЧ',
+		count: 12,
+	},
+	{
+		id: 1,
+		name: 'ГРЛ',
+		count: 24,
+	},
+	{
+		id: 2,
+		name: '809',
+		count: 46,
+	},
+];

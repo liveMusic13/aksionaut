@@ -60,3 +60,24 @@
 		// fill: red;
 	}
 }
+
+@mixin absolute_settings($zIndex) {
+	background-color: vars.$very_dark_blue;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: $zIndex;
+	border-top-left-radius: func.adapt(16px, 390px);
+	border-top-right-radius: func.adapt(16px, 390px);
+	padding: func.adapt(16px, 390px);
+}
+
+@mixin block_title_settings() {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: func.adapt(16px, 390px);
+	margin-bottom: func.adapt(12px, 390px);
+}

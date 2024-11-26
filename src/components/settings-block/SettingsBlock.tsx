@@ -1,15 +1,52 @@
 import { FC } from 'react';
 
 import { selectsArr } from '../../data/selects.data';
-import { useSettingsStore } from '../../store/store';
+import {
+	useCalendarStore,
+	useEstimateStore,
+	useRegionStore,
+	useSettingsStore,
+	useViewFilters,
+} from '../../store/store';
 
 import styles from './SettingsBlock.module.scss';
+import BlockButtons from './block-buttons/BlockButtons';
 
 const SettingsBlock: FC = () => {
 	const setIsSettings = useSettingsStore(store => store.setIsSettings);
+	const region = useRegionStore(store => store.region);
+	const estimate = useEstimateStore(store => store.estimate);
+	const selectedRange = useCalendarStore(store => store.selectedRange);
+	const setIsFilter = useViewFilters(store => store.setIsFilter);
+
+	const valueFunck = (id: number) => {
+		if (estimate.length === 1 && id === 0) {
+			return estimate[0];
+		} else if (estimate.length === 2 && id === 0) {
+			return `${estimate[0]}, ${estimate[1]}`;
+		} else if (region.length === 1 && id === 1) {
+			return `${region[0]}`;
+		} else if (region.length === 2 && id === 1) {
+			return `${region[0]}, ${region[1]}`;
+		} else if (selectedRange.start && selectedRange.end) {
+			return `${selectedRange.start} - ${selectedRange.end}`;
+		} else if (selectedRange.start && !selectedRange.end) {
+			return `${selectedRange.start}`;
+		} else if (!selectedRange.start && selectedRange.end) {
+			return `${selectedRange.end}`;
+		} else {
+			return false;
+		}
+	};
 
 	const onClick = () => {
 		setIsSettings(false);
+	};
+	const _onClick = (id: number, selectsArr: { id: number; name: string }[]) => {
+		setIsFilter(id, true);
+		selectsArr.forEach(el => {
+			if (el.id !== id) setIsFilter(el.id, false);
+		});
 	};
 
 	return (
@@ -22,10 +59,16 @@ const SettingsBlock: FC = () => {
 			</div>
 			<div className={styles.block__selects}>
 				{selectsArr.map(sel => (
-					<div key={sel.id}>
+					<div
+						key={sel.id}
+						className={styles.block__select}
+						onClick={() => _onClick(sel.id, selectsArr)}
+					>
 						<div className={styles.block__titleSelect}>
 							<h3 className={styles.title__select}>{sel.name}</h3>
-							<p className={styles.value__select}></p>
+							<p className={styles.value__select}>
+								{!valueFunck(sel.id) ? sel.name : valueFunck(sel.id)}
+							</p>
 						</div>
 						<img
 							src='/images/icons/arrow_bot.svg'
@@ -35,6 +78,7 @@ const SettingsBlock: FC = () => {
 					</div>
 				))}
 			</div>
+			<BlockButtons />
 		</div>
 	);
 };

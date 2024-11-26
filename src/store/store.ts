@@ -7,6 +7,7 @@ import {
 	IRegionStore,
 	IRegionsCoordinateStore,
 	ISettingsStore,
+	IViewFilters,
 } from '../types/store.types';
 
 export const useEstimateStore = create<IEstimateStore>(set => ({
@@ -71,4 +72,22 @@ export const useActiveEstimateStore = create<IActiveEstimateStore>(set => ({
 export const useSettingsStore = create<ISettingsStore>(set => ({
 	isSettings: false,
 	setIsSettings: bol => set({ isSettings: bol }),
+}));
+
+export const useViewFilters = create<IViewFilters>(set => ({
+	isEstimate: false,
+	isRegion: false,
+	isCalendar: false,
+	setIsFilter: (id, bol) =>
+		set(state => {
+			if (id === 0) {
+				return { ...state, isEstimate: bol };
+			} else if (id === 1) {
+				return { ...state, isRegion: bol };
+			} else if (id === 2) {
+				return { ...state, isCalendar: bol };
+			} else {
+				return state;
+			}
+		}),
 }));

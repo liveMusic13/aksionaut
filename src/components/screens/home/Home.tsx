@@ -10,6 +10,7 @@ import {
 	useRegionStore,
 	useRegionsCoordinateStore,
 	useSettingsStore,
+	useViewFilters,
 } from '../../../store/store';
 import { IRegionCoordinate } from '../../../types/store.types';
 import Filters from '../../filters/Filters';
@@ -17,6 +18,8 @@ import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import PopupRegion from '../../popup-region/PopupRegion';
 import SettingsBlock from '../../settings-block/SettingsBlock';
+import EstimateBlock from '../../settings-block/estimate-block/EstimateBlock';
+import RegionBlock from '../../settings-block/region-block/RegionBlock';
 import WorthBlock from '../../worth-block/WorthBlock';
 import ErrorPage from '../error-page/ErrorPage';
 
@@ -37,6 +40,7 @@ const Home: FC = () => {
 	const estimate = useEstimateStore(store => store.estimate);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const isSettings = useSettingsStore(store => store.isSettings);
+	const { isCalendar, isEstimate, isRegion } = useViewFilters();
 	const [targetRegion, setTargetRegion] = useState([]);
 
 	useFilters(data ? data : { values: [] }, setTargetRegion);
@@ -87,6 +91,8 @@ const Home: FC = () => {
 				flexDirection: isMobile ? 'column' : undefined,
 				gap: isMobile ? 'calc(8/390*100vw)' : undefined,
 				justifyContent: isMobile ? 'flex-start' : undefined,
+				overflow:
+					isMobile && (isRegion || isCalendar || isEstimate) ? 'hidden' : '',
 			}}
 		>
 			<Header />
@@ -95,7 +101,7 @@ const Home: FC = () => {
 			</Suspense>
 
 			<Suspense fallback={<div>Loading...</div>}>
-				<CustomMap onClick={onClick} />
+				<CustomMap onClick={onClick} targetRegion={targetRegion} />
 			</Suspense>
 
 			<Suspense fallback={<div>Loading...</div>}>
@@ -113,7 +119,7 @@ const Home: FC = () => {
 					position={getPositionsFunck(regionsCoordinate)[0]}
 				/>
 			)}
-			{isSecondPopup && (
+			{!isMobile && isSecondPopup && (
 				<>
 					<PopupRegion
 						targetRegion={targetRegion[0]}
@@ -125,7 +131,17 @@ const Home: FC = () => {
 					/>
 				</>
 			)}
+
+			{/* {isMobile && isSecondPopup && (
+				<PopupRegion
+					targetRegion={targetRegion}
+					position={getPositionsFunck(regionsCoordinate)[0]}
+				/>
+			)} */}
+
 			{isMobile && isSettings && <SettingsBlock />}
+			{isMobile && isEstimate && <EstimateBlock />}
+			{isMobile && isRegion && <RegionBlock />}
 		</Layout>
 	);
 };

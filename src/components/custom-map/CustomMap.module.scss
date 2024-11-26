@@ -12,6 +12,12 @@
 	}
 }
 
+.mobile__margin {
+	@media (max-width: 425px) {
+		margin-bottom: func.adapt(300px, 390px);
+	}
+}
+
 .map {
 	width: func.adapt(1322px, 1920px);
 	height: func.adapt(723px, 1920px);

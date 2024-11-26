@@ -28,6 +28,7 @@ export interface IInput {
 
 export interface ICustomMap {
 	onClick: (event: any) => void;
+	targetRegion: { name: string; data: number[]; color: string }[][];
 }
 
 export interface IRange {

@@ -1,0 +1,54 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.block__region {
+	@include mix.absolute_settings(11);
+	overflow-y: auto;
+}
+
+.block__title {
+	@include mix.block_title_settings();
+}
+
+.title_and_button {
+	display: flex;
+	align-items: center;
+	gap: func.adapt(12px, 390px);
+}
+
+.arrow__back {
+	background-color: transparent;
+
+	> img {
+		width: func.adapt(32px, 390px);
+		height: func.adapt(32px, 390px);
+	}
+}
+
+.title {
+	font-size: 1.25rem;
+	font-weight: 500;
+	padding-bottom: func.adapt(5px, 390px);
+}
+
+.exit {
+	background-color: transparent;
+
+	> img {
+		width: func.adapt(32px, 390px);
+		height: func.adapt(32px, 390px);
+	}
+}
+
+.description {
+	font-size: 0.75rem;
+	color: rgba($color: vars.$white, $alpha: 0.5);
+	margin-bottom: func.adapt(12px, 390px);
+}
+
+.block__checkboxes {
+	margin-top: func.adapt(8px, 390px);
+	// height: 100%;
+	margin-bottom: func.adapt(100px, 390px);
+}
