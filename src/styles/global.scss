@@ -77,6 +77,14 @@ body {
 		font-size: 8px;
 	}
 
+	@media (max-width: 910px) {
+		font-size: 7px;
+	}
+
+	@media (max-width: 796px) {
+		font-size: 6px;
+	}
+
 	@media (max-width: 767.98px) {
 		font-size: vars.$fz;
 		overflow-y: auto;

@@ -23,6 +23,12 @@ const CustomMap: FC<ICustomMap> = ({ onClick, targetRegion }) => {
 			selectedRange.start ||
 			selectedRange.end) &&
 		targetRegion.length === 0;
+	const isViewPopup =
+		(region.length > 0 &&
+			estimate.length > 0 &&
+			selectedRange.start &&
+			selectedRange.end) ||
+		region.length > 0;
 
 	const checkTargetRegion = (region: string[], id: string) => {
 		if (region.length === 1) {
@@ -43,6 +49,7 @@ const CustomMap: FC<ICustomMap> = ({ onClick, targetRegion }) => {
 				<>
 					<TransformComponent
 						wrapperClass={`${styles.wrapper_map} ${checkValue ? styles.mobile__margin : ''}`}
+						// wrapperClass={`${styles.wrapper_map} ${isViewPopup ? styles.margin_for_popup : ''} ${checkValue ? styles.mobile__margin : ''}`}
 					>
 						<svg
 							className={styles.map}

@@ -18,13 +18,21 @@
 	transform: translateX(-50%);
 	padding: func.adapt(11px, 1920px) func.adapt(24px, 1920px);
 
+	@media (max-width: 768.98px) {
+		top: 0;
+		width: 100%;
+		height: func.adapt(46px, 768px);
+		border-radius: func.adapt(16px, 768px);
+		padding: func.adapt(11px, 1920px) func.adapt(13px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		position: static;
 		transform: translateX(0%);
 		width: 100%;
 		height: func.adapt(46px, 390px);
 		border-radius: func.adapt(16px, 390px);
-		padding: func.adapt(11px, 1920px) func.adapt(13px, 390px);
+		padding: func.adapt(11px, 390px) func.adapt(13px, 390px);
 	}
 }
 

@@ -17,7 +17,8 @@
 		position: static;
 		margin-top: func.adapt(-200px, 390px);
 		border-radius: func.adapt(16px, 390px);
-		margin-bottom: func.adapt(103px, 390px);
+		// margin-bottom: func.adapt(103px, 390px); TODO: ПОКА НЕ СДЕЛАЛ СКАЧИВАНИЕ И НЕ ПОСТАВИЛ ИКОНКИ ДЛЯ СКАЧИВАНИЯ КОММЕНТИРУЮ ЭТОТ ОТСТУП И СТАВЛЮ БОЛЬШИЙ ЧТОБЫ НЕ БЫЛО БЕЛОЙ ХЕРНИ СНИЗУ ЭКРАНА
+		margin-bottom: func.adapt(303px, 390px) !important;
 	}
 }
 

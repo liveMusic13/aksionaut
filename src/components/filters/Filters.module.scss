@@ -17,6 +17,13 @@
 	// position: relative;
 	z-index: 6;
 
+	@media (max-width: 768.98px) {
+		top: func.adapt(76px, 768px);
+		padding: func.adapt(16px, 768px);
+		width: 100%;
+		border-radius: func.adapt(16px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		position: static;
 		transform: translateX(0%);
@@ -32,6 +39,10 @@
 	text-align: center;
 	margin-bottom: func.adapt(12px, 1920px);
 
+	@media (max-width: 768.98px) {
+		margin-bottom: func.adapt(16px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		font-size: 1rem;
 		margin-bottom: func.adapt(16px, 390px);
@@ -43,6 +54,10 @@
 	font-weight: 500;
 	font-size: 1rem;
 	text-align: center;
+
+	@media (max-width: 768.98px) {
+		margin-bottom: func.adapt(16px, 768px);
+	}
 
 	@media (max-width: 425px) {
 		font-size: 0.75rem;
@@ -57,6 +72,11 @@
 	flex-wrap: wrap;
 	margin-bottom: func.adapt(24px, 1920px);
 
+	@media (max-width: 768.98px) {
+		gap: func.adapt(8px, 768px);
+		margin-bottom: func.adapt(16px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		gap: func.adapt(8px, 390px);
 		margin-bottom: func.adapt(16px, 390px);
@@ -67,6 +87,11 @@
 	padding: func.adapt(12px, 1920px) func.adapt(16px, 1920px);
 	background-color: vars.$black_background;
 	border-radius: func.adapt(8px, 1920px);
+
+	@media (max-width: 768.98px) {
+		padding: func.adapt(6px, 768px) func.adapt(8px, 768px);
+		border-radius: func.adapt(4px, 768px);
+	}
 
 	@media (max-width: 425px) {
 		font-size: 0.875rem;

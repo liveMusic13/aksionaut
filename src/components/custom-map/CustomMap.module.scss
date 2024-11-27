@@ -18,6 +18,12 @@
 	}
 }
 
+.margin_for_popup {
+	@media (max-width: 425px) {
+		margin-bottom: func.adapt(650px, 390px) !important;
+	}
+}
+
 .map {
 	width: func.adapt(1322px, 1920px);
 	height: func.adapt(723px, 1920px);
