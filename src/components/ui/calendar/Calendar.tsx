@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 
 import { colors } from '../../../app.constants';
-import { arr_month_full } from '../../../data/calendar.data';
+import { arr_month, arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useCalendarStore } from '../../../store/store';
@@ -15,29 +15,9 @@ import styles from './Calendar.module.scss';
 const Calendar: FC = () => {
 	const [isViewCalendar, setIsViewCalendar] = useState<boolean>(false);
 	const { finalData: data } = useFilterFinalData();
-	// const { data, error, isSuccess, refetch, isError, data_grl, data_ukaz } =
-	// 	useEstimateData();
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
 	const { selectedRange } = useCalendarStore();
-
-	const arr_month = useMemo(
-		() => [
-			'Янв',
-			'Фев',
-			'Мар',
-			'Апр',
-			'Май',
-			'Июн',
-			'Июл',
-			'Авг',
-			'Сен',
-			'Окт',
-			'Ноя',
-			'Дек',
-		],
-		[],
-	);
 
 	const {
 		getSelectedMonths,

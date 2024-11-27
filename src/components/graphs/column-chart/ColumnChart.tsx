@@ -80,7 +80,12 @@ const ColumnChart: FC<IColumnChart> = ({ data }) => {
 				},
 			},
 			legend: {
-				enabled: data.length === 1 ? false : data.length === 2 ? true : true,
+				enabled:
+					data.length === 1 || isMobile
+						? false
+						: data.length === 2
+							? true
+							: true,
 				itemStyle: {
 					color: colors.white,
 					fontSize: '0.875rem',

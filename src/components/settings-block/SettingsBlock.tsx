@@ -20,23 +20,38 @@ const SettingsBlock: FC = () => {
 	const setIsFilter = useViewFilters(store => store.setIsFilter);
 
 	const valueFunck = (id: number) => {
-		if (estimate.length === 1 && id === 0) {
-			return estimate[0];
-		} else if (estimate.length === 2 && id === 0) {
-			return `${estimate[0]}, ${estimate[1]}`;
-		} else if (region.length === 1 && id === 1) {
-			return `${region[0]}`;
-		} else if (region.length === 2 && id === 1) {
-			return `${region[0]}, ${region[1]}`;
-		} else if (selectedRange.start && selectedRange.end) {
-			return `${selectedRange.start} - ${selectedRange.end}`;
-		} else if (selectedRange.start && !selectedRange.end) {
-			return `${selectedRange.start}`;
-		} else if (!selectedRange.start && selectedRange.end) {
-			return `${selectedRange.end}`;
-		} else {
-			return false;
+		if (id === 0) {
+			// Проверка для estimate
+			if (estimate.length === 1) {
+				return estimate[0];
+			} else if (estimate.length === 2) {
+				return `${estimate[0]}, ${estimate[1]}`;
+			} else {
+				return false; // Нет данных в estimate
+			}
+		} else if (id === 1) {
+			// Проверка для region
+			if (region.length === 1) {
+				return `${region[0]}`;
+			} else if (region.length === 2) {
+				return `${region[0]}, ${region[1]}`;
+			} else {
+				return false; // Нет данных в region
+			}
+		} else if (id === 2) {
+			// Проверка для selectedRange
+			if (selectedRange.start && selectedRange.end) {
+				return `${selectedRange.start} - ${selectedRange.end}`;
+			} else if (selectedRange.start && !selectedRange.end) {
+				return `${selectedRange.start}`;
+			} else if (!selectedRange.start && selectedRange.end) {
+				return `${selectedRange.end}`;
+			} else {
+				return false; // Нет данных в selectedRange
+			}
 		}
+
+		return false; // На случай, если id не совпадает с известными
 	};
 
 	const onClick = () => {

@@ -18,6 +18,7 @@ import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import PopupRegion from '../../popup-region/PopupRegion';
 import SettingsBlock from '../../settings-block/SettingsBlock';
+import CalendarBlock from '../../settings-block/calendar-block/CalendarBlock';
 import EstimateBlock from '../../settings-block/estimate-block/EstimateBlock';
 import RegionBlock from '../../settings-block/region-block/RegionBlock';
 import WorthBlock from '../../worth-block/WorthBlock';
@@ -113,35 +114,51 @@ const Home: FC = () => {
 				) && <WorthBlock />}
 			</Suspense>
 
-			{isFirstPopup && (
+			{!isMobile && isFirstPopup && (
 				<PopupRegion
 					targetRegion={targetRegion[0]}
 					position={getPositionsFunck(regionsCoordinate)[0]}
+					isMobile={isMobile}
 				/>
 			)}
+
+			{isMobile && isFirstPopup && (
+				<PopupRegion
+					targetRegion={targetRegion || []}
+					position={getPositionsFunck(regionsCoordinate)[0]}
+					positionMobile={getPositionsFunck(regionsCoordinate)}
+					isMobile={isMobile}
+				/>
+			)}
+
 			{!isMobile && isSecondPopup && (
 				<>
 					<PopupRegion
 						targetRegion={targetRegion[0]}
 						position={getPositionsFunck(regionsCoordinate)[0]}
+						isMobile={isMobile}
 					/>
 					<PopupRegion
 						targetRegion={targetRegion[1]}
 						position={getPositionsFunck(regionsCoordinate)[1]}
+						isMobile={isMobile}
 					/>
 				</>
 			)}
 
-			{/* {isMobile && isSecondPopup && (
+			{isMobile && isSecondPopup && (
 				<PopupRegion
-					targetRegion={targetRegion}
+					targetRegion={targetRegion || []}
 					position={getPositionsFunck(regionsCoordinate)[0]}
+					positionMobile={getPositionsFunck(regionsCoordinate)}
+					isMobile={isMobile}
 				/>
-			)} */}
+			)}
 
 			{isMobile && isSettings && <SettingsBlock />}
 			{isMobile && isEstimate && <EstimateBlock />}
 			{isMobile && isRegion && <RegionBlock />}
+			{isMobile && isCalendar && <CalendarBlock />}
 		</Layout>
 	);
 };

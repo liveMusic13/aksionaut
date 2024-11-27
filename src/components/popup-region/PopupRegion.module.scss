@@ -85,3 +85,21 @@
 		}
 	}
 }
+
+.indicators {
+	display: flex;
+	justify-content: center;
+	gap: func.adapt(8px, 390px);
+	margin: func.adapt(20px, 390px) 0;
+}
+
+.indicator {
+	width: func.adapt(8px, 390px);
+	height: func.adapt(8px, 390px);
+	background-color: rgba($color: vars.$white, $alpha: 0.4);
+	border-radius: 50%;
+}
+
+.indicator.active {
+	background-color: vars.$white;
+}

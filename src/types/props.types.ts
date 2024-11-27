@@ -55,11 +55,15 @@ export interface IPieChartGraph {
 	data: ITopEstimateInCountry[];
 }
 
+export interface IChartData {
+	name: string;
+	data: number[];
+	color: string;
+}
+
 export interface IPopupRegion {
-	targetRegion: {
-		name: string;
-		data: number[];
-		color: string;
-	}[];
+	targetRegion: IChartData[] | IChartData[][];
 	position: IRegionCoordinate;
+	positionMobile?: IRegionCoordinate[];
+	isMobile: boolean;
 }

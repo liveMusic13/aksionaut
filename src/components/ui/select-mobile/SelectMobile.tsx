@@ -16,6 +16,16 @@ const SelectMobile: FC = () => {
 	const estimate = useEstimateStore(store => store.estimate);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 
+	const countFunck = () => {
+		let count = 0;
+
+		if (region.length > 0) count += 1;
+		if (estimate.length > 0) count += 1;
+		if (selectedRange.start || selectedRange.end) count += 1;
+
+		return count;
+	};
+
 	const valueTarget = () => {
 		let result = '';
 		if (region && region.length > 0) {
@@ -42,11 +52,18 @@ const SelectMobile: FC = () => {
 	return (
 		<div className={styles.block__selects_mobile} onClick={onClick}>
 			<p className={styles.target}>{truncateDescription(valueTarget(), 33)}</p>
-			<img
-				className={styles.image}
-				src='/images/icons/settings.svg'
-				alt='settings'
-			/>
+			<div className={styles.block__image}>
+				{countFunck() !== 0 && (
+					<div className={styles.block__count}>
+						<p className={styles.count}>{countFunck()}</p>
+					</div>
+				)}
+				<img
+					className={styles.image}
+					src='/images/icons/settings.svg'
+					alt='settings'
+				/>
+			</div>
 		</div>
 	);
 };
