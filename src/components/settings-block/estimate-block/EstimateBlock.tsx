@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { estimateArr } from '../../../data/selects.data';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
@@ -30,7 +30,7 @@ const EstimateBlock: FC = () => {
 
 	const moveCheck = (ind: number) => {
 		setArrIsViewCheckbox(prev =>
-			prev.map((item, index) => (index === ind ? !item : item)),
+			prev.map((item, index) => (index === ind ? !item : false)),
 		);
 
 		if (ind === 0) {
@@ -58,10 +58,6 @@ const EstimateBlock: FC = () => {
 			return prev;
 		});
 	};
-
-	useEffect(() => {
-		console.log(arrIsViewCheckbox);
-	}, [arrIsViewCheckbox]);
 
 	return (
 		<div className={styles.block__estimate}>
