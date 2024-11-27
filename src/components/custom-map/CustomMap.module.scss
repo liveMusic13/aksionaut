@@ -14,7 +14,7 @@
 
 .mobile__margin {
 	@media (max-width: 425px) {
-		margin-bottom: func.adapt(300px, 390px);
+		margin-bottom: func.adapt(300px, 390px) !important;
 	}
 }
 
