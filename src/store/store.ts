@@ -4,6 +4,7 @@ import {
 	IActiveEstimateStore,
 	ICalendarState,
 	IEstimateStore,
+	IMessagesHistoryStore,
 	IRegionStore,
 	IRegionsCoordinateStore,
 	ISettingsStore,
@@ -90,4 +91,18 @@ export const useViewFilters = create<IViewFilters>(set => ({
 				return state;
 			}
 		}),
+}));
+
+export const useMessagesStore = create<IMessagesHistoryStore>(set => ({
+	messages: [], // Изначально массив сообщений пустой
+	addMessage: message =>
+		set(state => ({
+			messages: [...state.messages, message],
+		})),
+	updateLastMessage: newMessage =>
+		set(state => ({
+			messages: state.messages.map((msg, index) =>
+				index === state.messages.length - 1 ? { ...msg, ...newMessage } : msg,
+			),
+		})),
 }));

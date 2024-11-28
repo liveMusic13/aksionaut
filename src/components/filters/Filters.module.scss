@@ -89,6 +89,10 @@
 	background-color: vars.$black_background;
 	border-radius: func.adapt(8px, 1920px);
 
+	&:hover {
+		cursor: pointer;
+	}
+
 	@media (max-width: 768.98px) {
 		padding: func.adapt(6px, 768px) func.adapt(8px, 768px);
 		border-radius: func.adapt(4px, 768px);

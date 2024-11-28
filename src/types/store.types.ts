@@ -45,3 +45,15 @@ export interface IViewFilters {
 	isCalendar: boolean;
 	setIsFilter: (id: number, bul: boolean) => void;
 }
+
+export interface IMessagesHistory {
+	text: string;
+	time: string;
+	isFromServer: boolean;
+}
+
+export interface IMessagesHistoryStore {
+	messages: IMessagesHistory[];
+	addMessage: (message: IMessagesHistory) => void;
+	updateLastMessage: (newMessage: Partial<IMessagesHistory>) => void;
+}

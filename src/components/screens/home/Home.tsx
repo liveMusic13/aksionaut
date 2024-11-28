@@ -13,6 +13,8 @@ import {
 	useViewFilters,
 } from '../../../store/store';
 import { IRegionCoordinate } from '../../../types/store.types';
+import BackgroundOpacity from '../../background-opacity/BackgroundOpacity';
+import Chat from '../../chat/Chat';
 import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
@@ -44,6 +46,7 @@ const Home: FC = () => {
 	const isSettings = useSettingsStore(store => store.isSettings);
 	const { isCalendar, isEstimate, isRegion } = useViewFilters();
 	const [targetRegion, setTargetRegion] = useState([]);
+	const [isViewChat, setIsViewChat] = useState<boolean>(false);
 
 	useFilters(data ? data : { values: [] }, setTargetRegion);
 
@@ -74,6 +77,11 @@ const Home: FC = () => {
 		}
 	}, []);
 
+	const [valueInput, setValueInput] = useState<string>('');
+	const onClickChat = useCallback(() => {
+		setIsViewChat(true);
+	}, []);
+
 	const isFirstPopup =
 		targetRegion && targetRegion && targetRegion.length === 1;
 	const isSecondPopup =
@@ -99,7 +107,7 @@ const Home: FC = () => {
 		>
 			<Header />
 			<Suspense fallback={<div>Loading...</div>}>
-				<Filters />
+				<Filters onClickChat={onClickChat} />
 			</Suspense>
 
 			<Suspense fallback={<div>Loading...</div>}>
@@ -114,6 +122,13 @@ const Home: FC = () => {
 					selectedRange.end
 				) && <WorthBlock />}
 			</Suspense>
+
+			{isViewChat && (
+				<>
+					<BackgroundOpacity />
+					<Chat setIsViewChat={setIsViewChat} />
+				</>
+			)}
 
 			{!isMobile && !isTablet && isFirstPopup && (
 				<PopupRegion

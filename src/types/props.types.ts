@@ -1,4 +1,10 @@
-import { CSSProperties, ChangeEvent, PropsWithChildren } from 'react';
+import {
+	CSSProperties,
+	ChangeEvent,
+	Dispatch,
+	PropsWithChildren,
+	SetStateAction,
+} from 'react';
 
 import {
 	IAllRegions,
@@ -23,6 +29,7 @@ export interface IInput {
 	styleImage?: CSSProperties;
 	placeholder?: string;
 	value?: string;
+	styleLimit?: CSSProperties;
 	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -67,4 +74,12 @@ export interface IPopupRegion {
 	positionMobile?: IRegionCoordinate[];
 	isMobile: boolean;
 	isTablet?: boolean;
+}
+
+export interface IFilters {
+	onClickChat: () => void;
+}
+
+export interface IChat {
+	setIsViewChat: Dispatch<SetStateAction<boolean>>;
 }

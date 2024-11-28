@@ -1,11 +1,14 @@
-import { ChangeEvent, FC, useCallback, useState } from 'react';
+import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 
 import { arrPopularQueries } from '../../data/popular.data';
 import { useCheckWidth } from '../../hooks/useCheckWidth';
 import { useFilterFinalData } from '../../hooks/useFilterFinalData';
 import { useGetAllRegions } from '../../hooks/useGetAllRegions';
-import { useRegionStore } from '../../store/store';
+import { useSendMessage } from '../../hooks/useSendMessage';
+import { useMessagesStore, useRegionStore } from '../../store/store';
+import { IFilters } from '../../types/props.types';
 import { getEstimateForRequest } from '../../utils/editRequestData';
+import { getRandomElements } from '../../utils/generateRandomElemInArr';
 import Button from '../ui/button/Button';
 import Calendar from '../ui/calendar/Calendar';
 import Input from '../ui/input/Input';
@@ -14,7 +17,7 @@ import Select from '../ui/select/Select';
 
 import styles from './Filters.module.scss';
 
-const Filters: FC = () => {
+const Filters: FC<IFilters> = ({ onClickChat }) => {
 	const [value, setValue] = useState<string>('');
 	const { windowSize } = useCheckWidth();
 	const region = useRegionStore(store => store.region);
@@ -35,6 +38,70 @@ const Filters: FC = () => {
 	const dataAllRegions = regions && regions.regions;
 	const dataEstimate = data && getEstimateForRequest(data);
 
+	const { addMessage, updateLastMessage } = useMessagesStore();
+	const { mutate, data: response_server, isPending } = useSendMessage(); // Хук для отправки сообщений
+
+	const handleClick = useCallback(
+		(inputValue: string = value) => {
+			if (inputValue.trim()) {
+				const time = new Date().toLocaleTimeString([], {
+					hour: '2-digit',
+					minute: '2-digit',
+				});
+
+				// Добавляем сообщение пользователя
+				addMessage({
+					text: inputValue,
+					time: time,
+					isFromServer: false,
+				});
+
+				// Добавляем сообщение-заглушку
+				addMessage({
+					text: 'Ваш запрос обрабатывается...',
+					time: time,
+					isFromServer: true,
+				});
+
+				// Отправляем запрос
+				mutate(inputValue);
+			}
+
+			onClickChat(); // Открываем чат
+		},
+		[value, addMessage, mutate, onClickChat],
+	);
+
+	useEffect(() => {
+		if (response_server) {
+			const time = new Date().toLocaleTimeString([], {
+				hour: '2-digit',
+				minute: '2-digit',
+			});
+
+			updateLastMessage({
+				text: response_server?.data.value,
+				time: time,
+			});
+		}
+	}, [response_server, updateLastMessage]);
+
+	// Обработчик для клика на популярные запросы
+	const handleQueryClick = useCallback(
+		(query: string) => {
+			setValue(query); // Устанавливаем значение в Input
+			handleClick(query); // Отправляем запрос
+		},
+		[handleClick],
+	);
+
+	const [randomQueries, setRandomQueries] = useState<
+		{ id: number; name: string }[]
+	>([]);
+	useEffect(() => {
+		setRandomQueries(getRandomElements(arrPopularQueries, 2));
+	}, []);
+
 	return (
 		<div className={styles.wrapper_filters}>
 			{isMobile || isTablet ? (
@@ -48,10 +115,15 @@ const Filters: FC = () => {
 							{arrPopularQueries
 								.slice(
 									0,
-									itemsToDisplay(arrPopularQueries.length, windowSize.width),
+									// itemsToDisplay(arrPopularQueries.length, windowSize.width),
+									2,
 								)
 								.map(quer => (
-									<p key={quer.id} className={styles.queries}>
+									<p
+										key={quer.id}
+										className={styles.queries}
+										onClick={() => handleQueryClick(quer.name)}
+									>
 										{quer.name}
 									</p>
 								))}
@@ -65,13 +137,17 @@ const Filters: FC = () => {
 					</h2>
 					<p className={styles.forExample}>Например:</p>
 					<div className={styles.popular__queries}>
-						{arrPopularQueries
-							.slice(
-								0,
-								itemsToDisplay(arrPopularQueries.length, windowSize.width),
-							)
+						{randomQueries
+							// .slice(
+							// 	0,
+							// 	itemsToDisplay(arrPopularQueries.length, windowSize.width),
+							// )
 							.map(quer => (
-								<p key={quer.id} className={styles.queries}>
+								<p
+									key={quer.id}
+									className={styles.queries}
+									onClick={() => handleQueryClick(quer.name)}
+								>
 									{quer.name}
 								</p>
 							))}
@@ -98,6 +174,8 @@ const Filters: FC = () => {
 								? 'calc(52/768*100vw)'
 								: 'calc(52/1920*100vw)',
 					}}
+					// onClick={handleClick}
+					onClick={() => handleClick()}
 				>
 					{isMobile ? (
 						<img src='/images/icons/search_two.svg' alt='search' />
