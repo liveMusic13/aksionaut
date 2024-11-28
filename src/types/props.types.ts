@@ -66,4 +66,5 @@ export interface IPopupRegion {
 	position: IRegionCoordinate;
 	positionMobile?: IRegionCoordinate[];
 	isMobile: boolean;
+	isTablet?: boolean;
 }

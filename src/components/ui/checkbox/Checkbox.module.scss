@@ -7,6 +7,10 @@
 	align-items: center;
 	gap: func.adapt(8px, 1920px);
 
+	@media (max-width: 768.98px) {
+		gap: func.adapt(8px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		gap: func.adapt(8px, 390px);
 	}
@@ -44,6 +48,12 @@
 	align-items: center;
 	justify-content: center;
 
+	@media (max-width: 768.98px) {
+		width: func.adapt(14px, 768px);
+		height: func.adapt(14px, 768px);
+		border-radius: func.adapt(2px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		width: func.adapt(14px, 390px);
 		height: func.adapt(14px, 390px);
@@ -53,6 +63,11 @@
 	> img {
 		width: func.adapt(10px, 1920px);
 		height: func.adapt(7.83px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(10px, 768px);
+			height: func.adapt(7.83px, 768px);
+		}
 
 		@media (max-width: 425px) {
 			width: func.adapt(10px, 390px);

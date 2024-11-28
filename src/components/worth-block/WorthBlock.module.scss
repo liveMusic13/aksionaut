@@ -3,8 +3,6 @@
 @use '@st/mixins' as mix;
 
 .block__worth {
-	// width: func.adapt(469px, 1920px);
-	// height: func.adapt(305px, 1920px);
 	width: func.adapt(529px, 1920px);
 	height: func.adapt(330px, 1920px);
 	background-image: url('/images/backgrounds/graph.png');
@@ -13,12 +11,24 @@
 	background-position: center;
 	padding: func.adapt(32px, 1920px) func.adapt(32px, 1920px)
 		func.adapt(32px, 1920px) func.adapt(28px, 1920px);
-
 	position: fixed;
 	z-index: 5;
 	top: func.adapt(560px, 1920px);
 	left: 50%;
 	transform: translateX(-50%);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(529px, 768px);
+		height: func.adapt(330px, 768px);
+		padding: func.adapt(32px, 768px) func.adapt(32px, 768px)
+			func.adapt(32px, 768px) func.adapt(28px, 768px);
+		top: func.adapt(371px, 768px);
+		overflow-y: auto;
+	}
+
+	@media (max-width: 553.98px) {
+		top: func.adapt(371px, 553px);
+	}
 
 	@media (max-width: 425px) {
 		position: static;
@@ -47,6 +57,10 @@
 	width: func.adapt(310px, 1920px);
 	position: relative;
 
+	@media (max-width: 768.98px) {
+		width: func.adapt(310px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		width: func.adapt(286px, 390px);
 		padding-left: func.adapt(18px, 390px);
@@ -59,6 +73,10 @@
 	text-transform: uppercase;
 	margin-bottom: func.adapt(8px, 1920px);
 
+	@media (max-width: 768.98px) {
+		margin-bottom: func.adapt(8px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		margin-bottom: func.adapt(38px, 390px);
 		text-align: center;
@@ -70,6 +88,10 @@
 	overflow-x: hidden;
 	margin-left: func.adapt(-40px, 1920px);
 	@include mix.hidden_scroll();
+
+	@media (max-width: 768.98px) {
+		margin-left: func.adapt(-40px, 768px);
+	}
 
 	@media (max-width: 425px) {
 		display: flex;
@@ -93,6 +115,13 @@
 	border-radius: func.adapt(8px, 1920px);
 	margin-right: func.adapt(7px, 1920px);
 
+	@media (max-width: 768.98px) {
+		width: func.adapt(10px, 768px);
+		height: func.adapt(7px, 768px);
+		border-radius: func.adapt(8px, 768px);
+		margin-right: func.adapt(7px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		width: func.adapt(12px, 390px);
 		height: func.adapt(8px, 390px);
@@ -105,4 +134,8 @@
 	font-weight: 700;
 	font-size: 0.875rem;
 	margin-left: func.adapt(4px, 1920px);
+
+	@media (max-width: 768.98px) {
+		margin-left: func.adapt(4px, 768px);
+	}
 }

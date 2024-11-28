@@ -19,8 +19,9 @@ const Filters: FC = () => {
 	const { windowSize } = useCheckWidth();
 	const region = useRegionStore(store => store.region);
 	const isMobile = windowSize.width <= 425;
+	const isTablet = windowSize.width <= 768.98;
 	const itemsToDisplay = (length: number, width: number): number => {
-		return width <= 425 ? 3 : length;
+		return width <= 768.98 ? 3 : length;
 	};
 
 	const onChange = useCallback(
@@ -36,7 +37,28 @@ const Filters: FC = () => {
 
 	return (
 		<div className={styles.wrapper_filters}>
-			{!(region.length > 0) ? (
+			{isMobile || isTablet ? (
+				!(region.length > 0) && (
+					<>
+						<h2 className={styles.title}>
+							Узнайте ценности россиян с помощью ИИ
+						</h2>
+						<p className={styles.forExample}>Например:</p>
+						<div className={styles.popular__queries}>
+							{arrPopularQueries
+								.slice(
+									0,
+									itemsToDisplay(arrPopularQueries.length, windowSize.width),
+								)
+								.map(quer => (
+									<p key={quer.id} className={styles.queries}>
+										{quer.name}
+									</p>
+								))}
+						</div>
+					</>
+				)
+			) : (
 				<>
 					<h2 className={styles.title}>
 						Узнайте ценности россиян с помощью ИИ
@@ -55,7 +77,7 @@ const Filters: FC = () => {
 							))}
 					</div>
 				</>
-			) : null}
+			)}
 			<div className={styles.block__aiInput}>
 				<Input
 					placeholder='Задайте вопрос...'
@@ -65,8 +87,16 @@ const Filters: FC = () => {
 				<Button
 					style={{
 						fontSize: '1rem',
-						width: isMobile ? 'calc(48/390*100vw)' : 'calc(125/1920*100vw)',
-						height: isMobile ? 'calc(48/390*100vw)' : 'calc(52/1920*100vw)',
+						width: isMobile
+							? 'calc(48/390*100vw)'
+							: isTablet
+								? 'calc(125/768*100vw)'
+								: 'calc(125/1920*100vw)',
+						height: isMobile
+							? 'calc(48/390*100vw)'
+							: isTablet
+								? 'calc(52/768*100vw)'
+								: 'calc(52/1920*100vw)',
 					}}
 				>
 					{isMobile ? (

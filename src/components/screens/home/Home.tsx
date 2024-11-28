@@ -31,6 +31,7 @@ const Home: FC = () => {
 		windowSize: { width },
 	} = useCheckWidth();
 	const isMobile = width <= 425;
+	const isTablet = width <= 768.98;
 	const { finalData: data, isError } = useFilterFinalData();
 	const region = useRegionStore(store => store.region);
 	const setRegion = useRegionStore(store => store.setRegion);
@@ -114,7 +115,7 @@ const Home: FC = () => {
 				) && <WorthBlock />}
 			</Suspense>
 
-			{!isMobile && isFirstPopup && (
+			{!isMobile && !isTablet && isFirstPopup && (
 				<PopupRegion
 					targetRegion={targetRegion[0]}
 					position={getPositionsFunck(regionsCoordinate)[0]}
@@ -122,16 +123,17 @@ const Home: FC = () => {
 				/>
 			)}
 
-			{isMobile && isFirstPopup && (
+			{(isMobile || isTablet) && isFirstPopup && (
 				<PopupRegion
 					targetRegion={targetRegion || []}
 					position={getPositionsFunck(regionsCoordinate)[0]}
 					positionMobile={getPositionsFunck(regionsCoordinate)}
 					isMobile={isMobile}
+					isTablet={isTablet}
 				/>
 			)}
 
-			{!isMobile && isSecondPopup && (
+			{!isMobile && !isTablet && isSecondPopup && (
 				<>
 					<PopupRegion
 						targetRegion={targetRegion[0]}
@@ -146,12 +148,13 @@ const Home: FC = () => {
 				</>
 			)}
 
-			{isMobile && isSecondPopup && (
+			{(isMobile || isTablet) && isSecondPopup && (
 				<PopupRegion
 					targetRegion={targetRegion || []}
 					position={getPositionsFunck(regionsCoordinate)[0]}
 					positionMobile={getPositionsFunck(regionsCoordinate)}
 					isMobile={isMobile}
+					isTablet={isTablet}
 				/>
 			)}
 

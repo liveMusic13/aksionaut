@@ -24,20 +24,31 @@ const PieChartGraph: FC<IPieChartGraph> = ({ data }) => {
 
 	const { windowSize } = useCheckWidth();
 	const isMobile = windowSize.width <= 425;
+	const isTablet = windowSize.width <= 768.98;
 	const formatData = editTopEstimateInCountry(cashingData);
 
 	const widthGraph = (263 / 1920) * windowSize.width;
 	const heightGraph = (258 / 1920) * windowSize.width;
 	const widthGraphMobile = (260 / 390) * windowSize.width;
 	const heightGraphMobile = (260 / 390) * windowSize.width;
+	const widthGraphTablet = (260 / 768) * windowSize.width;
+	const heightGraphTablet = (260 / 768) * windowSize.width;
 
 	const options = useMemo(
 		() => ({
 			chart: {
 				type: 'pie',
 				backgroundColor: 'transparent', // Делаем фон графика прозрачным
-				height: isMobile ? heightGraphMobile : heightGraph, // Устанавливаем фиксированную высоту
-				width: isMobile ? widthGraphMobile : widthGraph,
+				height: isMobile
+					? heightGraphMobile
+					: isTablet
+						? heightGraphTablet
+						: heightGraph, // Устанавливаем фиксированную высоту
+				width: isMobile
+					? widthGraphMobile
+					: isTablet
+						? widthGraphTablet
+						: widthGraph,
 			},
 			accessibility: {
 				point: {

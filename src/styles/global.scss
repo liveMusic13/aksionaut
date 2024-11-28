@@ -86,12 +86,17 @@ body {
 	}
 
 	@media (max-width: 767.98px) {
-		font-size: vars.$fz;
+		font-size: 15px;
 		overflow-y: auto;
+	}
+
+	@media (max-width: 667.98px) {
+		font-size: 14px;
 	}
 
 	@media (max-width: 425px) {
 		overflow: auto;
+		font-size: vars.$fz;
 	}
 }
 

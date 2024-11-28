@@ -18,7 +18,7 @@
 	z-index: 6;
 
 	@media (max-width: 768.98px) {
-		top: func.adapt(76px, 768px);
+		top: func.adapt(50px, 768px);
 		padding: func.adapt(16px, 768px);
 		width: 100%;
 		border-radius: func.adapt(16px, 768px);
@@ -40,7 +40,8 @@
 	margin-bottom: func.adapt(12px, 1920px);
 
 	@media (max-width: 768.98px) {
-		margin-bottom: func.adapt(16px, 768px);
+		margin-bottom: func.adapt(10px, 768px);
+		font-size: 1rem;
 	}
 
 	@media (max-width: 425px) {
@@ -56,7 +57,7 @@
 	text-align: center;
 
 	@media (max-width: 768.98px) {
-		margin-bottom: func.adapt(16px, 768px);
+		margin-bottom: func.adapt(10px, 768px);
 	}
 
 	@media (max-width: 425px) {

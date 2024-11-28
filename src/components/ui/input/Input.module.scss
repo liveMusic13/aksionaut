@@ -7,6 +7,10 @@
 	position: relative;
 	width: func.adapt(663px, 1920px);
 
+	@media (max-width: 768.98px) {
+		width: func.adapt(603px, 768px);
+	}
+
 	@media (max-width: 425px) {
 		width: func.adapt(306px, 390px);
 	}
@@ -19,6 +23,11 @@
 	left: func.adapt(16px, 1920px);
 	top: 50%;
 	transform: translateY(-50%);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(37px, 768px);
+		height: func.adapt(31px, 768px);
+	}
 
 	@media (max-width: 425px) {
 		width: func.adapt(37px, 390px);
@@ -42,6 +51,13 @@
 
 	&::placeholder {
 		color: rgba($color: vars.$black, $alpha: 0.4);
+	}
+
+	@media (max-width: 768.98px) {
+		height: func.adapt(48px, 768px);
+		border-radius: func.adapt(8px, 768px);
+		padding: func.adapt(8.5px, 768px) func.adapt(27px, 768px)
+			func.adapt(8.5px, 768px) func.adapt(53px, 768px);
 	}
 
 	@media (max-width: 425px) {

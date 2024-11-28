@@ -137,6 +137,7 @@ const PopupRegion: FC<IPopupRegion> = ({
 	targetRegion,
 	position,
 	isMobile,
+	isTablet,
 	positionMobile,
 }) => {
 	const setRegion = useRegionStore(store => store.setRegion);
@@ -179,22 +180,26 @@ const PopupRegion: FC<IPopupRegion> = ({
 	// Обработка свайпов
 	const handlers = useSwipeable({
 		onSwipedLeft: () => {
-			if (isMobile && targetRegion.length > activeChartIndex + 1) {
+			if (
+				(isMobile || isTablet) &&
+				targetRegion.length > activeChartIndex + 1
+			) {
 				setActiveChartIndex(prev => prev + 1);
 			}
 		},
 		onSwipedRight: () => {
-			if (isMobile && activeChartIndex > 0) {
+			if ((isMobile || isTablet) && activeChartIndex > 0) {
 				setActiveChartIndex(prev => prev - 1);
 			}
 		},
 	});
 
-	const data: IChartData[] = isMobile
-		? Array.isArray(targetRegion[activeChartIndex])
-			? (targetRegion[activeChartIndex] as IChartData[])
-			: []
-		: (targetRegion as IChartData[]);
+	const data: IChartData[] =
+		isMobile || isTablet
+			? Array.isArray(targetRegion[activeChartIndex])
+				? (targetRegion[activeChartIndex] as IChartData[])
+				: []
+			: (targetRegion as IChartData[]);
 
 	if (!Array.isArray(data)) {
 		console.error("Data format error: 'targetRegion' must be an array.");
@@ -205,8 +210,8 @@ const PopupRegion: FC<IPopupRegion> = ({
 		<div
 			className={styles.block__popup}
 			style={{
-				top: positionNew.y,
-				left: positionNew.x,
+				top: !(isMobile || isTablet) ? positionNew.y : undefined,
+				left: !(isMobile || isTablet) ? positionNew.x : undefined,
 				cursor: dragging ? 'move' : '',
 			}}
 			onMouseDown={handleMouseDown}
@@ -215,7 +220,7 @@ const PopupRegion: FC<IPopupRegion> = ({
 			<div className={styles.block__title}>
 				<h2 className={styles.title}>
 					{truncateDescription(
-						isMobile && positionMobile
+						(isMobile || isTablet) && positionMobile
 							? positionMobile[activeChartIndex].id
 							: position.id,
 						21,
@@ -241,7 +246,7 @@ const PopupRegion: FC<IPopupRegion> = ({
 					<p className={styles.value__stats}>{findMaxDataValue(data)}</p>
 				</div>
 			</div>
-			{isMobile ? (
+			{isMobile || isTablet ? (
 				<>
 					{targetRegion[activeChartIndex] && (
 						<ColumnChart

@@ -19,6 +19,7 @@ HighchartsAccessibility(Highcharts);
 const ColumnChart: FC<IColumnChart> = ({ data }) => {
 	const { windowSize } = useCheckWidth();
 	const isMobile = windowSize.width <= 425;
+	const isTablet = windowSize.width <= 768;
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const region = useRegionStore(store => store.region);
 	const estimate = useEstimateStore(store => store.estimate);
@@ -28,14 +29,24 @@ const ColumnChart: FC<IColumnChart> = ({ data }) => {
 	const heightGraph = (303 / 1920) * windowSize.width;
 	const widthGraphMobile = (356 / 390) * windowSize.width;
 	const heightGraphMobile = (283 / 390) * windowSize.width;
+	const widthGraphTablet = (356 / 768) * windowSize.width;
+	const heightGraphTablet = (303 / 768) * windowSize.width;
 
 	const options = useMemo(
 		() => ({
 			chart: {
 				type: 'column',
 				backgroundColor: 'transparent',
-				height: isMobile ? heightGraphMobile : heightGraph, // Устанавливаем фиксированную высоту
-				width: isMobile ? widthGraphMobile : widthGraph,
+				height: isMobile
+					? heightGraphMobile
+					: isTablet
+						? heightGraphTablet
+						: heightGraph, // Устанавливаем фиксированную высоту
+				width: isMobile
+					? widthGraphMobile
+					: isTablet
+						? widthGraphTablet
+						: widthGraph,
 			},
 			title: {
 				text: null,

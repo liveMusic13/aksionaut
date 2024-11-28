@@ -7,6 +7,13 @@
 		func.adapt(296px, 1920px),
 		func.adapt(43px, 1920px)
 	);
+
+	@media (max-width: 768.98px) {
+		padding: func.adapt(12px, 768px);
+		border-radius: func.adapt(8px, 768px);
+		width: func.adapt(226px, 768px);
+		height: func.adapt(43px, 768px);
+	}
 }
 
 .block__select {
@@ -23,15 +30,30 @@
 	overflow-y: auto;
 
 	@include mix.hidden_scroll();
+
+	@media (max-width: 768.98px) {
+		top: func.adapt(51px, 768px);
+		border-radius: func.adapt(8px, 768px);
+		padding: func.adapt(12px, 768px);
+		max-height: func.adapt(306px, 768px);
+	}
 }
 
 .estimate {
 	width: func.adapt(600px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(555px, 768px);
+	}
 }
 
 .multi__block {
 	display: flex;
 	gap: func.adapt(12px, 1920px);
+
+	@media (max-width: 768.98px) {
+		gap: func.adapt(12px, 768px);
+	}
 }
 
 .block__dataEstimate {
@@ -41,24 +63,38 @@
 	width: func.adapt(246px, 1920px);
 	padding-right: func.adapt(24px, 1920px);
 	border-right: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+
+	@media (max-width: 768.98px) {
+		gap: func.adapt(8px, 768px);
+		width: func.adapt(246px, 768px);
+		padding-right: func.adapt(24px, 768px);
+	}
 }
 
 .button__estimate {
 	display: flex;
 	align-items: center;
 	width: 100%;
-
 	padding: func.adapt(4px, 1920px) func.adapt(8px, 1920px);
 	border-radius: func.adapt(4px, 1920px);
 
 	&:hover {
 		cursor: pointer;
 	}
+
+	@media (max-width: 768.98px) {
+		padding: func.adapt(4px, 768px) func.adapt(8px, 768px);
+		border-radius: func.adapt(4px, 768px);
+	}
 }
 
 .block__text {
 	display: flex;
 	gap: func.adapt(8px, 1920px);
+
+	@media (max-width: 768.98px) {
+		gap: func.adapt(8px, 768px);
+	}
 
 	> p {
 		color: vars.$white;
@@ -79,6 +115,11 @@
 	width: func.adapt(10px, 1920px);
 	height: func.adapt(10px, 1920px);
 	justify-self: flex-end;
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(10px, 768px);
+		height: func.adapt(10px, 768px);
+	}
 }
 
 @include mix.target_style();
@@ -100,4 +141,8 @@
 	font-size: 0.75rem;
 	color: vars.$grey;
 	margin-bottom: func.adapt(12px, 1920px);
+
+	@media (max-width: 768.98px) {
+		margin-bottom: func.adapt(12px, 768px);
+	}
 }
