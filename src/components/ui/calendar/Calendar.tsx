@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 
 import { colors } from '../../../app.constants';
 import { arr_month, arr_month_full } from '../../../data/calendar.data';
@@ -16,8 +16,24 @@ const Calendar: FC = () => {
 	const [isViewCalendar, setIsViewCalendar] = useState<boolean>(false);
 	const { finalData: data } = useFilterFinalData();
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
+	const dropdownRef = useRef<HTMLDivElement>(null);
 
 	const { selectedRange } = useCalendarStore();
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target as Node)
+			) {
+				setIsViewCalendar(false);
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [dropdownRef]);
 
 	const {
 		getSelectedMonths,
@@ -52,7 +68,11 @@ const Calendar: FC = () => {
 		: {};
 
 	return (
-		<div className={styles.wrapper_calendar} style={styleWrapper}>
+		<div
+			className={styles.wrapper_calendar}
+			style={styleWrapper}
+			ref={dropdownRef}
+		>
 			<div className={styles.block__target}>
 				<p className={styles.target}>
 					{selectedRange.start && selectedRange.end
