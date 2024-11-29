@@ -13,13 +13,13 @@
 	border: 1px solid rgba($color: vars.$white, $alpha: 0.08);
 
 	@media (max-width: 768.98px) {
-		width: func.adapt(358px, 768px);
+		width: func.adapt(388px, 768px);
 		border-radius: func.adapt(16px, 768px);
 		position: absolute;
 		// position: static;
 		left: 50%;
 		top: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -35%);
 		margin-top: func.adapt(20px, 390px);
 	}
 
