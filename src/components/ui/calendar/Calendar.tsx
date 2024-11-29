@@ -73,7 +73,10 @@ const Calendar: FC = () => {
 			style={styleWrapper}
 			ref={dropdownRef}
 		>
-			<div className={styles.block__target}>
+			<div
+				className={styles.block__target}
+				onClick={() => setIsViewCalendar(!isViewCalendar)}
+			>
 				<p className={styles.target}>
 					{selectedRange.start && selectedRange.end
 						? `${selectedRange.start} - ${selectedRange.end}`
@@ -85,7 +88,7 @@ const Calendar: FC = () => {
 					className={styles.arrow}
 					src='/images/icons/arrow_bot.svg'
 					alt='arrow'
-					onClick={() => setIsViewCalendar(!isViewCalendar)}
+					// onClick={() => setIsViewCalendar(!isViewCalendar)}
 				/>
 			</div>
 
