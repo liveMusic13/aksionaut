@@ -1,0 +1,175 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.block__content {
+	max-width: func.adapt(538px, 1920px);
+
+	@media (max-width: 767.98px) {
+		max-width: func.adapt(538px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		max-width: func.adapt(358px, 390px);
+		padding: func.adapt(16px, 390px);
+	}
+}
+
+.block__stage {
+	margin-bottom: func.adapt(49px, 1920px);
+	display: flex;
+	align-items: center;
+
+	@media (max-width: 425px) {
+		margin-bottom: func.adapt(49px, 390px);
+		margin-top: func.adapt(32px, 390px);
+	}
+}
+
+.stage {
+	font-size: 1rem;
+	font-weight: 700;
+	width: func.adapt(56px, 1920px);
+	height: func.adapt(28px, 1920px);
+	background-color: vars.$dark_grey;
+	border-radius: func.adapt(100px, 1920px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@media (max-width: 767.98px) {
+		width: func.adapt(56px, 768px);
+		height: func.adapt(28px, 768px);
+		border-radius: func.adapt(100px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: func.adapt(56px, 390px);
+		height: func.adapt(28px, 390px);
+		border-radius: func.adapt(100px, 390px);
+	}
+}
+
+.active {
+	border: 1px solid vars.$white;
+}
+
+.line {
+	width: func.adapt(64px, 1920px);
+	height: 1px;
+	background-color: rgba($color: vars.$white, $alpha: 0.4);
+
+	@media (max-width: 767.98px) {
+		width: func.adapt(64px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: func.adapt(64px, 390px);
+	}
+}
+
+.title {
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin-bottom: func.adapt(16px, 1920px);
+
+	@media (max-width: 767.98px) {
+		font-size: 2rem;
+	}
+
+	@media (max-width: 425px) {
+		font-size: 1.625rem;
+		margin-bottom: func.adapt(16px, 390px);
+	}
+}
+
+.description {
+	font-size: 1.25rem;
+	margin-bottom: func.adapt(32px, 1920px);
+
+	@media (max-width: 767.98px) {
+		font-size: 1rem;
+	}
+
+	@media (max-width: 425px) {
+		margin-bottom: func.adapt(22px, 390px);
+	}
+}
+
+.block__buttons {
+	display: flex;
+	align-items: center;
+	gap: func.adapt(22px, 1920px);
+	position: relative;
+
+	@media (max-width: 767.98px) {
+		gap: func.adapt(22px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		gap: func.adapt(22px, 390px);
+	}
+}
+
+.astronaut {
+	position: absolute;
+	top: func.adapt(-20px, 1920px);
+	left: func.adapt(266px, 1920px);
+	width: func.adapt(184px, 1920px);
+	height: func.adapt(184px, 1920px);
+	transform: rotate(8deg);
+
+	@media (max-width: 767.98px) {
+		top: func.adapt(-20px, 768px);
+		left: func.adapt(266px, 768px);
+		width: func.adapt(184px, 768px);
+		height: func.adapt(184px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		display: none;
+	}
+}
+
+.image {
+	width: func.adapt(1059px, 1920px);
+	height: func.adapt(582px, 1920px);
+
+	@media (max-width: 425px) {
+		width: func.adapt(390px, 390px);
+		height: func.adapt(270px, 390px);
+		transform: translateX(3%);
+	}
+}
+
+.two {
+	width: func.adapt(852px, 1920px);
+	height: func.adapt(602px, 1920px);
+	background-color: rgba($color: vars.$very_dark_blue, $alpha: 0.08);
+	border-radius: func.adapt(29px, 1920px);
+
+	@media (max-width: 425px) {
+		width: func.adapt(358px, 390px);
+		height: func.adapt(256px, 390px);
+		border-radius: func.adapt(29px, 390px);
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+.three {
+	width: func.adapt(825px, 1920px);
+	height: func.adapt(602px, 1920px);
+	background-color: rgba($color: vars.$white, $alpha: 0.08);
+	border-radius: func.adapt(46px, 1920px);
+
+	@media (max-width: 425px) {
+		width: func.adapt(362px, 390px);
+		height: func.adapt(286px, 390px);
+		border-radius: func.adapt(46px, 390px);
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
