@@ -23,12 +23,12 @@ const CustomMap: FC<ICustomMap> = ({ onClick, targetRegion }) => {
 			selectedRange.start ||
 			selectedRange.end) &&
 		targetRegion.length === 0;
-	const isViewPopup =
-		(region.length > 0 &&
-			estimate.length > 0 &&
-			selectedRange.start &&
-			selectedRange.end) ||
-		region.length > 0;
+	// const isViewPopup =
+	// 	(region.length > 0 &&
+	// 		estimate.length > 0 &&
+	// 		selectedRange.start &&
+	// 		selectedRange.end) ||
+	// 	region.length > 0;
 
 	const checkTargetRegion = (region: string[], id: string) => {
 		if (region.length === 1) {

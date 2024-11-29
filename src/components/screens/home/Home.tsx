@@ -77,7 +77,6 @@ const Home: FC = () => {
 		}
 	}, []);
 
-	const [valueInput, setValueInput] = useState<string>('');
 	const onClickChat = useCallback(() => {
 		setIsViewChat(true);
 	}, []);
