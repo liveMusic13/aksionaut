@@ -4,8 +4,11 @@ import {
 	IActiveEstimateStore,
 	ICalendarState,
 	IEstimateStore,
+	IMessagesHistoryStore,
 	IRegionStore,
 	IRegionsCoordinateStore,
+	ISettingsStore,
+	IViewFilters,
 } from '../types/store.types';
 
 export const useEstimateStore = create<IEstimateStore>(set => ({
@@ -65,4 +68,41 @@ export const useCalendarStore = create<ICalendarState>(set => ({
 export const useActiveEstimateStore = create<IActiveEstimateStore>(set => ({
 	activeButton: 'ЧГЧ',
 	setActiveButton: but => set({ activeButton: but }),
+}));
+
+export const useSettingsStore = create<ISettingsStore>(set => ({
+	isSettings: false,
+	setIsSettings: bol => set({ isSettings: bol }),
+}));
+
+export const useViewFilters = create<IViewFilters>(set => ({
+	isEstimate: false,
+	isRegion: false,
+	isCalendar: false,
+	setIsFilter: (id, bol) =>
+		set(state => {
+			if (id === 0) {
+				return { ...state, isEstimate: bol };
+			} else if (id === 1) {
+				return { ...state, isRegion: bol };
+			} else if (id === 2) {
+				return { ...state, isCalendar: bol };
+			} else {
+				return state;
+			}
+		}),
+}));
+
+export const useMessagesStore = create<IMessagesHistoryStore>(set => ({
+	messages: [], // Изначально массив сообщений пустой
+	addMessage: message =>
+		set(state => ({
+			messages: [...state.messages, message],
+		})),
+	updateLastMessage: newMessage =>
+		set(state => ({
+			messages: state.messages.map((msg, index) =>
+				index === state.messages.length - 1 ? { ...msg, ...newMessage } : msg,
+			),
+		})),
 }));

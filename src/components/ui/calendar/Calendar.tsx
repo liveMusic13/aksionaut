@@ -1,7 +1,7 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 
 import { colors } from '../../../app.constants';
-import { arr_month_full } from '../../../data/calendar.data';
+import { arr_month, arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useCalendarStore } from '../../../store/store';
@@ -15,29 +15,25 @@ import styles from './Calendar.module.scss';
 const Calendar: FC = () => {
 	const [isViewCalendar, setIsViewCalendar] = useState<boolean>(false);
 	const { finalData: data } = useFilterFinalData();
-	// const { data, error, isSuccess, refetch, isError, data_grl, data_ukaz } =
-	// 	useEstimateData();
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
+	const dropdownRef = useRef<HTMLDivElement>(null);
 
 	const { selectedRange } = useCalendarStore();
 
-	const arr_month = useMemo(
-		() => [
-			'Янв',
-			'Фев',
-			'Мар',
-			'Апр',
-			'Май',
-			'Июн',
-			'Июл',
-			'Авг',
-			'Сен',
-			'Окт',
-			'Ноя',
-			'Дек',
-		],
-		[],
-	);
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target as Node)
+			) {
+				setIsViewCalendar(false);
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [dropdownRef]);
 
 	const {
 		getSelectedMonths,
@@ -72,8 +68,15 @@ const Calendar: FC = () => {
 		: {};
 
 	return (
-		<div className={styles.wrapper_calendar} style={styleWrapper}>
-			<div className={styles.block__target}>
+		<div
+			className={styles.wrapper_calendar}
+			style={styleWrapper}
+			ref={dropdownRef}
+		>
+			<div
+				className={styles.block__target}
+				onClick={() => setIsViewCalendar(!isViewCalendar)}
+			>
 				<p className={styles.target}>
 					{selectedRange.start && selectedRange.end
 						? `${selectedRange.start} - ${selectedRange.end}`
@@ -85,7 +88,7 @@ const Calendar: FC = () => {
 					className={styles.arrow}
 					src='/images/icons/arrow_bot.svg'
 					alt='arrow'
-					onClick={() => setIsViewCalendar(!isViewCalendar)}
+					// onClick={() => setIsViewCalendar(!isViewCalendar)}
 				/>
 			</div>
 

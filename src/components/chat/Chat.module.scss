@@ -1,0 +1,215 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.wrapper_chat {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 16;
+	width: func.adapt(864px, 1920px);
+	height: func.adapt(831px, 1920px);
+	border-radius: func.adapt(16px, 1920px);
+	background-color: vars.$very_dark_blue;
+	padding: func.adapt(25px, 1920px) func.adapt(24px, 1920px)
+		func.adapt(32px, 1920px);
+	display: flex;
+	flex-direction: column;
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(664px, 768px);
+		height: func.adapt(431px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: 100%;
+		height: 100%;
+		border-top-left-radius: func.adapt(16px, 390px);
+		border-top-right-radius: func.adapt(16px, 390px);
+		padding: func.adapt(16px, 390px);
+	}
+}
+
+.exit {
+	align-self: flex-end;
+
+	> img {
+		width: func.adapt(32px, 1920px);
+		height: func.adapt(32px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(32px, 768px);
+			height: func.adapt(32px, 768px);
+		}
+
+		@media (max-width: 425px) {
+			width: func.adapt(32px, 390px);
+			height: func.adapt(32px, 390px);
+		}
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.block__chat {
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	@include mix.hidden_scroll();
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(10px, 1920px);
+	padding-top: func.adapt(60px, 1920px);
+
+	@media (max-width: 425px) {
+		gap: func.adapt(10px, 390px);
+		margin-bottom: func.adapt(80px, 390px);
+	}
+}
+
+.description {
+	text-align: center;
+	font-size: 0.875rem;
+	color: rgba($color: vars.$white, $alpha: 0.5);
+	margin-bottom: func.adapt(32px, 1920px);
+
+	@media (max-width: 425px) {
+		display: none;
+	}
+}
+
+.block__panelInput {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	position: relative;
+	width: 100%;
+	overflow-x: hidden;
+
+	height: func.adapt(100px, 1920px);
+
+	@media (max-width: 768.98px) {
+		height: func.adapt(130px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		justify-content: flex-start;
+		padding-left: func.adapt(65.26px, 390px);
+		position: fixed;
+		bottom: func.adapt(20px, 390px);
+		// top: 90vh;
+		height: func.adapt(60px, 390px);
+	}
+}
+
+.astronaut {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: func.adapt(65.26px, 1920px);
+	height: func.adapt(80px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(65.26px, 768px);
+		height: func.adapt(80px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: func.adapt(49px, 390px);
+		height: func.adapt(60px, 390px);
+	}
+}
+
+.image__send {
+	position: absolute;
+	top: 50%;
+	right: func.adapt(20px, 1920px);
+	transform: translateY(-46%);
+	background-color: transparent;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	@media (max-width: 425px) {
+		right: 0;
+		left: func.adapt(278px, 390px);
+	}
+
+	> img {
+		width: func.adapt(24px, 1920px);
+		height: func.adapt(24px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(24px, 768px);
+			height: func.adapt(24px, 768px);
+		}
+
+		@media (max-width: 425px) {
+			width: func.adapt(24px, 390px);
+			height: func.adapt(24px, 390px);
+		}
+	}
+}
+
+.text {
+	border-radius: func.adapt(12px, 1920px);
+	padding: func.adapt(15px, 1920px) func.adapt(16px, 1920px);
+	margin-bottom: func.adapt(8px, 1920px);
+	word-break: break-word;
+
+	@media (max-width: 425px) {
+		border-radius: func.adapt(12px, 390px);
+		padding: func.adapt(15px, 390px) func.adapt(16px, 390px);
+		margin-bottom: func.adapt(8px, 390px);
+	}
+}
+
+.time {
+	font-size: 0.875rem;
+}
+
+.message_user {
+	max-width: 45%;
+	align-self: flex-end;
+
+	@media (max-width: 425px) {
+		max-width: 75%;
+	}
+
+	> .text {
+		background-color: rgba($color: vars.$white, $alpha: 0.08);
+		border-bottom-right-radius: func.adapt(4px, 1920px);
+	}
+
+	> .time {
+		display: block;
+		text-align: right;
+	}
+}
+
+.message_server {
+	max-width: 45%;
+	align-self: flex-start;
+
+	@media (max-width: 425px) {
+		max-width: 75%;
+	}
+
+	> .text {
+		border-bottom-left-radius: func.adapt(4px, 1920px);
+		// background-color: vars.$black_background;
+		background-color: vars.$blue;
+	}
+
+	> .time {
+		text-align: left;
+	}
+}
+
+.loading {
+	background-color: vars.$black_background;
+}

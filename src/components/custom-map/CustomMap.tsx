@@ -2,15 +2,33 @@ import { FC } from 'react';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 import { useGetPositionRegions } from '../../hooks/useGetPositionRegions';
-import { useRegionStore } from '../../store/store';
+import {
+	useCalendarStore,
+	useEstimateStore,
+	useRegionStore,
+} from '../../store/store';
 import { ICustomMap } from '../../types/props.types';
 import ZoomControl from '../ui/zoom-control/ZoomControl';
 
 import styles from './CustomMap.module.scss';
 
-const CustomMap: FC<ICustomMap> = ({ onClick }) => {
+const CustomMap: FC<ICustomMap> = ({ onClick, targetRegion }) => {
 	const { containerRef } = useGetPositionRegions();
 	const region = useRegionStore(store => store.region);
+	const estimate = useEstimateStore(store => store.estimate);
+	const selectedRange = useCalendarStore(store => store.selectedRange);
+	const checkValue =
+		(region.length > 0 ||
+			estimate.length > 0 ||
+			selectedRange.start ||
+			selectedRange.end) &&
+		targetRegion.length === 0;
+	// const isViewPopup =
+	// 	(region.length > 0 &&
+	// 		estimate.length > 0 &&
+	// 		selectedRange.start &&
+	// 		selectedRange.end) ||
+	// 	region.length > 0;
 
 	const checkTargetRegion = (region: string[], id: string) => {
 		if (region.length === 1) {
@@ -29,7 +47,10 @@ const CustomMap: FC<ICustomMap> = ({ onClick }) => {
 		>
 			{
 				<>
-					<TransformComponent wrapperClass={styles.wrapper_map}>
+					<TransformComponent
+						wrapperClass={`${styles.wrapper_map} ${checkValue ? styles.mobile__margin : ''}`}
+						// wrapperClass={`${styles.wrapper_map} ${isViewPopup ? styles.margin_for_popup : ''} ${checkValue ? styles.mobile__margin : ''}`}
+					>
 						<svg
 							className={styles.map}
 							viewBox='0 0 1918 1070'

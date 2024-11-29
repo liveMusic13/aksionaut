@@ -7,6 +7,13 @@
 		func.adapt(192px, 1920px),
 		func.adapt(43px, 1920px)
 	);
+
+	@media (max-width: 768.98px) {
+		padding: func.adapt(12px, 768px);
+		border-radius: func.adapt(8px, 768px);
+		width: func.adapt(226px, 768px);
+		height: func.adapt(43px, 768px);
+	}
 }
 
 @include mix.target_style();
@@ -21,6 +28,14 @@
 	border: 1px solid vars.$white;
 	background-color: vars.$middle_dark_blue;
 	padding: func.adapt(16px, 1920px);
+
+	@media (max-width: 768.98px) {
+		top: func.adapt(51px, 768px);
+		width: func.adapt(272px, 768px);
+		height: func.adapt(199px, 768px);
+		border-radius: func.adapt(8px, 768px);
+		padding: func.adapt(16px, 768px);
+	}
 }
 
 .block__year {
@@ -28,6 +43,10 @@
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: func.adapt(16px, 1920px);
+
+	@media (max-width: 768.98px) {
+		margin-bottom: func.adapt(16px, 768px);
+	}
 }
 
 .button {
@@ -40,6 +59,11 @@
 	> img {
 		width: func.adapt(16px, 1920px);
 		height: func.adapt(16px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(16px, 768px);
+			height: func.adapt(16px, 768px);
+		}
 	}
 }
 
@@ -60,6 +84,10 @@
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: func.adapt(31px, 1920px);
+
+	@media (max-width: 768.98px) {
+		gap: func.adapt(31px, 768px);
+	}
 }
 
 .month {

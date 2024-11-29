@@ -48,6 +48,7 @@ body {
 	color: vars.$white;
 	font-size: vars.$fz;
 	overflow: hidden;
+	background-color: vars.$black_background;
 
 	@media (max-width: 1822px) {
 		font-size: 15px;
@@ -77,9 +78,32 @@ body {
 		font-size: 8px;
 	}
 
+	@media (max-width: 910px) {
+		font-size: 7px;
+	}
+
+	@media (max-width: 796px) {
+		font-size: 6px;
+	}
+
 	@media (max-width: 767.98px) {
-		font-size: vars.$fz;
+		font-size: 14px;
 		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	@media (max-width: 667.98px) {
+		font-size: 13px;
+	}
+
+	@media (max-width: 425px) {
+		overflow: auto;
+		overflow-x: hidden;
+		font-size: vars.$fz;
+	}
+
+	@media (max-width: 335px) {
+		font-size: 15px;
 	}
 }
 

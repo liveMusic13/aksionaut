@@ -23,7 +23,31 @@
 	font-weight: 500;
 }
 
+.block__image {
+	position: relative;
+}
+
 .image {
 	width: func.adapt(20px, 390px);
 	height: func.adapt(20px, 390px);
+}
+
+.block__count {
+	width: func.adapt(14px, 390px);
+	height: func.adapt(14px, 390px);
+	background-color: vars.$blue;
+	border: 1px solid vars.$very_dark_blue;
+	border-radius: 50%;
+	position: absolute;
+	top: -16%;
+	right: -20%;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.count {
+	font-size: 0.625rem;
+	font-weight: 700;
 }

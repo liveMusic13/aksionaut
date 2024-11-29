@@ -1,0 +1,13 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	bottom: func.adapt(32px, 390px);
+	left: 0;
+	width: 100%;
+	padding: 0 func.adapt(16px, 390px);
+}

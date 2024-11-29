@@ -12,4 +12,11 @@
 	font-size: 0.875rem;
 	width: 70%;
 	text-align: center;
+
+	@media (max-width: 425px) {
+		top: -5%;
+		transform: translateX(-48%);
+		border-radius: func.adapt(8px, 390px);
+		padding: func.adapt(16px, 390px) func.adapt(8px, 390px);
+	}
 }
