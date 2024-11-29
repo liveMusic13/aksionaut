@@ -5,6 +5,16 @@
 	animation: spin 2s linear infinite;
 	width: func.adapt(16px, 1920px);
 	height: func.adapt(16px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(16px, 768px);
+		height: func.adapt(16px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: func.adapt(16px, 390px);
+		height: func.adapt(16px, 390px);
+	}
 }
 
 @keyframes spin {

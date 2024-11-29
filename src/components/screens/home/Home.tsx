@@ -95,7 +95,8 @@ const Home: FC = () => {
 			style={{
 				backgroundImage: 'url("/images/backgrounds/stars_home.jpg")',
 				backgroundRepeat: isMobile ? 'repeat-y' : 'no-repeat',
-				height: isMobile ? 'auto' : undefined,
+				// height: isMobile ? 'auto' : undefined,
+				height: isViewChat && isMobile ? '100%' : isMobile ? 'auto' : undefined,
 				backgroundSize: 'cover',
 				flexDirection: isMobile ? 'column' : undefined,
 				gap: isMobile ? 'calc(8/390*100vw)' : undefined,

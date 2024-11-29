@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
 
 import { useChat } from '../../hooks/useChat';
+import { useCheckWidth } from '../../hooks/useCheckWidth';
 import { IChat } from '../../types/props.types';
 import Input from '../ui/input/Input';
 import Loader from '../ui/loader/Loader';
@@ -134,6 +135,11 @@ import styles from './Chat.module.scss';
 // };
 
 const Chat: FC<IChat> = ({ setIsViewChat }) => {
+	const {
+		windowSize: { width },
+	} = useCheckWidth();
+	const isMobile = width <= 425;
+	const isTablet = width <= 768.98;
 	const { inputValue, onChangeInput, sendMessage, messages, isPending } =
 		useChat();
 	const onClick = () => setIsViewChat(false);
@@ -192,11 +198,30 @@ const Chat: FC<IChat> = ({ setIsViewChat }) => {
 				/>
 				<Input
 					styleImage={{ display: 'none' }}
-					style={{ width: 'calc(715/1920*100vw)' }}
-					styleLimit={{ right: 'calc(52/1920*100vw)' }}
+					style={{
+						width: isTablet
+							? 'calc(565/768*100vw)'
+							: isMobile
+								? 'calc(299/390*100vw)'
+								: 'calc(715/1920*100vw)',
+					}}
+					// styleLimit={{
+					// 	right: isTablet
+					// 		? 'calc(32/768*100vw)'
+					// 		: isMobile
+					// 			? 'calc(52/390*100vw)'
+					// 			: 'calc(52/1920*100vw)',
+					// }}
+					styleLimit={{
+						display: 'none',
+					}}
 					styleInput={{
-						paddingLeft: 'calc(16/1920*100vw)',
-						paddingRight: 'calc(110/1920*100vw)',
+						paddingLeft: isMobile
+							? 'calc(16/390*100vw)'
+							: 'calc(16/1920*100vw)',
+						paddingRight: isMobile
+							? 'calc(52/390*100vw)'
+							: 'calc(110/1920*100vw)',
 					}}
 					placeholder='Задайте вопрос...'
 					value={inputValue}
