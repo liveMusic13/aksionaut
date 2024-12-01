@@ -33,3 +33,27 @@ export interface IActiveEstimateStore {
 	activeButton: string;
 	setActiveButton: (but: string) => void;
 }
+
+export interface ISettingsStore {
+	isSettings: boolean;
+	setIsSettings: (bol: boolean) => void;
+}
+
+export interface IViewFilters {
+	isEstimate: boolean;
+	isRegion: boolean;
+	isCalendar: boolean;
+	setIsFilter: (id: number, bul: boolean) => void;
+}
+
+export interface IMessagesHistory {
+	text: string;
+	time: string;
+	isFromServer: boolean;
+}
+
+export interface IMessagesHistoryStore {
+	messages: IMessagesHistory[];
+	addMessage: (message: IMessagesHistory) => void;
+	updateLastMessage: (newMessage: Partial<IMessagesHistory>) => void;
+}

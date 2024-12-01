@@ -18,6 +18,8 @@ HighchartsAccessibility(Highcharts);
 
 const ColumnChart: FC<IColumnChart> = ({ data }) => {
 	const { windowSize } = useCheckWidth();
+	const isMobile = windowSize.width <= 425;
+	const isTablet = windowSize.width <= 768;
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const region = useRegionStore(store => store.region);
 	const estimate = useEstimateStore(store => store.estimate);
@@ -25,14 +27,26 @@ const ColumnChart: FC<IColumnChart> = ({ data }) => {
 
 	const widthGraph = (356 / 1920) * windowSize.width;
 	const heightGraph = (303 / 1920) * windowSize.width;
+	const widthGraphMobile = (356 / 390) * windowSize.width;
+	const heightGraphMobile = (283 / 390) * windowSize.width;
+	const widthGraphTablet = (356 / 768) * windowSize.width;
+	const heightGraphTablet = (303 / 768) * windowSize.width;
 
 	const options = useMemo(
 		() => ({
 			chart: {
 				type: 'column',
 				backgroundColor: 'transparent',
-				height: heightGraph, // Устанавливаем фиксированную высоту
-				width: widthGraph,
+				height: isMobile
+					? heightGraphMobile
+					: isTablet
+						? heightGraphTablet
+						: heightGraph, // Устанавливаем фиксированную высоту
+				width: isMobile
+					? widthGraphMobile
+					: isTablet
+						? widthGraphTablet
+						: widthGraph,
 			},
 			title: {
 				text: null,
@@ -77,7 +91,12 @@ const ColumnChart: FC<IColumnChart> = ({ data }) => {
 				},
 			},
 			legend: {
-				enabled: data.length === 1 ? false : data.length === 2 ? true : true,
+				enabled:
+					data.length === 1 || isMobile
+						? false
+						: data.length === 2
+							? true
+							: true,
 				itemStyle: {
 					color: colors.white,
 					fontSize: '0.875rem',

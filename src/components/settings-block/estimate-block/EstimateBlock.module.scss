@@ -1,0 +1,88 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.block__estimate {
+	@include mix.absolute_settings(11);
+}
+
+.block__title {
+	@include mix.block_title_settings();
+}
+
+.title_and_button {
+	display: flex;
+	align-items: center;
+	gap: func.adapt(12px, 390px);
+}
+
+.arrow__back {
+	background-color: transparent;
+
+	> img {
+		width: func.adapt(32px, 390px);
+		height: func.adapt(32px, 390px);
+	}
+}
+
+.title {
+	font-size: 1.25rem;
+	font-weight: 500;
+	padding-bottom: func.adapt(5px, 390px);
+}
+
+.exit {
+	background-color: transparent;
+
+	> img {
+		width: func.adapt(32px, 390px);
+		height: func.adapt(32px, 390px);
+	}
+}
+
+.description {
+	font-size: 0.75rem;
+	color: rgba($color: vars.$white, $alpha: 0.5);
+	margin-bottom: func.adapt(12px, 390px);
+}
+
+.content {
+}
+
+.block__dataEstimates {
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(12px, 390px);
+	border-bottom: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+	padding: func.adapt(12px, 390px) func.adapt(8px, 390px);
+
+	&:first-child {
+		border-top: 1px solid rgba($color: vars.$white, $alpha: 0.08);
+	}
+}
+
+.dataEstimates__title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	> h3 {
+		font-size: 0.9375rem;
+
+		> span {
+			color: rgba($color: vars.$white, $alpha: 0.5);
+		}
+	}
+}
+
+.arrow__title {
+	transform: rotate(-90deg);
+}
+
+.active {
+	transform: rotate(0deg);
+}
+
+.block__checkboxes {
+	margin-top: func.adapt(8px, 390px);
+}

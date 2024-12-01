@@ -1,0 +1,11 @@
+@use '@st/variables' as vars;
+
+.opacity {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 15;
+	background-color: rgba($color: vars.$black_background, $alpha: 0.8);
+}

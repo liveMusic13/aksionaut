@@ -15,7 +15,6 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const [isViewOptions, setIsViewOptions] = useState<boolean>(false);
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [inputValue, setInputValue] = useState<string>('');
-	// const [activeButton, setActiveButton] = useState<string>('');
 	const activeButton = useActiveEstimateStore(store => store.activeButton);
 	const setActiveButton = useActiveEstimateStore(
 		store => store.setActiveButton,
@@ -24,7 +23,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const estimate = useEstimateStore(store => store.estimate);
 	const setRegionState = useRegionStore(store => store.setRegion);
 	const region = useRegionStore(store => store.region);
-
+	const dropdownRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	// Обработчик для чекбоксов
@@ -63,6 +62,21 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const onClick = () => setIsViewOptions(!isViewOptions);
 	const onActiveButton = (but: string) => setActiveButton(but);
 
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target as Node)
+			) {
+				setIsViewOptions(false);
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [dropdownRef]);
+
 	// Сброс фокуса и строки поиска при закрытии
 	useEffect(() => {
 		if (!isViewOptions && inputRef.current) {
@@ -88,7 +102,11 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 			);
 
 	return (
-		<div className={styles.wrapper_select} style={styleWrapper}>
+		<div
+			className={styles.wrapper_select}
+			style={styleWrapper}
+			ref={dropdownRef}
+		>
 			<div className={styles.block__target} onClick={onClick}>
 				{isEstimate ? (
 					<p className={styles.target}>{target}</p>
@@ -121,7 +139,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 								>
 									<div className={styles.block__text}>
 										<p>ГРЛ</p>
-										<span>(12)</span>
+										<span>(7)</span>
 									</div>
 									{activeButton === 'ГРЛ' && (
 										<img
@@ -137,7 +155,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 								>
 									<div className={styles.block__text}>
 										<p>ЧГЧ</p>
-										<span>(24)</span>
+										<span>(12)</span>
 									</div>
 									{activeButton === 'ЧГЧ' && (
 										<img
@@ -153,7 +171,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 								>
 									<div className={styles.block__text}>
 										<p>809</p>
-										<span>(48)</span>
+										<span>(17)</span>
 									</div>
 									{activeButton === '809' && (
 										<img

@@ -7,11 +7,20 @@
 	height: 100vh !important;
 
 	@media (max-width: 425px) {
-		position: absolute;
-		top: func.adapt(100px, 390px);
-		left: 0;
-		bottom: 0;
-		right: 0;
+		width: 100vw !important;
+		height: func.adapt(202px, 390px) !important;
+	}
+}
+
+.mobile__margin {
+	@media (max-width: 425px) {
+		margin-bottom: func.adapt(300px, 390px) !important;
+	}
+}
+
+.margin_for_popup {
+	@media (max-width: 425px) {
+		margin-bottom: func.adapt(650px, 390px) !important;
 	}
 }
 

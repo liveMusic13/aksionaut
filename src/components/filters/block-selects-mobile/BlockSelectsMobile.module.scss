@@ -1,9 +1,0 @@
-.block__selects {
-	display: none;
-
-	@media (max-width: 425px) {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-}

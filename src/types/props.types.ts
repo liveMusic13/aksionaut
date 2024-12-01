@@ -1,4 +1,10 @@
-import { CSSProperties, ChangeEvent, PropsWithChildren } from 'react';
+import {
+	CSSProperties,
+	ChangeEvent,
+	Dispatch,
+	PropsWithChildren,
+	SetStateAction,
+} from 'react';
 
 import {
 	IAllRegions,
@@ -23,11 +29,13 @@ export interface IInput {
 	styleImage?: CSSProperties;
 	placeholder?: string;
 	value?: string;
+	styleLimit?: CSSProperties;
 	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ICustomMap {
 	onClick: (event: any) => void;
+	targetRegion: { name: string; data: number[]; color: string }[][];
 }
 
 export interface IRange {
@@ -54,11 +62,24 @@ export interface IPieChartGraph {
 	data: ITopEstimateInCountry[];
 }
 
+export interface IChartData {
+	name: string;
+	data: number[];
+	color: string;
+}
+
 export interface IPopupRegion {
-	targetRegion: {
-		name: string;
-		data: number[];
-		color: string;
-	}[];
+	targetRegion: IChartData[] | IChartData[][];
 	position: IRegionCoordinate;
+	positionMobile?: IRegionCoordinate[];
+	isMobile: boolean;
+	isTablet?: boolean;
+}
+
+export interface IFilters {
+	onClickChat: () => void;
+}
+
+export interface IChat {
+	setIsViewChat: Dispatch<SetStateAction<boolean>>;
 }

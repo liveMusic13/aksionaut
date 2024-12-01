@@ -10,52 +10,8 @@ import { IFullEstimateData } from '../types/requests.types';
 
 import { useCalendar } from './useCalendar';
 
-// export const useFilters = (
-// 	data: { values: IFullEstimateData[] },
-// 	arr_month_full: string[],
-// 	setTest: any,
-// ) => {
-// 	const { getSelectedMonths } = useCalendar();
-// 	const selectedRange = useCalendarStore(store => store.selectedRange);
-// 	const estimate = useEstimateStore(store => store.estimate);
-// 	const region = useRegionStore(store => store.region);
-
-// 	useEffect(() => {
-// 		data?.values.filter((month: IFullEstimateData) => {
-// 			const isData = filteredMonth(
-// 				month.month,
-// 				getSelectedMonths(arr_month_full, selectedRange),
-// 				arr_month_full,
-// 			);
-
-// 			if (isData) {
-// 				month.values.filter(est => {
-// 					const isEstimate =
-// 						est.cennost_name === estimate[0] ||
-// 						est.cennost_name === estimate[1];
-
-// 					if (isEstimate) {
-// 						console.log('isEstimate', est);
-
-// 						est.regions.filter(reg => {
-// 							const isRegion =
-// 								reg.region_name === region[0] || reg.region_name === region[1];
-
-// 							if (isRegion) {
-// 								console.log('isRegion', isRegion, reg);
-// 								setTest((prev: any) => [...prev, reg]);
-// 							}
-// 						});
-// 					}
-// 				});
-// 			}
-// 		});
-// 	}, [data, region, estimate, selectedRange]);
-// };
-
 export const useFilters = (
 	{ values: data }: { values: IFullEstimateData[] },
-
 	setTargetRegion: any,
 ) => {
 	const { getSelectedMonths } = useCalendar();
