@@ -1,0 +1,68 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__input {
+	width: 100%;
+	height: func.adapt(52px, 1920px);
+	position: relative;
+
+	@media (max-width: 768.98px) {
+		height: func.adapt(36px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		height: func.adapt(52px, 390px);
+	}
+}
+
+.input {
+	border-radius: func.adapt(8px, 1920px);
+	background-color: vars.$white;
+	font-size: 1rem;
+	width: 100%;
+	height: 100%;
+	padding: func.adapt(16px, 1920px) func.adapt(46px, 1920px)
+		func.adapt(16px, 1920px) func.adapt(16px, 1920px);
+	outline: none;
+
+	&::placeholder {
+		color: rgba($color: vars.$black, $alpha: 0.5);
+	}
+
+	@media (max-width: 425px) {
+		border-radius: func.adapt(8px, 390px);
+		padding: func.adapt(16px, 390px) func.adapt(46px, 390px)
+			func.adapt(16px, 390px) func.adapt(16px, 390px);
+	}
+}
+
+.image {
+	position: absolute;
+	top: 50%;
+	right: func.adapt(16px, 1920px);
+	transform: translateY(-50%);
+	background-color: transparent;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	@media (max-width: 425px) {
+		right: func.adapt(16px, 390px);
+	}
+
+	> img {
+		width: func.adapt(20px, 1920px);
+		height: func.adapt(20px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(20px, 768px);
+			height: func.adapt(20px, 768px);
+		}
+
+		@media (max-width: 425px) {
+			width: func.adapt(20px, 390px);
+			height: func.adapt(20px, 390px);
+		}
+	}
+}

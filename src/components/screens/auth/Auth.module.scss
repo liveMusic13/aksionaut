@@ -1,0 +1,104 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.image {
+	position: absolute;
+	left: 50%;
+	top: func.adapt(131px, 1920px);
+	transform: translateX(-50%);
+	width: func.adapt(161px, 1920px);
+	height: func.adapt(161px, 1920px);
+
+	// @media (aspect-ratio: 3/2) {
+	// 	top: func.adapt(61px, 1920px);
+	// }
+	// @media (aspect-ratio: 4/3) {
+	// 	top: func.adapt(61px, 1920px);
+	// }
+	@media (min-aspect-ratio: 16/9) {
+		top: func.adapt(1px, 1920px);
+	}
+	// @media (aspect-ratio: 16/10) {
+	// 	top: func.adapt(61px, 1920px);
+	// }
+
+	@media (max-width: 425px) {
+		position: static;
+		transform: translateX(0%);
+		width: func.adapt(120px, 390px);
+		height: func.adapt(119px, 390px);
+		margin-bottom: func.adapt(46px, 390px);
+	}
+}
+
+.block__auth {
+	width: func.adapt(499px, 1920px);
+	padding: func.adapt(64px, 1920px);
+	background-color: rgba($color: vars.$white, $alpha: 0.08);
+	backdrop-filter: blur(1px); // Размытие фона
+	-webkit-backdrop-filter: blur(1px); // Для поддержки в Safari
+	border-radius: func.adapt(24px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(499px, 768px);
+		padding: func.adapt(64px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: func.adapt(358px, 390px);
+		padding: func.adapt(32px, 390px) func.adapt(16px, 390px)
+			func.adapt(46px, 390px);
+		border-radius: func.adapt(24px, 390px);
+	}
+}
+
+.title {
+	font-size: 1.875rem;
+	font-weight: 600;
+	margin-bottom: func.adapt(24px, 1920px);
+
+	@media (max-width: 425px) {
+		font-weight: 500;
+		font-size: 1.625rem;
+		margin-bottom: func.adapt(24px, 390px);
+	}
+}
+
+.description {
+	font-size: 1rem;
+	margin-bottom: func.adapt(24px, 1920px);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(16px, 1920px);
+
+	@media (max-width: 425px) {
+		gap: func.adapt(16px, 390px);
+	}
+}
+
+.block__buttons {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	margin-top: func.adapt(36px, 1920px);
+	width: 100%;
+
+	@media (max-width: 425px) {
+		margin-top: func.adapt(28px, 390px);
+	}
+}
+
+.button {
+	background-color: transparent;
+	font-weight: 500;
+	font-size: 1rem;
+	color: vars.$white;
+
+	&:hover {
+		cursor: pointer;
+	}
+}

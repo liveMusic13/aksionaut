@@ -1,20 +1,22 @@
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import Auth from '../components/screens/auth/Auth';
 import ErrorPage from '../components/screens/error-page/ErrorPage';
+import { useAuth } from '../hooks/useAuth';
 
 import { routes } from './routes.data';
 
 const Router: FC = () => {
-	// const { isAuth } = useAuth();
+	const { isAuth } = useAuth();
 
 	return (
 		<BrowserRouter>
 			<Routes>
 				{routes.map(route => {
-					// if (route.isAuth && !isAuth) {
-					// 	return false;
-					// }
+					if (route.isAuth && !isAuth) {
+						return false;
+					}
 
 					return (
 						<Route
@@ -24,8 +26,7 @@ const Router: FC = () => {
 						/>
 					);
 				})}
-				{/* <Route element={!isAuth ? <Auth /> : <NotFound />} path='*' /> */}
-				<Route element={<ErrorPage />} path='*' />
+				<Route element={!isAuth ? <Auth /> : <ErrorPage />} path='*' />
 			</Routes>
 		</BrowserRouter>
 	);

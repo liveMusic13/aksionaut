@@ -33,6 +33,13 @@ export interface IInput {
 	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
+export interface IInputAuth {
+	value: string;
+	type: string;
+	placeholder: string;
+	onChange: (e: ChangeEvent<HTMLInputElement>, placeholder: string) => void;
+}
+
 export interface ICustomMap {
 	onClick: (event: any) => void;
 	targetRegion: { name: string; data: number[]; color: string }[][];
