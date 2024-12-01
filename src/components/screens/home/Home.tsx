@@ -24,7 +24,6 @@ import CalendarBlock from '../../settings-block/calendar-block/CalendarBlock';
 import EstimateBlock from '../../settings-block/estimate-block/EstimateBlock';
 import RegionBlock from '../../settings-block/region-block/RegionBlock';
 import WorthBlock from '../../worth-block/WorthBlock';
-import ErrorPage from '../error-page/ErrorPage';
 
 const CustomMap = lazy(() => import('../../custom-map/CustomMap'));
 
@@ -86,9 +85,9 @@ const Home: FC = () => {
 	const isSecondPopup =
 		targetRegion && targetRegion && targetRegion.length === 2;
 
-	if (isError) {
-		return <ErrorPage />;
-	}
+	// if (isError) {
+	// 	return <ErrorPage />;
+	// }
 
 	return (
 		<Layout
