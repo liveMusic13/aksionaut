@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { TOKEN } from '../../app.constants';
 import { useAuth } from '../../hooks/useAuth';
 import { useCheckWidth } from '../../hooks/useCheckWidth';
+import { IHeader } from '../../types/props.types';
 
 import styles from './Header.module.scss';
 
-const Header: FC = () => {
+const Header: FC<IHeader> = ({ isViewFilter, setIsViewFilter }) => {
 	const { windowSize } = useCheckWidth();
+	const isMobile = windowSize.width <= 425;
 	const navigate = useNavigate();
 	const { setIsAuth, isAuth } = useAuth();
 
@@ -32,6 +34,14 @@ const Header: FC = () => {
 			/>
 			<div className={styles.block__right}>
 				{/* <Geolocation /> */}
+				{!isMobile && (
+					<button
+						onClick={() => setIsViewFilter(!isViewFilter)}
+						className={styles.button}
+					>
+						{isViewFilter ? 'Скрыть' : 'Показать'} фильтры
+					</button>
+				)}
 				<button
 					className={styles.button}
 					onClick={isAuth ? logout : () => navigate('/auth')}

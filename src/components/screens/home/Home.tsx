@@ -54,6 +54,9 @@ const Home: FC = () => {
 	const setIsViewDownload = useDownloadStore(store => store.setIsViewDownload);
 	const isViewDownload = useDownloadStore(store => store.isViewDownload);
 	const { data: data_for_all_value } = useGetTopEstimateInCountry();
+	const [isViewFilter, setIsViewFilter] = useState<boolean>(true);
+
+	const onViewFilter = () => setIsViewFilter(!isViewFilter);
 
 	const moveDownload = () => setIsViewDownload(true);
 
@@ -114,10 +117,12 @@ const Home: FC = () => {
 					isMobile && (isRegion || isCalendar || isEstimate) ? 'hidden' : '',
 			}}
 		>
-			<Header />
-			<Suspense fallback={<div>Loading...</div>}>
-				<Filters onClickChat={onClickChat} />
-			</Suspense>
+			<Header isViewFilter={isViewFilter} setIsViewFilter={setIsViewFilter} />
+			{isViewFilter && (
+				<Suspense fallback={<div>Loading...</div>}>
+					<Filters onClickChat={onClickChat} />
+				</Suspense>
+			)}
 
 			<Suspense fallback={<div>Loading...</div>}>
 				<CustomMap onClick={onClick} targetRegion={targetRegion} />
