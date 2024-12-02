@@ -16,13 +16,14 @@ export const selectsArr = [
 export const estimateArr = [
 	{
 		id: 0,
+
 		name: 'ЧГЧ',
-		count: 7,
+		count: 12,
 	},
 	{
 		id: 1,
 		name: 'ГРЛ',
-		count: 12,
+		count: 7,
 	},
 	{
 		id: 2,
