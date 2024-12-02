@@ -90,3 +90,7 @@ export interface IFilters {
 export interface IChat {
 	setIsViewChat: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface IDownload {
+	data: IChartData[] | IChartData[][];
+}

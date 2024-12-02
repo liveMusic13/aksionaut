@@ -1,7 +1,9 @@
-import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { useAccountManagement } from '../../../hooks/useAccountManagement';
+import { useAuth } from '../../../hooks/useAuth';
 import { useCheckWidth } from '../../../hooks/useCheckWidth';
-import { authService } from '../../../services/auth.service';
 import Layout from '../../layout/Layout';
 import Button from '../../ui/button/Button';
 import InputAuth from '../../ui/input-auth/InputAuth';
@@ -9,9 +11,11 @@ import InputAuth from '../../ui/input-auth/InputAuth';
 import styles from './Auth.module.scss';
 
 const Auth: FC = () => {
+	const navigate = useNavigate();
+	const { setIsAuth, isAuth } = useAuth();
 	const textAuth = 'Авторизуйтесь';
 	const textRegistr = 'Зарегистрируйтесь';
-	const textRepass = 'Забыли пароль?';
+	// const textRepass = 'Забыли пароль?';
 	const {
 		windowSize: { width },
 	} = useCheckWidth();
@@ -27,6 +31,54 @@ const Auth: FC = () => {
 		password: '',
 		repeat_password: '',
 	});
+	const [isViewInfo, setIsViewInfo] = useState<{
+		text: string;
+		isView: boolean;
+	}>({ text: '', isView: false });
+	const {
+		mutate_registr,
+		isSuccess_registr,
+		isError_registr,
+		mutate,
+		isError,
+	} = useAccountManagement();
+
+	useEffect(() => {
+		if (isAuth) navigate('/');
+	}, [isAuth]);
+
+	const onAuth = () => {
+		if (stateInputs.password && stateInputs.email)
+			mutate({
+				data: {
+					username: stateInputs.email,
+					password: stateInputs.password,
+				},
+				setIsAuth,
+			});
+	};
+
+	const onRegistr = () => {
+		if (
+			stateInputs.password === stateInputs.repeat_password &&
+			stateInputs.email &&
+			stateInputs.password &&
+			stateInputs.repeat_password
+		)
+			mutate_registr({
+				email: stateInputs.email,
+				password: stateInputs.password,
+			});
+	};
+
+	const repeatError = () => {
+		if (isViewInfo.text === 'Ошибка регистрации') {
+			setStateForm(textAuth);
+		} else {
+			setStateForm(textRegistr);
+		}
+		setIsViewInfo(prev => ({ ...prev, isView: false }));
+	};
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>, placeholder: string) => {
 		if (placeholder === 'E-mail') {
@@ -41,16 +93,46 @@ const Auth: FC = () => {
 	const onClick = (but: string) => {
 		if (but === textRegistr) {
 			setStateForm(textAuth);
+			setIsViewInfo({ text: '', isView: false });
+			setStateInputs({
+				email: '',
+				password: '',
+				repeat_password: '',
+			});
 		} else if (but === textAuth) {
 			setStateForm(textRegistr);
-		} else if (but === textRepass) {
-			console.log(but, stateForm);
-			setStateForm(textRepass);
+			setIsViewInfo({ text: '', isView: false });
+			setStateInputs({
+				email: '',
+				password: '',
+				repeat_password: '',
+			});
 		}
+		// else if (but === textRepass) {
+		// 	console.log(but, stateForm);
+		// 	setStateForm(textRepass);
+		// 	setIsViewInfo({ text: '', isView: false });
+		// 	setStateInputs({
+		// 		email: '',
+		// 		password: '',
+		// 		repeat_password: '',
+		// 	});
+		// }
 	};
 	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
 		onClick((e.target as HTMLButtonElement).innerText);
 	};
+
+	useEffect(() => {
+		if (isError_registr) {
+			setIsViewInfo({ text: 'Ошибка регистрации', isView: true });
+		} else if (isError) {
+			setIsViewInfo({ text: 'Ошибка авторизации', isView: true });
+		} else if (isSuccess_registr) {
+			setStateInputs({ email: '', password: '', repeat_password: '' });
+			setIsViewInfo({ text: 'Регистрация прошла успешно!', isView: true });
+		}
+	}, [isSuccess_registr, isError_registr, isError]);
 
 	return (
 		<Layout
@@ -76,67 +158,77 @@ const Auth: FC = () => {
 							? 'Вход'
 							: 'Восстановление пароля'}
 				</h1>
-				{stateForm === textRepass && (
+				{/* {stateForm === textRepass && (
 					<p className={styles.description}>
 						Введите e-mail, который вы использовали при регистрации и мы вышлем
 						инструкции по восстановлению пароля
 					</p>
-				)}
+				)} */}
 				<div className={styles.form}>
-					<InputAuth
-						type='text'
-						value={stateInputs.email}
-						placeholder='E-mail'
-						onChange={onChange}
-					/>
-					{stateForm !== textRepass && (
-						<InputAuth
-							type='password'
-							value={stateInputs.password}
-							placeholder='Пароль'
-							onChange={onChange}
-						/>
+					{isViewInfo.isView &&
+					(stateForm === textAuth || stateForm === textRegistr) ? (
+						<>
+							<p className={styles.description}>{isViewInfo.text}</p>
+							{(isViewInfo.text === 'Ошибка регистрации' ||
+								isViewInfo.text === 'Ошибка авторизации') && (
+								<button onClick={repeatError} className={styles.button}>
+									Попробуйте ещё раз.
+								</button>
+							)}
+						</>
+					) : (
+						<>
+							<InputAuth
+								type='text'
+								value={stateInputs.email}
+								placeholder='E-mail'
+								onChange={onChange}
+							/>
+							{/* {stateForm !== textRepass && ( */}
+							<InputAuth
+								type='password'
+								value={stateInputs.password}
+								placeholder='Пароль'
+								onChange={onChange}
+							/>
+							{/* )} */}
+							{stateForm === textAuth && (
+								<InputAuth
+									type='password'
+									value={stateInputs.repeat_password}
+									placeholder='Повторите пароль'
+									onChange={onChange}
+								/>
+							)}
+							<Button
+								style={{
+									width: '100%',
+									height: isMobile
+										? 'calc(51/390*100vw)'
+										: isTablet
+											? 'calc(40/768*100vw)'
+											: undefined,
+									marginTop: 'calc(46/1920*100vw)',
+								}}
+								onClick={stateForm === textAuth ? onRegistr : onAuth}
+							>
+								{/* {stateForm === textRepass ? 'Отправить' : 'Войти'} */}
+								Войти
+							</Button>
+						</>
 					)}
-					{(stateForm === textAuth || stateForm !== textRepass) && (
-						<InputAuth
-							type='password'
-							value={stateInputs.repeat_password}
-							placeholder='Повторите пароль'
-							onChange={onChange}
-						/>
-					)}
-
-					<Button
-						style={{
-							width: '100%',
-							height: isMobile
-								? 'calc(51/390*100vw)'
-								: isTablet
-									? 'calc(40/768*100vw)'
-									: undefined,
-							marginTop: 'calc(46/1920*100vw)',
-						}}
-						onClick={() =>
-							authService.registr({
-								email: stateInputs.email,
-								password: stateInputs.password,
-							})
-						}
-					>
-						{stateForm === textRepass ? 'Отправить' : 'Войти'}
-					</Button>
 				</div>
 				<div className={styles.block__buttons}>
-					{stateForm !== textAuth && stateForm !== textRepass && (
+					{/* {stateForm !== textAuth && stateForm !== textRepass && (
 						<button onClick={handleClick} className={styles.button}>
 							{textRepass}
 						</button>
-					)}
-					{stateForm !== textRepass && (
-						<button onClick={handleClick} className={styles.button}>
-							{stateForm}
-						</button>
-					)}
+					)} */}
+					{/* {stateForm !== textRepass && ( */}
+					<button onClick={handleClick} className={styles.button}>
+						{stateForm}
+					</button>
+					{/* )} */}
 				</div>
 			</div>
 		</Layout>

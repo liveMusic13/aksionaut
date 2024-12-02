@@ -4,8 +4,10 @@ import { FC, Suspense, lazy, useCallback, useState } from 'react';
 import { useCheckWidth } from '../../../hooks/useCheckWidth';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useFilters } from '../../../hooks/useFilters';
+import { useGetTopEstimateInCountry } from '../../../hooks/useGetTopEstimateInCountry';
 import {
 	useCalendarStore,
+	useDownloadStore,
 	useEstimateStore,
 	useRegionStore,
 	useRegionsCoordinateStore,
@@ -13,8 +15,10 @@ import {
 	useViewFilters,
 } from '../../../store/store';
 import { IRegionCoordinate } from '../../../types/store.types';
+import { totalValue } from '../../../utils/editRequestData';
 import BackgroundOpacity from '../../background-opacity/BackgroundOpacity';
 import Chat from '../../chat/Chat';
+import Download from '../../download/Download';
 import Filters from '../../filters/Filters';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
@@ -47,6 +51,11 @@ const Home: FC = () => {
 	const { isCalendar, isEstimate, isRegion } = useViewFilters();
 	const [targetRegion, setTargetRegion] = useState([]);
 	const [isViewChat, setIsViewChat] = useState<boolean>(false);
+	const setIsViewDownload = useDownloadStore(store => store.setIsViewDownload);
+	const isViewDownload = useDownloadStore(store => store.isViewDownload);
+	const { data: data_for_all_value } = useGetTopEstimateInCountry();
+
+	const moveDownload = () => setIsViewDownload(true);
 
 	useFilters(data ? data : { values: [] }, setTargetRegion);
 
@@ -177,6 +186,30 @@ const Home: FC = () => {
 			{isMobile && isEstimate && <EstimateBlock />}
 			{isMobile && isRegion && <RegionBlock />}
 			{isMobile && isCalendar && <CalendarBlock />}
+			{region.length > 0 &&
+				estimate.length > 0 &&
+				selectedRange.start &&
+				selectedRange.end && (
+					<>
+						<button className='download' onClick={moveDownload}>
+							<img src='/images/icons/download.svg' alt='download' />
+						</button>
+
+						<p className='text-download'>
+							Статистика собрана на основе данных{' '}
+							{data_for_all_value
+								? totalValue(data_for_all_value.cennosti_by_all_period_regions)
+								: ''}{' '}
+							показателей
+						</p>
+					</>
+				)}
+			{isViewDownload && (
+				<>
+					<BackgroundOpacity />
+					<Download data={targetRegion} />
+				</>
+			)}
 		</Layout>
 	);
 };

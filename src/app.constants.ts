@@ -8,6 +8,7 @@ export const colors = {
 	blue: '#125dfe',
 	blue_dark: '#094ddf',
 	black: '#0d0e13',
+	grey: '#c4c4c4',
 };
 
 export const startGraphColor = '#3E5F9F';

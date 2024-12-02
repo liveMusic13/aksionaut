@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import {
 	IActiveEstimateStore,
 	ICalendarState,
+	IDownloadStore,
 	IEstimateStore,
 	IMessagesHistoryStore,
 	IRegionStore,
@@ -105,4 +106,9 @@ export const useMessagesStore = create<IMessagesHistoryStore>(set => ({
 				index === state.messages.length - 1 ? { ...msg, ...newMessage } : msg,
 			),
 		})),
+}));
+
+export const useDownloadStore = create<IDownloadStore>(set => ({
+	isViewDownload: false,
+	setIsViewDownload: bol => set({ isViewDownload: bol }),
 }));

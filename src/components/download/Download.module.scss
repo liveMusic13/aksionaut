@@ -1,0 +1,156 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+@use '@st/mixins' as mix;
+
+.block__download {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 16;
+	transform: translate(-50%, -50%);
+	color: vars.$black_background;
+	background-color: vars.$white;
+	width: func.adapt(864px, 1920px);
+	border-radius: func.adapt(16px, 1920px);
+	padding: func.adapt(24px, 1920px) func.adapt(46px, 1920px)
+		func.adapt(46px, 1920px);
+	overflow-y: auto;
+
+	@include mix.hidden_scroll();
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(640px, 768px);
+		border-radius: func.adapt(16px, 768px);
+		padding: func.adapt(14px, 768px) func.adapt(30px, 768px)
+			func.adapt(30px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: 100%;
+		// height: 100%;
+		top: 0;
+		left: 0;
+		transform: translate(0%, 0%);
+		border-radius: func.adapt(16px, 390px);
+		padding: func.adapt(16px, 390px) func.adapt(16px, 390px)
+			func.adapt(24px, 390px);
+	}
+}
+
+.block__title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.title {
+	font-weight: 700;
+	font-size: 1.75rem;
+
+	@media (max-width: 768.98px) {
+		font-size: 1.2rem;
+	}
+
+	@media (max-width: 425px) {
+		font-size: 1.375rem;
+	}
+}
+
+.exit {
+	background-color: transparent;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	> img {
+		width: func.adapt(16px, 1920px);
+		height: func.adapt(16px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(16px, 768px);
+			height: func.adapt(16px, 768px);
+		}
+
+		@media (max-width: 425px) {
+			width: func.adapt(16px, 390px);
+			height: func.adapt(16px, 390px);
+		}
+	}
+}
+
+.date {
+	color: rgba($color: vars.$black, $alpha: 0.6);
+	font-weight: 500;
+	font-size: 1rem;
+	margin-bottom: func.adapt(32px, 1920px);
+	margin-top: func.adapt(8px, 1920px);
+
+	@media (max-width: 768.98px) {
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 425px) {
+		font-size: 1rem;
+		margin-bottom: func.adapt(32px, 390px);
+		margin-top: func.adapt(8px, 390px);
+	}
+}
+
+.block__graphs {
+	display: flex;
+	flex-direction: column;
+}
+
+.block__button {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+
+.block__link {
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(16px, 1920px);
+
+	@media (max-width: 425px) {
+		gap: func.adapt(16px, 390px);
+	}
+}
+
+.image__logo {
+	width: func.adapt(130px, 1920px);
+	height: func.adapt(34px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(130px, 768px);
+		height: func.adapt(34px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: func.adapt(110px, 390px);
+		height: func.adapt(31px, 390px);
+	}
+}
+
+.link {
+	font-size: 1rem;
+	font-weight: 500;
+	color: vars.$blue;
+}
+
+.image__download {
+	width: func.adapt(28px, 1920px);
+	height: func.adapt(28px, 1920px);
+	margin-left: func.adapt(10px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(28px, 768px);
+		height: func.adapt(28px, 768px);
+	}
+
+	@media (max-width: 425px) {
+		width: func.adapt(28px, 390px);
+		height: func.adapt(28px, 390px);
+	}
+}

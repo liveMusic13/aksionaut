@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Auth from '../components/screens/auth/Auth';
 import ErrorPage from '../components/screens/error-page/ErrorPage';
+import Intro from '../components/screens/intro/Intro';
 import { useAuth } from '../hooks/useAuth';
 
 import { routes } from './routes.data';
@@ -26,7 +26,7 @@ const Router: FC = () => {
 						/>
 					);
 				})}
-				<Route element={!isAuth ? <Auth /> : <ErrorPage />} path='*' />
+				<Route element={!isAuth ? <Intro /> : <ErrorPage />} path='*' />
 			</Routes>
 		</BrowserRouter>
 	);

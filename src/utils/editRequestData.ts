@@ -55,3 +55,9 @@ export const filteredMonth = (
 
 	return dateArray.includes(formattedDate);
 };
+
+export const totalValue = (data: { name: string; value: number }[]): number => {
+	let total = 0;
+	data.forEach(el => (total += el.value));
+	return total;
+};

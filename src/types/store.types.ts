@@ -57,3 +57,8 @@ export interface IMessagesHistoryStore {
 	addMessage: (message: IMessagesHistory) => void;
 	updateLastMessage: (newMessage: Partial<IMessagesHistory>) => void;
 }
+
+export interface IDownloadStore {
+	isViewDownload: boolean;
+	setIsViewDownload: (bul: boolean) => void;
+}

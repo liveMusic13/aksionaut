@@ -83,7 +83,8 @@
 .block__buttons {
 	display: flex;
 	align-content: center;
-	justify-content: space-between;
+	// justify-content: space-between;
+	justify-content: center;
 	margin-top: func.adapt(36px, 1920px);
 	width: 100%;
 
