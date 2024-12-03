@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
-import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { TOKEN } from '../../app.constants';
 import { useAuth } from '../../hooks/useAuth';
@@ -14,12 +14,19 @@ const Header: FC<IHeader> = ({ isViewFilter, setIsViewFilter }) => {
 	const isMobile = windowSize.width <= 425;
 	const navigate = useNavigate();
 	const { setIsAuth, isAuth } = useAuth();
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		if (!isAuth) navigate('/intro');
+	}, [isAuth]);
 
 	const logout = () => {
 		Cookies.remove(TOKEN);
 		setIsAuth(false);
 		navigate('/auth');
 	};
+
+	console.log('pathname', pathname);
 
 	return (
 		<header className={styles.header}>
@@ -34,7 +41,7 @@ const Header: FC<IHeader> = ({ isViewFilter, setIsViewFilter }) => {
 			/>
 			<div className={styles.block__right}>
 				{/* <Geolocation /> */}
-				{!isMobile && (
+				{!isMobile && pathname !== '/intro' && (
 					<button
 						onClick={() =>
 							setIsViewFilter ? setIsViewFilter(!isViewFilter) : undefined
