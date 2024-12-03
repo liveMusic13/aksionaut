@@ -96,6 +96,6 @@ export interface IDownload {
 }
 
 export interface IHeader {
-	setIsViewFilter: Dispatch<SetStateAction<boolean>>;
-	isViewFilter: boolean;
+	setIsViewFilter?: Dispatch<SetStateAction<boolean>>;
+	isViewFilter?: boolean;
 }

@@ -36,7 +36,9 @@ const Header: FC<IHeader> = ({ isViewFilter, setIsViewFilter }) => {
 				{/* <Geolocation /> */}
 				{!isMobile && (
 					<button
-						onClick={() => setIsViewFilter(!isViewFilter)}
+						onClick={() =>
+							setIsViewFilter ? setIsViewFilter(!isViewFilter) : undefined
+						}
 						className={styles.button}
 					>
 						{isViewFilter ? 'Скрыть' : 'Показать'} фильтры

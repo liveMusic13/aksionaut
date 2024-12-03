@@ -56,8 +56,6 @@ const Home: FC = () => {
 	const { data: data_for_all_value } = useGetTopEstimateInCountry();
 	const [isViewFilter, setIsViewFilter] = useState<boolean>(true);
 
-	const onViewFilter = () => setIsViewFilter(!isViewFilter);
-
 	const moveDownload = () => setIsViewDownload(true);
 
 	useFilters(data ? data : { values: [] }, setTargetRegion);
