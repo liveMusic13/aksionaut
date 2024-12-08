@@ -97,7 +97,7 @@ body {
 		font-size: 13px;
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		overflow: auto;
 		overflow-x: hidden;
 		font-size: vars.$fz;
@@ -135,7 +135,7 @@ body {
 		bottom: func.adapt(105px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(52px, 390px);
 		height: func.adapt(52px, 390px);
 		right: 50%;
@@ -153,7 +153,7 @@ body {
 			height: func.adapt(28px, 768px);
 		}
 
-		@media (max-width: 425px) {
+		@media (max-width: 451px) {
 			width: func.adapt(28px, 390px);
 			height: func.adapt(28px, 390px);
 		}
@@ -163,7 +163,7 @@ body {
 .text-download {
 	display: none;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		display: block;
 		width: 100%;
 		text-align: center;
@@ -190,7 +190,7 @@ body {
 		gap: func.adapt(32px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		gap: func.adapt(32px, 390px);
 	}
 }
@@ -204,7 +204,7 @@ body {
 		gap: func.adapt(4px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		gap: func.adapt(4px, 390px);
 	}
 }
@@ -218,7 +218,7 @@ body {
 		gap: func.adapt(4px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		gap: func.adapt(4px, 390px);
 	}
 }

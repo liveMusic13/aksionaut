@@ -25,7 +25,8 @@ const BlockButtons: FC = () => {
 		setIsFilter(0, false);
 		setIsFilter(1, false);
 		setIsFilter(2, false);
-		setIsSettings(false);
+
+		if (!isCalendar && !isEstimate && !isRegion) setIsSettings(false);
 	};
 
 	const clear = () => {

@@ -8,6 +8,7 @@ import {
 	useDownloadStore,
 	useEstimateStore,
 	useRegionStore,
+	useScaleDownloadStore,
 } from '../../store/store';
 import { IChartData, IDownload } from '../../types/props.types';
 import {
@@ -24,23 +25,32 @@ const Download: FC<IDownload> = ({ data }) => {
 	const estimate = useEstimateStore(store => store.estimate);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const region = useRegionStore(store => store.region);
-	const handleDownloadImage = useSaveImageGraph();
 	const { windowSize } = useCheckWidth();
-	const isMobile = windowSize.width <= 425;
+	const isMobile = windowSize.width <= 451;
 	const isTablet = windowSize.width <= 768;
 
 	const close = () => setIsViewDownload(false);
+	const isScaleDownload = useScaleDownloadStore(store => store.isScaleDownload);
+	const setIsScaleDownload = useScaleDownloadStore(
+		store => store.setIsScaleDownload,
+	);
+	const handleDownloadImage = useSaveImageGraph(setIsScaleDownload);
 
 	return (
-		<div className={styles.block__download} id='download-container'>
-			<div className={styles.block__title}>
+		<div
+			className={`${styles.block__download} ${isScaleDownload ? styles.scale : ''}`}
+			id='download-container'
+		>
+			<div className={`${styles.block__title}`}>
 				<h2 className={styles.title}>Статистика по ценностям</h2>
 				<button className={styles.exit} onClick={close}>
 					<img src='/images/icons/exit_black.svg' alt='exit' />
 				</button>
 			</div>
-			<p className={styles.date}>{getFormattedDate()}</p>
-			<div className={styles.block__graphs}>
+			<p className={`${styles.date}`}>{getFormattedDate()}</p>
+			<div
+				className={`${styles.block__graphs} ${isScaleDownload ? styles.scale__graphs : ''}`}
+			>
 				{data.length > 1 ? (
 					<>
 						<DownloadChart

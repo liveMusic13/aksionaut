@@ -24,7 +24,7 @@
 		border-radius: func.adapt(16px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		position: static;
 		transform: translateX(0%);
 		padding: func.adapt(16px, 390px);
@@ -44,7 +44,7 @@
 		font-size: 1rem;
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		font-size: 1rem;
 		margin-bottom: func.adapt(16px, 390px);
 	}
@@ -60,7 +60,7 @@
 		margin-bottom: func.adapt(10px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		font-size: 0.75rem;
 		margin-bottom: func.adapt(16px, 390px);
 	}
@@ -78,7 +78,7 @@
 		margin-bottom: func.adapt(16px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		gap: func.adapt(8px, 390px);
 		margin-bottom: func.adapt(16px, 390px);
 	}
@@ -98,7 +98,7 @@
 		border-radius: func.adapt(4px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		font-size: 0.875rem;
 		padding: func.adapt(6px, 390px) func.adapt(8px, 390px);
 		border-radius: func.adapt(4px, 390px);
@@ -116,7 +116,7 @@
 	align-items: center;
 	justify-content: space-between;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		display: none;
 	}
 }

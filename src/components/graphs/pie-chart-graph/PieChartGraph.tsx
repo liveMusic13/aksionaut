@@ -23,7 +23,7 @@ const PieChartGraph: FC<IPieChartGraph> = ({ data }) => {
 	});
 
 	const { windowSize } = useCheckWidth();
-	const isMobile = windowSize.width <= 425;
+	const isMobile = windowSize.width <= 451;
 	const isTablet = windowSize.width <= 768.98;
 	const formatData = editTopEstimateInCountry(cashingData);
 

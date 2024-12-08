@@ -22,7 +22,7 @@
 		height: func.adapt(431px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: 100%;
 		height: 100%;
 		border-top-left-radius: func.adapt(16px, 390px);
@@ -43,7 +43,7 @@
 			height: func.adapt(32px, 768px);
 		}
 
-		@media (max-width: 425px) {
+		@media (max-width: 451px) {
 			width: func.adapt(32px, 390px);
 			height: func.adapt(32px, 390px);
 		}
@@ -64,7 +64,7 @@
 	gap: func.adapt(10px, 1920px);
 	padding-top: func.adapt(60px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		gap: func.adapt(10px, 390px);
 		margin-bottom: func.adapt(80px, 390px);
 	}
@@ -76,7 +76,7 @@
 	color: rgba($color: vars.$white, $alpha: 0.5);
 	margin-bottom: func.adapt(32px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		display: none;
 	}
 }
@@ -95,7 +95,7 @@
 		height: func.adapt(130px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		justify-content: flex-start;
 		padding-left: func.adapt(65.26px, 390px);
 		position: fixed;
@@ -117,7 +117,7 @@
 		height: func.adapt(80px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(49px, 390px);
 		height: func.adapt(60px, 390px);
 	}
@@ -134,7 +134,7 @@
 		cursor: pointer;
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		right: 0;
 		left: func.adapt(278px, 390px);
 	}
@@ -148,7 +148,7 @@
 			height: func.adapt(24px, 768px);
 		}
 
-		@media (max-width: 425px) {
+		@media (max-width: 451px) {
 			width: func.adapt(24px, 390px);
 			height: func.adapt(24px, 390px);
 		}
@@ -161,7 +161,7 @@
 	margin-bottom: func.adapt(8px, 1920px);
 	word-break: break-word;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		border-radius: func.adapt(12px, 390px);
 		padding: func.adapt(15px, 390px) func.adapt(16px, 390px);
 		margin-bottom: func.adapt(8px, 390px);
@@ -176,7 +176,7 @@
 	max-width: 45%;
 	align-self: flex-end;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		max-width: 75%;
 	}
 
@@ -195,7 +195,7 @@
 	max-width: 45%;
 	align-self: flex-start;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		max-width: 75%;
 	}
 

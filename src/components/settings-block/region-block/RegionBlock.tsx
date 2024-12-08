@@ -1,7 +1,11 @@
 import { FC } from 'react';
 
 import { useGetAllRegions } from '../../../hooks/useGetAllRegions';
-import { useRegionStore, useViewFilters } from '../../../store/store';
+import {
+	useRegionStore,
+	useSettingsStore,
+	useViewFilters,
+} from '../../../store/store';
 import Checkbox from '../../ui/checkbox/Checkbox';
 import BlockButtons from '../block-buttons/BlockButtons';
 
@@ -9,12 +13,18 @@ import styles from './RegionBlock.module.scss';
 
 const RegionBlock: FC = () => {
 	const setIsFilter = useViewFilters(store => store.setIsFilter);
+	const setIsSettings = useSettingsStore(store => store.setIsSettings);
 	const region = useRegionStore(store => store.region);
 	const { data: regions } = useGetAllRegions();
 	const dataAllRegions = regions && regions.regions;
 	const setRegionState = useRegionStore(store => store.setRegion);
 
-	const onClick = () => setIsFilter(1, false);
+	const onClick = () => {
+		setIsSettings(false);
+		setIsFilter(0, false);
+		setIsFilter(1, false);
+		setIsFilter(2, false);
+	};
 	// Обработчик для чекбоксов
 	const onChange = (name: string) => {
 		setRegionState(prev => {

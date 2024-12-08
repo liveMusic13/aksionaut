@@ -67,7 +67,7 @@ const SettingsBlock: FC = () => {
 	return (
 		<div className={styles.block__settings}>
 			<div className={styles.block__title}>
-				<h2 className={styles.title}>Параметры</h2>
+				<h2 className={styles.title}>Фильтры</h2>
 				<button className={styles.exit} onClick={onClick}>
 					<img src='/images/icons/exit.svg' alt='exit' />
 				</button>

@@ -2,6 +2,7 @@ import {
 	CSSProperties,
 	ChangeEvent,
 	Dispatch,
+	KeyboardEvent,
 	PropsWithChildren,
 	SetStateAction,
 } from 'react';
@@ -20,6 +21,7 @@ export interface ILayoutProps extends PropsWithChildren {
 
 export interface IButtonProps extends PropsWithChildren {
 	style?: CSSProperties;
+	disabled?: boolean;
 	onClick?: () => void;
 }
 
@@ -31,13 +33,17 @@ export interface IInput {
 	value?: string;
 	styleLimit?: CSSProperties;
 	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+	onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export interface IInputAuth {
 	value: string;
 	type: string;
 	placeholder: string;
+	validateEmail?: boolean;
 	onChange: (e: ChangeEvent<HTMLInputElement>, placeholder: string) => void;
+	isEmailValid?: boolean;
+	setIsEmailValid?: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ICustomMap {

@@ -4,7 +4,7 @@
 .block__selects_mobile {
 	display: none;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		margin-top: func.adapt(16px, 390px);
 		display: flex;
 		align-items: center;

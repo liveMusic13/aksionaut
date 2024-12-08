@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 
 import { colors } from '../../../app.constants';
+import { useCloseWindowOnMissClick } from '../../../hooks/useCloseWindowOnMissClick';
 import {
 	useActiveEstimateStore,
 	useEstimateStore,
@@ -62,20 +63,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 	const onClick = () => setIsViewOptions(!isViewOptions);
 	const onActiveButton = (but: string) => setActiveButton(but);
 
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				dropdownRef.current &&
-				!dropdownRef.current.contains(event.target as Node)
-			) {
-				setIsViewOptions(false);
-			}
-		};
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [dropdownRef]);
+	useCloseWindowOnMissClick(dropdownRef, setIsViewOptions);
 
 	// Сброс фокуса и строки поиска при закрытии
 	useEffect(() => {
@@ -115,7 +103,7 @@ const Select: FC<ISelect> = ({ data, title, isEstimate }) => {
 						ref={inputRef}
 						type='text'
 						className={styles.target__input}
-						value={inputValue}
+						value={inputValue === '' && !isViewOptions ? 'Регионы' : inputValue}
 						onChange={handleInputChange}
 					/>
 				)}

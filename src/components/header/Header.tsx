@@ -11,7 +11,7 @@ import styles from './Header.module.scss';
 
 const Header: FC<IHeader> = ({ isViewFilter, setIsViewFilter }) => {
 	const { windowSize } = useCheckWidth();
-	const isMobile = windowSize.width <= 425;
+	const isMobile = windowSize.width <= 451;
 	const navigate = useNavigate();
 	const { setIsAuth, isAuth } = useAuth();
 	const { pathname } = useLocation();
@@ -26,13 +26,11 @@ const Header: FC<IHeader> = ({ isViewFilter, setIsViewFilter }) => {
 		navigate('/auth');
 	};
 
-	console.log('pathname', pathname);
-
 	return (
 		<header className={styles.header}>
 			<img
 				src={
-					windowSize.width <= 425
+					windowSize.width <= 451
 						? '/images/icons/logo.svg'
 						: '/images/icons/logo_full.svg'
 				}

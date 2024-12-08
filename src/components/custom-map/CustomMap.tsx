@@ -17,12 +17,23 @@ const CustomMap: FC<ICustomMap> = ({ onClick, targetRegion }) => {
 	const region = useRegionStore(store => store.region);
 	const estimate = useEstimateStore(store => store.estimate);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
+	const isFullData =
+		region.length > 0 &&
+		estimate.length > 0 &&
+		selectedRange.start &&
+		selectedRange.end;
 	const checkValue =
 		(region.length > 0 ||
 			estimate.length > 0 ||
 			selectedRange.start ||
 			selectedRange.end) &&
 		targetRegion.length === 0;
+	const test =
+		(region.length > 0 ||
+			estimate.length > 0 ||
+			selectedRange.start ||
+			selectedRange.end) &&
+		!isFullData;
 	// const isViewPopup =
 	// 	(region.length > 0 &&
 	// 		estimate.length > 0 &&
@@ -48,7 +59,7 @@ const CustomMap: FC<ICustomMap> = ({ onClick, targetRegion }) => {
 			{
 				<>
 					<TransformComponent
-						wrapperClass={`${styles.wrapper_map} ${checkValue ? styles.mobile__margin : ''}`}
+						wrapperClass={`${styles.wrapper_map} ${checkValue || test ? styles.mobile__margin : ''}`}
 						// wrapperClass={`${styles.wrapper_map} ${isViewPopup ? styles.margin_for_popup : ''} ${checkValue ? styles.mobile__margin : ''}`}
 					>
 						<svg

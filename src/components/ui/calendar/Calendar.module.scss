@@ -83,10 +83,10 @@
 .block__month {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: func.adapt(31px, 1920px);
+	// gap: func.adapt(31px, 1920px);
 
 	@media (max-width: 768.98px) {
-		gap: func.adapt(31px, 768px);
+		// gap: func.adapt(31px, 768px);
 	}
 }
 
@@ -94,6 +94,8 @@
 	font-size: 0.875rem;
 	background-color: transparent;
 	color: vars.$white;
+
+	height: func.adapt(36px, 1920px);
 
 	&:hover {
 		cursor: pointer;
@@ -106,5 +108,6 @@
 }
 
 .selected {
-	color: vars.$blue;
+	// color: vars.$blue;
+	background-color: rgba($color: vars.$white, $alpha: 0.08);
 }

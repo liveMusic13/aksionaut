@@ -11,7 +11,7 @@
 		width: func.adapt(603px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(306px, 390px);
 	}
 }
@@ -29,7 +29,7 @@
 		height: func.adapt(31px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(37px, 390px);
 		height: func.adapt(31px, 390px);
 		left: func.adapt(8px, 390px);
@@ -60,7 +60,7 @@
 			func.adapt(8.5px, 768px) func.adapt(53px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		height: func.adapt(48px, 390px);
 		border-radius: func.adapt(8px, 390px);
 		padding: func.adapt(8.5px, 390px) func.adapt(27px, 390px)
@@ -76,7 +76,7 @@
 	right: func.adapt(16px, 1920px);
 	transform: translateY(-50%);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		display: none;
 	}
 }

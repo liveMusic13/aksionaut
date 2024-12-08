@@ -12,6 +12,7 @@ const Input: FC<IInput> = ({
 	styleInput,
 	styleImage,
 	styleLimit,
+	onKeyDown,
 }) => {
 	return (
 		<div className={styles.block__input} style={style}>
@@ -28,6 +29,7 @@ const Input: FC<IInput> = ({
 				className={styles.input}
 				value={value}
 				onChange={onChange}
+				onKeyDown={onKeyDown}
 			/>
 			<p className={styles.limit} style={styleLimit}>
 				{value?.length}/200

@@ -9,7 +9,7 @@
 		max-width: func.adapt(538px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		max-width: func.adapt(358px, 390px);
 		padding: func.adapt(16px, 390px);
 	}
@@ -20,7 +20,7 @@
 	display: flex;
 	align-items: center;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		margin-bottom: func.adapt(49px, 390px);
 		margin-top: func.adapt(32px, 390px);
 	}
@@ -43,7 +43,7 @@
 		border-radius: func.adapt(100px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(56px, 390px);
 		height: func.adapt(28px, 390px);
 		border-radius: func.adapt(100px, 390px);
@@ -63,7 +63,7 @@
 		width: func.adapt(64px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(64px, 390px);
 	}
 }
@@ -77,7 +77,7 @@
 		font-size: 2rem;
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		font-size: 1.625rem;
 		margin-bottom: func.adapt(16px, 390px);
 	}
@@ -91,7 +91,7 @@
 		font-size: 1rem;
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		margin-bottom: func.adapt(22px, 390px);
 	}
 }
@@ -106,7 +106,7 @@
 		gap: func.adapt(22px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		gap: func.adapt(22px, 390px);
 	}
 }
@@ -126,7 +126,7 @@
 		height: func.adapt(184px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		display: none;
 	}
 }
@@ -135,7 +135,7 @@
 	width: func.adapt(1059px, 1920px);
 	height: func.adapt(582px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(390px, 390px);
 		height: func.adapt(270px, 390px);
 		transform: translateX(3%);
@@ -148,7 +148,7 @@
 	background-color: rgba($color: vars.$very_dark_blue, $alpha: 0.08);
 	border-radius: func.adapt(29px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(358px, 390px);
 		height: func.adapt(256px, 390px);
 		border-radius: func.adapt(29px, 390px);
@@ -164,7 +164,7 @@
 	background-color: rgba($color: vars.$white, $alpha: 0.08);
 	border-radius: func.adapt(46px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(362px, 390px);
 		height: func.adapt(286px, 390px);
 		border-radius: func.adapt(46px, 390px);

@@ -62,3 +62,8 @@ export interface IDownloadStore {
 	isViewDownload: boolean;
 	setIsViewDownload: (bul: boolean) => void;
 }
+
+export interface IScaleDownloadStore {
+	isScaleDownload: boolean;
+	setIsScaleDownload: (bul: boolean) => void;
+}

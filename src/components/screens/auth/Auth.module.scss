@@ -23,7 +23,7 @@
 	// 	top: func.adapt(61px, 1920px);
 	// }
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		position: static;
 		transform: translateX(0%);
 		width: func.adapt(120px, 390px);
@@ -45,7 +45,7 @@
 		padding: func.adapt(64px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(358px, 390px);
 		padding: func.adapt(32px, 390px) func.adapt(16px, 390px)
 			func.adapt(46px, 390px);
@@ -58,7 +58,7 @@
 	font-weight: 600;
 	margin-bottom: func.adapt(24px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		font-weight: 500;
 		font-size: 1.625rem;
 		margin-bottom: func.adapt(24px, 390px);
@@ -75,7 +75,7 @@
 	flex-direction: column;
 	gap: func.adapt(16px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		gap: func.adapt(16px, 390px);
 	}
 }
@@ -88,7 +88,7 @@
 	margin-top: func.adapt(36px, 1920px);
 	width: 100%;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		margin-top: func.adapt(28px, 390px);
 	}
 }
@@ -97,9 +97,16 @@
 	background-color: transparent;
 	font-weight: 500;
 	font-size: 1rem;
+	font-family: 'Manrope', sans-serif;
 	color: vars.$white;
 
 	&:hover {
 		cursor: pointer;
 	}
+}
+
+.error {
+	color: vars.$color_red;
+	font-size: 0.875rem;
+	text-align: center;
 }

@@ -4,7 +4,11 @@ import { arr_month, arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { usePeriodNameMobile } from '../../../hooks/usePeriodNameMobile';
-import { useCalendarStore, useViewFilters } from '../../../store/store';
+import {
+	useCalendarStore,
+	useSettingsStore,
+	useViewFilters,
+} from '../../../store/store';
 import {
 	extractUniqueYears,
 	getDateInData,
@@ -16,6 +20,7 @@ import styles from './CalendarBlock.module.scss';
 
 const CalendarBlock: FC = () => {
 	const setIsFilter = useViewFilters(store => store.setIsFilter);
+	const setIsSettings = useSettingsStore(store => store.setIsSettings);
 	const { finalData: data } = useFilterFinalData();
 	const { selectedRange } = useCalendarStore();
 
@@ -39,7 +44,12 @@ const CalendarBlock: FC = () => {
 		}
 	}, [data]);
 
-	const onClick = () => setIsFilter(2, false);
+	const onClick = () => {
+		setIsSettings(false);
+		setIsFilter(0, false);
+		setIsFilter(1, false);
+		setIsFilter(2, false);
+	};
 
 	const [isCheck, setIsCheck] = useState<boolean>(false);
 

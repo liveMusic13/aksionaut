@@ -13,12 +13,13 @@ import {
 	useRegionStore,
 } from '../../../store/store';
 import { IColumnChart } from '../../../types/graph.types';
+import { truncateDescriptionArrStrings } from '../../../utils/egitText';
 
 HighchartsAccessibility(Highcharts);
 
 const ColumnChart: FC<IColumnChart> = ({ data }) => {
 	const { windowSize } = useCheckWidth();
-	const isMobile = windowSize.width <= 425;
+	const isMobile = windowSize.width <= 451;
 	const isTablet = windowSize.width <= 768;
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const region = useRegionStore(store => store.region);
@@ -55,7 +56,10 @@ const ColumnChart: FC<IColumnChart> = ({ data }) => {
 				text: null,
 			},
 			xAxis: {
-				categories: getSelectedMonths(arr_month_full, selectedRange),
+				categories: truncateDescriptionArrStrings(
+					getSelectedMonths(arr_month_full, selectedRange),
+					3,
+				),
 				crosshair: true,
 				accessibility: {
 					description: 'Countries',

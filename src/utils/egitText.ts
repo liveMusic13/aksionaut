@@ -8,3 +8,16 @@ export const truncateDescription = (
 
 	return description.slice(0, maxLength) + '...';
 };
+
+export const truncateDescriptionArrStrings = (
+	arr: string[],
+	maxLength: number,
+) => {
+	return arr.map(st => {
+		if (st.length <= maxLength) {
+			return st;
+		}
+
+		return st.slice(0, maxLength);
+	});
+};

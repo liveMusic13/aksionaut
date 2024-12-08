@@ -14,7 +14,7 @@ const Intro: FC = () => {
 	const {
 		windowSize: { width },
 	} = useCheckWidth();
-	const isMobile = width <= 425;
+	const isMobile = width <= 451;
 	const isTablet = width <= 768.98;
 	const [stage, setStage] = useState<number>(1);
 	const src =

@@ -10,6 +10,7 @@ import { useCheckWidth } from '../../../hooks/useCheckWidth';
 import { useCalendarStore } from '../../../store/store';
 import { IDownloadChart } from '../../../types/graph.types';
 import { editDataColors } from '../../../utils/editDataColor';
+import { truncateDescriptionArrStrings } from '../../../utils/egitText';
 
 HighchartsAccessibility(Highcharts);
 
@@ -25,11 +26,11 @@ const DownloadChart: FC<IDownloadChart> = ({
 	);
 	const selectedRange = useCalendarStore(store => store.selectedRange);
 	const { windowSize } = useCheckWidth();
-	const isMobile = windowSize.width <= 425;
+	const isMobile = windowSize.width <= 451;
 	const isTablet = windowSize.width <= 768;
 	const isMiddlePk = windowSize.width <= 1500;
 
-	const widthGraphMiddlePk = (963 / 1500) * windowSize.width;
+	const widthGraphMiddlePk = (563 / 1500) * windowSize.width;
 	const heightGraphMiddlePk = (530 / 1500) * windowSize.width;
 
 	const widthGraph = (763 / 1920) * windowSize.width;
@@ -83,11 +84,13 @@ const DownloadChart: FC<IDownloadChart> = ({
 					</div>
 				`,
 				useHTML: true,
-				// style: { marginTop: '10px', marginBottom: '10px' },
 			},
 
 			xAxis: {
-				categories: getSelectedMonths(arr_month_full, selectedRange),
+				categories: truncateDescriptionArrStrings(
+					getSelectedMonths(arr_month_full, selectedRange),
+					3,
+				),
 				crosshair: true,
 				accessibility: {
 					description: 'Countries',
@@ -104,7 +107,6 @@ const DownloadChart: FC<IDownloadChart> = ({
 				},
 			},
 			yAxis: {
-				// min: null,
 				title: {
 					text: null,
 				},

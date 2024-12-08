@@ -1,8 +1,9 @@
-import { FC, useEffect, useMemo, useRef, useState } from 'react';
+import { FC, useMemo, useRef, useState } from 'react';
 
 import { colors } from '../../../app.constants';
 import { arr_month, arr_month_full } from '../../../data/calendar.data';
 import { useCalendar } from '../../../hooks/useCalendar';
+import { useCloseWindowOnMissClick } from '../../../hooks/useCloseWindowOnMissClick';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useCalendarStore } from '../../../store/store';
 import {
@@ -20,20 +21,7 @@ const Calendar: FC = () => {
 
 	const { selectedRange } = useCalendarStore();
 
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				dropdownRef.current &&
-				!dropdownRef.current.contains(event.target as Node)
-			) {
-				setIsViewCalendar(false);
-			}
-		};
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [dropdownRef]);
+	useCloseWindowOnMissClick(dropdownRef, setIsViewCalendar);
 
 	const {
 		getSelectedMonths,
@@ -82,7 +70,7 @@ const Calendar: FC = () => {
 						? `${selectedRange.start} - ${selectedRange.end}`
 						: selectedRange.start
 							? selectedRange.start
-							: 'Выберите период'}
+							: 'Период'}
 				</p>
 				<img
 					className={styles.arrow}

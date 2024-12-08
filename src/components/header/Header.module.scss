@@ -26,13 +26,14 @@
 		padding: func.adapt(11px, 1920px) func.adapt(13px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		position: static;
 		transform: translateX(0%);
 		width: 100%;
 		height: func.adapt(46px, 390px);
 		border-radius: func.adapt(16px, 390px);
 		padding: func.adapt(11px, 390px) func.adapt(13px, 390px);
+		margin-top: func.adapt(16px, 390px);
 	}
 }
 
@@ -45,7 +46,7 @@
 		height: func.adapt(50.71px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(29.63px, 390px);
 		height: func.adapt(46px, 390px);
 	}
@@ -87,7 +88,7 @@
 		height: func.adapt(20px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(20px, 390px);
 		height: func.adapt(20px, 390px);
 	}

@@ -25,17 +25,17 @@
 	border: 1px solid vars.$white;
 	padding: func.adapt(12px, 1920px);
 	width: 100%;
-	max-height: func.adapt(426px, 1920px);
+	max-height: func.adapt(440px, 1920px);
 	overflow-x: hidden;
 	overflow-y: auto;
 
-	@include mix.hidden_scroll();
+	@include mix.style_scroll();
 
 	@media (max-width: 768.98px) {
 		top: func.adapt(51px, 768px);
 		border-radius: func.adapt(8px, 768px);
 		padding: func.adapt(12px, 768px);
-		max-height: func.adapt(306px, 768px);
+		max-height: func.adapt(320px, 768px);
 	}
 }
 
@@ -50,6 +50,20 @@
 .multi__block {
 	display: flex;
 	gap: func.adapt(12px, 1920px);
+
+	@media (max-width: 768.98px) {
+		gap: func.adapt(12px, 768px);
+	}
+}
+
+.block__checkboxes {
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(12px, 1920px);
+
+	// flex-grow: 1;
+	// max-height: 100%;
+	// overflow-y: auto;
 
 	@media (max-width: 768.98px) {
 		gap: func.adapt(12px, 768px);

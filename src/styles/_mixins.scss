@@ -10,6 +10,26 @@
 	scrollbar-width: none; /* Firefox */
 }
 
+@mixin style_scroll() {
+	&::-webkit-scrollbar {
+		width: func.adapt(2px, 1920px); /* Ширина скроллбара */
+	}
+	&::-webkit-scrollbar-track {
+		background: rgba($color: vars.$white, $alpha: 0.08); /* Цвет фона трека */
+		border-radius: func.adapt(2px, 1920px); /* Скругленные углы */
+	}
+	&::-webkit-scrollbar-thumb {
+		background: rgba($color: vars.$white, $alpha: 1); /* Цвет ползунка */
+		border-radius: func.adapt(2px, 1920px); /* Скругленные углы */
+	}
+	&::-webkit-scrollbar-thumb:hover {
+		background: rgba(
+			$color: vars.$white,
+			$alpha: 0.65
+		); /* Цвет ползунка при наведении */
+	}
+}
+
 @mixin style_filters_params($width, $height) {
 	position: relative;
 	padding: func.adapt(12px, 1920px);

@@ -85,4 +85,7 @@
 
 .block__checkboxes {
 	margin-top: func.adapt(8px, 390px);
+	display: flex;
+	flex-direction: column;
+	gap: func.adapt(12px, 390px);
 }

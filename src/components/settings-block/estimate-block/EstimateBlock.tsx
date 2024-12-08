@@ -5,6 +5,7 @@ import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import {
 	useActiveEstimateStore,
 	useEstimateStore,
+	useSettingsStore,
 	useViewFilters,
 } from '../../../store/store';
 import { getEstimateForRequest } from '../../../utils/editRequestData';
@@ -15,6 +16,7 @@ import styles from './EstimateBlock.module.scss';
 
 const EstimateBlock: FC = () => {
 	const setIsFilter = useViewFilters(store => store.setIsFilter);
+	const setIsSettings = useSettingsStore(store => store.setIsSettings);
 	const { finalData: data } = useFilterFinalData();
 	const dataEstimate = data && getEstimateForRequest(data);
 	const estimate = useEstimateStore(store => store.estimate);
@@ -42,7 +44,12 @@ const EstimateBlock: FC = () => {
 		}
 	};
 
-	const onClick = () => setIsFilter(0, false);
+	const onClick = () => {
+		setIsSettings(false);
+		setIsFilter(0, false);
+		setIsFilter(1, false);
+		setIsFilter(2, false);
+	};
 	// Обработчик для чекбоксов
 	const onChange = (name: string) => {
 		setEstimateState(prev => {

@@ -30,7 +30,7 @@
 		top: func.adapt(371px, 553px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		position: static;
 		transform: translateX(0%);
 		width: func.adapt(358px, 390px);
@@ -47,7 +47,7 @@
 	display: flex;
 	justify-content: space-between;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		flex-direction: column;
 		align-items: center;
 	}
@@ -61,7 +61,7 @@
 		width: func.adapt(310px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(286px, 390px);
 		padding-left: func.adapt(18px, 390px);
 	}
@@ -77,7 +77,7 @@
 		margin-bottom: func.adapt(8px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		margin-bottom: func.adapt(38px, 390px);
 		text-align: center;
 	}
@@ -93,7 +93,7 @@
 		margin-left: func.adapt(-40px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -122,7 +122,7 @@
 		margin-right: func.adapt(7px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(12px, 390px);
 		height: func.adapt(8px, 390px);
 		border-radius: func.adapt(10px, 390px);

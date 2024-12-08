@@ -21,7 +21,11 @@
 		background-color: vars.$blue_dark;
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		border-radius: func.adapt(8px, 390px);
+	}
+
+	&:disabled {
+		background-color: rgba($color: vars.$blue, $alpha: 0.6);
 	}
 }

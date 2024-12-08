@@ -10,7 +10,7 @@
 		height: func.adapt(36px, 768px);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		height: func.adapt(52px, 390px);
 	}
 }
@@ -29,11 +29,22 @@
 		color: rgba($color: vars.$black, $alpha: 0.5);
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		border-radius: func.adapt(8px, 390px);
 		padding: func.adapt(16px, 390px) func.adapt(46px, 390px)
 			func.adapt(16px, 390px) func.adapt(16px, 390px);
 	}
+}
+
+.valid_block {
+	margin-bottom: func.adapt(30px, 1920px);
+
+	@media (max-width: 451px) {
+		margin-bottom: func.adapt(30px, 390px);
+	}
+}
+.valid {
+	height: 98%;
 }
 
 .image {
@@ -47,7 +58,7 @@
 		cursor: pointer;
 	}
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		right: func.adapt(16px, 390px);
 	}
 
@@ -60,9 +71,21 @@
 			height: func.adapt(20px, 768px);
 		}
 
-		@media (max-width: 425px) {
+		@media (max-width: 451px) {
 			width: func.adapt(20px, 390px);
 			height: func.adapt(20px, 390px);
 		}
+	}
+}
+
+.error {
+	color: vars.$color_red;
+	font-size: 0.875rem;
+	position: absolute;
+	top: func.adapt(62px, 1920px);
+	left: 0;
+
+	@media (max-width: 451px) {
+		top: func.adapt(62px, 390px);
 	}
 }

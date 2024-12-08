@@ -36,7 +36,7 @@ const Home: FC = () => {
 	const {
 		windowSize: { width },
 	} = useCheckWidth();
-	const isMobile = width <= 425;
+	const isMobile = width <= 451;
 	const isTablet = width <= 768.98;
 	const { finalData: data, isError } = useFilterFinalData();
 	const region = useRegionStore(store => store.region);
@@ -96,6 +96,12 @@ const Home: FC = () => {
 	const isSecondPopup =
 		targetRegion && targetRegion && targetRegion.length === 2;
 
+	const isFullData =
+		region.length > 0 &&
+		estimate.length > 0 &&
+		selectedRange.start &&
+		selectedRange.end;
+
 	if (isError) {
 		return <ErrorPage />;
 	}
@@ -105,8 +111,13 @@ const Home: FC = () => {
 			style={{
 				backgroundImage: 'url("/images/backgrounds/stars_home.jpg")',
 				backgroundRepeat: isMobile ? 'repeat-y' : 'no-repeat',
-				// height: isMobile ? 'auto' : undefined,
-				height: isViewChat && isMobile ? '100%' : isMobile ? 'auto' : undefined,
+				height:
+					isViewChat && isMobile
+						? '100%'
+						: (isMobile && isFullData) || isMobile
+							? 'auto'
+							: undefined,
+				// height: isViewChat && isMobile ? '100%' : isMobile ? 'auto' : undefined,
 				backgroundSize: 'cover',
 				flexDirection: isMobile ? 'column' : undefined,
 				gap: isMobile ? 'calc(8/390*100vw)' : undefined,
@@ -137,12 +148,12 @@ const Home: FC = () => {
 
 			{isViewChat && (
 				<>
-					<BackgroundOpacity />
+					<BackgroundOpacity setIsViewChat={setIsViewChat} />
 					<Chat setIsViewChat={setIsViewChat} />
 				</>
 			)}
 
-			{!isMobile && !isTablet && isFirstPopup && (
+			{!isMobile && !isTablet && isFirstPopup && isFullData && (
 				<PopupRegion
 					targetRegion={targetRegion[0]}
 					position={getPositionsFunck(regionsCoordinate)[0]}
@@ -150,7 +161,7 @@ const Home: FC = () => {
 				/>
 			)}
 
-			{(isMobile || isTablet) && isFirstPopup && (
+			{(isMobile || isTablet) && isFirstPopup && isFullData && (
 				<PopupRegion
 					targetRegion={targetRegion || []}
 					position={getPositionsFunck(regionsCoordinate)[0]}
@@ -160,7 +171,7 @@ const Home: FC = () => {
 				/>
 			)}
 
-			{!isMobile && !isTablet && isSecondPopup && (
+			{!isMobile && !isTablet && isSecondPopup && isFullData && (
 				<>
 					<PopupRegion
 						targetRegion={targetRegion[0]}
@@ -175,7 +186,7 @@ const Home: FC = () => {
 				</>
 			)}
 
-			{(isMobile || isTablet) && isSecondPopup && (
+			{(isMobile || isTablet) && isSecondPopup && isFullData && (
 				<PopupRegion
 					targetRegion={targetRegion || []}
 					position={getPositionsFunck(regionsCoordinate)[0]}
@@ -189,24 +200,21 @@ const Home: FC = () => {
 			{isMobile && isEstimate && <EstimateBlock />}
 			{isMobile && isRegion && <RegionBlock />}
 			{isMobile && isCalendar && <CalendarBlock />}
-			{region.length > 0 &&
-				estimate.length > 0 &&
-				selectedRange.start &&
-				selectedRange.end && (
-					<>
-						<button className='download' onClick={moveDownload}>
-							<img src='/images/icons/download.svg' alt='download' />
-						</button>
+			{isFullData && (
+				<>
+					<button className='download' onClick={moveDownload}>
+						<img src='/images/icons/download.svg' alt='download' />
+					</button>
 
-						<p className='text-download'>
-							Статистика собрана на основе данных{' '}
-							{data_for_all_value
-								? totalValue(data_for_all_value.cennosti_by_all_period_regions)
-								: ''}{' '}
-							показателей
-						</p>
-					</>
-				)}
+					<p className='text-download'>
+						Статистика собрана на основе данных{' '}
+						{data_for_all_value
+							? totalValue(data_for_all_value.cennosti_by_all_period_regions)
+							: ''}{' '}
+						показателей
+					</p>
+				</>
+			)}
 			{isViewDownload && (
 				<>
 					<BackgroundOpacity />

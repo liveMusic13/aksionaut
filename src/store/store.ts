@@ -8,6 +8,7 @@ import {
 	IMessagesHistoryStore,
 	IRegionStore,
 	IRegionsCoordinateStore,
+	IScaleDownloadStore,
 	ISettingsStore,
 	IViewFilters,
 } from '../types/store.types';
@@ -111,4 +112,9 @@ export const useMessagesStore = create<IMessagesHistoryStore>(set => ({
 export const useDownloadStore = create<IDownloadStore>(set => ({
 	isViewDownload: false,
 	setIsViewDownload: bol => set({ isViewDownload: bol }),
+}));
+
+export const useScaleDownloadStore = create<IScaleDownloadStore>(set => ({
+	isScaleDownload: false,
+	setIsScaleDownload: bol => set({ isScaleDownload: bol }),
 }));

@@ -138,13 +138,19 @@ const Chat: FC<IChat> = ({ setIsViewChat }) => {
 	const {
 		windowSize: { width },
 	} = useCheckWidth();
-	const isMobile = width <= 425;
+	const isMobile = width <= 451;
 	const isTablet = width <= 768.98;
 	const { inputValue, onChangeInput, sendMessage, messages, isPending } =
 		useChat();
 	const onClick = () => setIsViewChat(false);
 
 	const chatRef = useRef<HTMLDivElement | null>(null); // Реф для блока чата
+
+	const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			sendMessage(inputValue);
+		}
+	};
 
 	// Автоскрол вниз при добавлении сообщений
 	useEffect(() => {
@@ -205,13 +211,7 @@ const Chat: FC<IChat> = ({ setIsViewChat }) => {
 								? 'calc(299/390*100vw)'
 								: 'calc(715/1920*100vw)',
 					}}
-					// styleLimit={{
-					// 	right: isTablet
-					// 		? 'calc(32/768*100vw)'
-					// 		: isMobile
-					// 			? 'calc(52/390*100vw)'
-					// 			: 'calc(52/1920*100vw)',
-					// }}
+					onKeyDown={handleKeyPress}
 					styleLimit={{
 						display: 'none',
 					}}

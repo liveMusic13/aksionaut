@@ -6,20 +6,20 @@
 	width: 100vw !important;
 	height: 100vh !important;
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: 100vw !important;
 		height: func.adapt(202px, 390px) !important;
 	}
 }
 
 .mobile__margin {
-	@media (max-width: 425px) {
-		margin-bottom: func.adapt(300px, 390px) !important;
+	@media (max-width: 451px) {
+		margin-bottom: func.adapt(360px, 390px) !important;
 	}
 }
 
 .margin_for_popup {
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		margin-bottom: func.adapt(650px, 390px) !important;
 	}
 }
@@ -28,7 +28,7 @@
 	width: func.adapt(1322px, 1920px);
 	height: func.adapt(723px, 1920px);
 
-	@media (max-width: 425px) {
+	@media (max-width: 451px) {
 		width: func.adapt(369.49px, 390px);
 		height: func.adapt(202px, 390px);
 	}

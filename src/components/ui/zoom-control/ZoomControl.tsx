@@ -19,16 +19,16 @@ const ZoomControl: FC = ({}) => {
 
 	const percentZoom =
 		zoom === 0
-			? '0%'
+			? '100%'
 			: zoom === 1
-				? '20%'
+				? '80%'
 				: zoom === 2
-					? '40%'
+					? '60%'
 					: zoom === 3
-						? '60%'
+						? '40%'
 						: zoom === 4
-							? '80%'
-							: '100%';
+							? '20%'
+							: '0%';
 
 	return (
 		<div className={styles.block__zoom}>
