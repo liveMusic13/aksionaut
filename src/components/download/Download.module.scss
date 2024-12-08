@@ -166,6 +166,16 @@
 	> .scale__graphs {
 		margin-top: -110px;
 		transform: scale(0.7);
+
+		@media (max-aspect-ratio: 16/9) {
+			transform: scale(0.6);
+		}
+		// @media (min-aspect-ratio: 4/3) {
+		// 	transform: scale(0.6);
+		// }
+		// @media (min-aspect-ratio: 2/1) {
+		// 	transform: scale(0.6);
+		// }
 	}
 
 	.block__button {
