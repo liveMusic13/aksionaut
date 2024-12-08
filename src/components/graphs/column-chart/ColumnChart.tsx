@@ -33,6 +33,8 @@ const ColumnChart: FC<IColumnChart> = ({ data }) => {
 	const widthGraphTablet = (356 / 768) * windowSize.width;
 	const heightGraphTablet = (303 / 768) * windowSize.width;
 
+	// console.log('data', data);
+
 	const options = useMemo(
 		() => ({
 			chart: {

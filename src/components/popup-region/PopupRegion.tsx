@@ -83,6 +83,8 @@ const PopupRegion: FC<IPopupRegion> = ({
 		return null;
 	}
 
+	// console.log('test', position, targetRegion);
+
 	return (
 		<div
 			className={styles.block__popup}
