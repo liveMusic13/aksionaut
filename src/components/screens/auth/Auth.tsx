@@ -74,14 +74,14 @@ const Auth: FC = () => {
 			});
 	};
 
-	const repeatError = () => {
-		if (isViewInfo.text === 'Ошибка регистрации') {
-			setStateForm(textAuth);
-		} else {
-			setStateForm(textRegistr);
-		}
-		setIsViewInfo(prev => ({ ...prev, isView: false }));
-	};
+	// const repeatError = () => {
+	// 	if (isViewInfo.text === 'Ошибка регистрации') {
+	// 		setStateForm(textAuth);
+	// 	} else {
+	// 		setStateForm(textRegistr);
+	// 	}
+	// 	setIsViewInfo(prev => ({ ...prev, isView: false }));
+	// };
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>, placeholder: string) => {
 		if (placeholder === 'E-mail') {

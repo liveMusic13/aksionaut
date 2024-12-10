@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { arrPopularQueries } from '../../data/popular.data';
 import { useChat } from '../../hooks/useChat';
@@ -8,7 +8,6 @@ import { useGetAllRegions } from '../../hooks/useGetAllRegions';
 import { useRegionStore } from '../../store/store';
 import { IFilters } from '../../types/props.types';
 import { getEstimateForRequest } from '../../utils/editRequestData';
-import { getRandomElements } from '../../utils/generateRandomElemInArr';
 import Button from '../ui/button/Button';
 import Calendar from '../ui/calendar/Calendar';
 import Input from '../ui/input/Input';
@@ -42,13 +41,13 @@ const Filters: FC<IFilters> = ({ onClickChat }) => {
 	const dataAllRegions = regions && regions.regions;
 	const dataEstimate = data && getEstimateForRequest(data);
 
-	const [randomQueries, setRandomQueries] = useState<
-		{ id: number; name: string }[]
-	>([]);
+	// const [randomQueries, setRandomQueries] = useState<
+	// 	{ id: number; name: string }[]
+	// >([]);
 
-	useEffect(() => {
-		setRandomQueries(getRandomElements(arrPopularQueries, 2));
-	}, []);
+	// useEffect(() => {
+	// 	setRandomQueries(getRandomElements(arrPopularQueries, 2));
+	// }, []);
 
 	return (
 		<div className={styles.wrapper_filters}>
