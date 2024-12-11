@@ -211,7 +211,10 @@ const Auth: FC = () => {
 									marginTop: 'calc(46/1920*100vw)',
 								}}
 								onClick={stateForm === textAuth ? onRegistr : onAuth}
-								disabled={!isEmailValidAuth || !isEmailValidReg}
+								disabled={
+									(stateForm === textAuth && !isEmailValidReg) ||
+									(!isEmailValidAuth && stateForm === textRegistr)
+								}
 							>
 								Войти
 							</Button>
