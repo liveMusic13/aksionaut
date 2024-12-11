@@ -24,6 +24,7 @@
 	padding: func.adapt(16px, 1920px) func.adapt(46px, 1920px)
 		func.adapt(16px, 1920px) func.adapt(16px, 1920px);
 	outline: none;
+	font-family: 'Manrope', sans-serif;
 
 	&::placeholder {
 		color: rgba($color: vars.$black, $alpha: 0.5);
