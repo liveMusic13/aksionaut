@@ -194,7 +194,7 @@ const Chat: FC<IChat> = ({ setIsViewChat }) => {
 				))}
 			</div>
 			<p className={styles.description}>
-				Наш ИИ ещё учится, поэтому поиск ответа может занять пару минут.
+				Наш ИИ постоянно обучается, запрос займет некоторое время.
 			</p>
 			<div className={styles.block__panelInput}>
 				<img
