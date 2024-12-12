@@ -7,8 +7,8 @@ export const routes = [
 	{
 		path: '/',
 		component: Home,
-		// isAuth: false,
-		isAuth: true,
+		isAuth: false,
+		// isAuth: true,
 	},
 	{
 		path: '/error',
