@@ -1,4 +1,4 @@
-export const API_URL = 'http://91.197.98.20:5000';
+export const API_URL = '//91.197.98.20:5000';
 // export const API_URL = 'https://xn--80aagwjtgwo.xn--p1ai';
 
 export const TOKEN = 'token';
