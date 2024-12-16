@@ -47,7 +47,7 @@ export const useChat = () => {
 			mutate({ valueInput: message, user_id });
 			setInputValue('');
 		},
-		[addMessage, mutate],
+		[addMessage, mutate, user_id],
 	);
 
 	// Обновляем последнее сообщение при успешном ответе

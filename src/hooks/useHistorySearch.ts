@@ -10,6 +10,7 @@ export const useHistorySearch = () => {
 				try {
 					const idResponse = await lkService.user_id();
 					if (idResponse.status === 200) {
+						console.log('idResponse.data', idResponse);
 						return lkService.history_search(idResponse.data); //TODO: поставить при релизе это
 						// return lkService.history_search('36');
 					} else {
