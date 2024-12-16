@@ -1,0 +1,67 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__noHistory {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: func.adapt(8px, 1920px);
+
+	@media (max-width: 768.98px) {
+		gap: func.adapt(8px, 768px);
+	}
+
+	@media (max-width: 451px) {
+		gap: func.adapt(8px, 390px);
+	}
+}
+
+.image {
+	width: func.adapt(60px, 1920px);
+	height: func.adapt(60px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(60px, 768px);
+		height: func.adapt(60px, 768px);
+	}
+
+	@media (max-width: 451px) {
+		width: func.adapt(60px, 390px);
+		height: func.adapt(60px, 390px);
+	}
+}
+
+.title {
+	font-weight: 500;
+	font-size: 1.625rem;
+	max-width: func.adapt(340px, 1920px);
+	text-align: center;
+
+	@media (max-width: 768.98px) {
+		max-width: func.adapt(340px, 768px);
+	}
+
+	@media (max-width: 451px) {
+		max-width: func.adapt(340px, 390px);
+	}
+}
+
+.description {
+	text-align: center;
+	max-width: func.adapt(340px, 1920px);
+	margin-bottom: func.adapt(16px, 1920px);
+	color: rgba($color: vars.$white, $alpha: 0.6);
+
+	@media (max-width: 768.98px) {
+		max-width: func.adapt(340px, 768px);
+		margin-bottom: func.adapt(16px, 768px);
+	}
+
+	@media (max-width: 451px) {
+		max-width: func.adapt(340px, 390px);
+		margin-bottom: func.adapt(16px, 390px);
+	}
+}

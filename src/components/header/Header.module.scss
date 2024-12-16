@@ -41,6 +41,10 @@
 	width: func.adapt(121px, 1920px);
 	height: func.adapt(50.71px, 1920px);
 
+	&:hover {
+		cursor: pointer;
+	}
+
 	@media (max-width: 768.98px) {
 		width: func.adapt(121px, 768px);
 		height: func.adapt(50.71px, 768px);
@@ -59,6 +63,10 @@
 
 	@media (max-width: 768.98px) {
 		gap: func.adapt(16px, 768px);
+	}
+
+	@media (max-width: 768.98px) {
+		gap: func.adapt(16px, 390px);
 	}
 }
 
@@ -92,4 +100,44 @@
 		width: func.adapt(20px, 390px);
 		height: func.adapt(20px, 390px);
 	}
+}
+
+.lk {
+	width: func.adapt(32px, 1920px);
+	height: func.adapt(32px, 1920px);
+	border-radius: func.adapt(8px, 1920px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@media (max-width: 768.98px) {
+		width: func.adapt(32px, 768px);
+		height: func.adapt(32px, 768px);
+		border-radius: func.adapt(8px, 768px);
+	}
+
+	@media (max-width: 451px) {
+		width: func.adapt(32px, 390px);
+		height: func.adapt(32px, 390px);
+		border-radius: func.adapt(8px, 390px);
+	}
+
+	> img {
+		width: func.adapt(20px, 1920px);
+		height: func.adapt(20px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(20px, 768px);
+			height: func.adapt(20px, 768px);
+		}
+
+		@media (max-width: 451px) {
+			width: func.adapt(20px, 390px);
+			height: func.adapt(20px, 390px);
+		}
+	}
+}
+
+.active {
+	background-color: rgba($color: vars.$white, $alpha: 0.08);
 }

@@ -37,6 +37,7 @@ export interface IInput {
 }
 
 export interface IInputAuth {
+	style?: CSSProperties;
 	value: string;
 	type: string;
 	placeholder: string;
@@ -104,4 +105,10 @@ export interface IDownload {
 export interface IHeader {
 	setIsViewFilter?: Dispatch<SetStateAction<boolean>>;
 	isViewFilter?: boolean;
+}
+
+export interface IPanelTarget {
+	dataButtons: { id: number; name: string }[];
+	activeButton: string;
+	handleClick: (but: string) => void;
 }

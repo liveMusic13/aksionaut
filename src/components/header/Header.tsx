@@ -1,11 +1,12 @@
 import Cookies from 'js-cookie';
 import { FC, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { TOKEN } from '../../app.constants';
 import { useAuth } from '../../hooks/useAuth';
 import { useCheckWidth } from '../../hooks/useCheckWidth';
 import { IHeader } from '../../types/props.types';
+import Geolocation from '../geolocation/Geolocation';
 
 import styles from './Header.module.scss';
 
@@ -36,18 +37,29 @@ const Header: FC<IHeader> = ({ isViewFilter, setIsViewFilter }) => {
 				}
 				alt='logo'
 				className={`${styles.logo} ${styles.logo_mobile}`}
+				onClick={() => navigate('/')}
 			/>
 			<div className={styles.block__right}>
-				{/* <Geolocation /> */}
-				{!isMobile && pathname !== '/intro' && (
-					<button
-						onClick={() =>
-							setIsViewFilter ? setIsViewFilter(!isViewFilter) : undefined
-						}
-						className={styles.button}
+				<Geolocation />
+				{!isMobile &&
+					pathname !== '/intro' &&
+					pathname !== '/personal-account' && (
+						<button
+							onClick={() =>
+								setIsViewFilter ? setIsViewFilter(!isViewFilter) : undefined
+							}
+							className={styles.button}
+						>
+							{isViewFilter ? 'Скрыть' : 'Показать'} фильтры
+						</button>
+					)}
+				{pathname !== '/intro' && (
+					<Link
+						to={'/personal-account'}
+						className={`${styles.lk} ${pathname === '/personal-account' ? styles.active : ''}`}
 					>
-						{isViewFilter ? 'Скрыть' : 'Показать'} фильтры
-					</button>
+						<img src='/images/icons/user.svg' alt='user' />
+					</Link>
 				)}
 				<button
 					className={styles.button}

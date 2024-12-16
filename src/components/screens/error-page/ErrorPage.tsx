@@ -1,6 +1,9 @@
+import Cookies from 'js-cookie';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { TOKEN } from '../../../app.constants';
+import { useAuth } from '../../../hooks/useAuth';
 import { useCheckWidth } from '../../../hooks/useCheckWidth';
 import Layout from '../../layout/Layout';
 import Button from '../../ui/button/Button';
@@ -10,8 +13,15 @@ import styles from './ErrorPage.module.scss';
 const ErrorPage: FC = () => {
 	const nav = useNavigate();
 	const { windowSize } = useCheckWidth();
+	const isTablet = windowSize.width <= 768.98;
 
-	console.log(windowSize.width);
+	const { setIsAuth } = useAuth();
+
+	const onClick = () => {
+		Cookies.remove(TOKEN);
+		setIsAuth(false);
+		nav('/intro');
+	};
 
 	return (
 		<Layout
@@ -40,18 +50,24 @@ const ErrorPage: FC = () => {
 				<p className={styles.text__error}>
 					Произошла серверная ошибка.
 					<br />
-					Чтобы продолжить работу вернитесь на главную страницу
+					Попробуйте ещё раз
 				</p>
 				<Button
 					style={{
-						width: `calc(224/${windowSize.width}*100vw)`,
-						height: `calc(52/${windowSize.width}*100vw)`,
-						borderRadius: `calc(8/${windowSize.width}*100vw)`,
+						width: isTablet
+							? `calc(224/${windowSize.width}*100vw)`
+							: 'calc(224/1920*100vw)',
+						height: isTablet
+							? `calc(52/${windowSize.width}*100vw)`
+							: 'calc(52/1920*100vw)',
+						borderRadius: isTablet
+							? `calc(8/${windowSize.width}*100vw)`
+							: 'calc(8/1920*100vw)',
 						fontSize: '1rem',
 					}}
-					onClick={() => nav('/')}
+					onClick={onClick}
 				>
-					Вернуться на главную
+					Вернуться в начало
 				</Button>
 			</div>
 		</Layout>

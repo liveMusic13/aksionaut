@@ -1,0 +1,64 @@
+@use '@st/functions' as func;
+@use '@st/variables' as vars;
+
+.block__popup {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 5;
+	transform: translate(-50%, -50%);
+	background-color: vars.$very_dark_blue;
+	border-radius: func.adapt(16px, 1920px);
+	padding: func.adapt(32px, 1920px);
+	box-shadow: 0px 0px 10px vars.$black;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: func.adapt(32px, 1920px);
+
+	@media (max-width: 768.98px) {
+		width: 100%;
+		position: fixed;
+		top: 0;
+		overflow-y: auto;
+		bottom: 0;
+		left: 0;
+		transform: translate(0%, 0%);
+	}
+
+	@media (max-width: 451px) {
+		border-radius: func.adapt(16px, 390px);
+		padding: func.adapt(32px, 390px);
+		gap: func.adapt(32px, 390px);
+	}
+
+	> button {
+		&:hover {
+			cursor: pointer;
+		}
+
+		> img {
+			width: func.adapt(32px, 1920px);
+			height: func.adapt(32px, 1920px);
+
+			@media (max-width: 768.98px) {
+				width: func.adapt(32px, 768px);
+				height: func.adapt(32px, 768px);
+			}
+
+			@media (max-width: 451px) {
+				width: func.adapt(32px, 390px);
+				height: func.adapt(32px, 390px);
+			}
+		}
+	}
+
+	> p {
+		line-height: 2rem;
+
+		@media (max-width: 451px) {
+			font-size: 0.875rem;
+			line-height: 1.5rem;
+		}
+	}
+}

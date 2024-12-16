@@ -17,12 +17,12 @@ const InputAuth: FC<IInputAuth> = ({
 	validateEmail,
 	isEmailValid,
 	setIsEmailValid,
+	style,
 }) => {
 	const [isViewPass, setIsViewPass] = useState<boolean>(false);
 	const onViewPass = () => {
 		if (placeholder !== '') setIsViewPass(!isViewPass);
 	};
-	// const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		placeholder: string,
@@ -37,6 +37,7 @@ const InputAuth: FC<IInputAuth> = ({
 	return (
 		<div
 			className={`${styles.block__input} ${validateEmail && !isEmailValid ? styles.valid_block : ''}`}
+			style={style}
 		>
 			<input
 				placeholder={placeholder}

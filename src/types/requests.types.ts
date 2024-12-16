@@ -27,6 +27,17 @@ export interface ILocationData {
 	principalSubdivisionCode: string;
 }
 
+export interface IHistoryRequest {
+	user_id: number;
+	values: {
+		date: string;
+		values: {
+			query: string;
+			resp: string;
+		}[];
+	}[];
+}
+
 export interface IEstimateAge {
 	age_period: string;
 	value: number;

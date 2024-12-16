@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { useMessagesStore } from '../store/store';
 
+import { useGetUserId } from './useGetUserId';
 import { useSendMessage } from './useSendMessage';
 
 export const useChat = () => {
 	const [inputValue, setInputValue] = useState('');
 	const { messages, addMessage, updateLastMessage } = useMessagesStore(); // Zustand-хранилище
+	const { data: user_id } = useGetUserId();
 	const { mutate, data: response, isPending } = useSendMessage(); // Отправка запроса на сервер
 
 	// Обработчик изменения инпута
@@ -42,7 +44,7 @@ export const useChat = () => {
 			});
 
 			// Отправляем запрос на сервер
-			mutate(message);
+			mutate({ valueInput: message, user_id });
 			setInputValue('');
 		},
 		[addMessage, mutate],

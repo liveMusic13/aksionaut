@@ -6,9 +6,9 @@ import { API_URL, TOKEN } from './app.constants';
 export const $axios = axios.create({
 	baseURL: API_URL,
 	headers: {
-		// 'Content-Type': 'application/json',
-		'Content-Type': 'application/x-www-form-urlencoded',
-		accept: 'application/json',
+		'Content-Type': 'application/json',
+		// 'Content-Type': 'application/x-www-form-urlencoded',
+		// accept: 'application/json',
 	},
 });
 

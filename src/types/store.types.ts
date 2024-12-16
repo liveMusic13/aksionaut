@@ -67,3 +67,9 @@ export interface IScaleDownloadStore {
 	isScaleDownload: boolean;
 	setIsScaleDownload: (bul: boolean) => void;
 }
+
+export interface IIsHistoryPopupStore {
+	isViewPopup: boolean;
+	text: string;
+	setIsViewPopup: (bul: boolean, text: string) => void;
+}

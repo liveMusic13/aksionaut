@@ -1,0 +1,38 @@
+@use '@st/variables' as vars;
+@use '@st/functions' as func;
+
+.block__buttons {
+	height: func.adapt(42px, 1920px);
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	gap: func.adapt(32px, 1920px);
+	border-bottom: 1px solid vars.$middle_grey;
+
+	@media (max-width: 768.98px) {
+		height: func.adapt(42px, 768px);
+	}
+
+	> button {
+		background-color: transparent;
+		height: 100%;
+		font-size: 1rem;
+		font-weight: 500;
+		color: vars.$white;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	> .target__line {
+		background-color: vars.$white;
+		position: absolute;
+		bottom: -1px;
+		height: 2px;
+		border-radius: func.adapt(50px, 1920px);
+		transition:
+			left 0.2s ease-in-out,
+			width 0.2s ease-in-out;
+	}
+}

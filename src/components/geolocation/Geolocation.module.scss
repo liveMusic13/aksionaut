@@ -5,8 +5,26 @@
 	align-items: center;
 	gap: func.adapt(4px, 1920px);
 
+	@media (max-width: 768.98px) {
+		gap: func.adapt(4px, 768px);
+	}
+
+	@media (max-width: 451px) {
+		gap: func.adapt(4px, 390px);
+	}
+
 	> img {
 		width: func.adapt(20px, 1920px);
 		height: func.adapt(20px, 1920px);
+
+		@media (max-width: 768.98px) {
+			width: func.adapt(20px, 768px);
+			height: func.adapt(20px, 768px);
+		}
+
+		@media (max-width: 451px) {
+			width: func.adapt(20px, 390px);
+			height: func.adapt(20px, 390px);
+		}
 	}
 }

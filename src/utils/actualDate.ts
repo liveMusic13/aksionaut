@@ -1,3 +1,5 @@
+import { IHistoryRequest } from '../types/requests.types';
+
 export const getFormattedDate = () => {
 	const date = new Date();
 	const day = String(date.getDate()).padStart(2, '0'); // Получаем день и добавляем ведущий ноль, если нужно
@@ -46,3 +48,33 @@ export const formatDateStringToNumber = (
 	const formattedDate2 = `${monthMap[month2]}.${year2}`;
 	return `${formattedDate1} - ${formattedDate2}`;
 };
+
+export const formatDate = (dateString: string) => {
+	const date = new Date(dateString);
+	const months = [
+		'января',
+		'февраля',
+		'марта',
+		'апреля',
+		'мая',
+		'июня',
+		'июля',
+		'августа',
+		'сентября',
+		'октября',
+		'ноября',
+		'декабря',
+	];
+	const day = date.getDate();
+	const month = months[date.getMonth()];
+	const year = date.getFullYear();
+	return `${day} ${month} ${year}`;
+};
+
+export function sortByDateDescending(array: IHistoryRequest[]) {
+	return array[0].values.sort((a, b) => {
+		const dateA = new Date(a.date).getTime();
+		const dateB = new Date(b.date).getTime();
+		return dateB - dateA;
+	});
+}

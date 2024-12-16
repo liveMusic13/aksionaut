@@ -5,6 +5,7 @@ import {
 	ICalendarState,
 	IDownloadStore,
 	IEstimateStore,
+	IIsHistoryPopupStore,
 	IMessagesHistoryStore,
 	IRegionStore,
 	IRegionsCoordinateStore,
@@ -117,4 +118,10 @@ export const useDownloadStore = create<IDownloadStore>(set => ({
 export const useScaleDownloadStore = create<IScaleDownloadStore>(set => ({
 	isScaleDownload: false,
 	setIsScaleDownload: bol => set({ isScaleDownload: bol }),
+}));
+
+export const useIsHistoryPopupStore = create<IIsHistoryPopupStore>(set => ({
+	isViewPopup: false,
+	text: '',
+	setIsViewPopup: (bol, text) => set({ isViewPopup: bol, text: text }),
 }));

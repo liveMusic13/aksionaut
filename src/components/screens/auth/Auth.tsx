@@ -155,18 +155,6 @@ const Auth: FC = () => {
 				</h1>
 				<div className={styles.form}>
 					{
-						// isViewInfo.isView &&
-						// (stateForm === textAuth || stateForm === textRegistr) ? (
-						// 	<>
-						// 		<p className={styles.description}>{isViewInfo.text}</p>
-						// 		{(isViewInfo.text === 'Ошибка регистрации' ||
-						// 			isViewInfo.text === 'Ошибка авторизации') && (
-						// 			<button onClick={repeatError} className={styles.button}>
-						// 				Попробуйте ещё раз.
-						// 			</button>
-						// 		)}
-						// 	</>
-						// ) : (
 						<>
 							<InputAuth
 								type='text'
