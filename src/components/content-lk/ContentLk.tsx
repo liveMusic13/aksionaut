@@ -100,17 +100,15 @@ const ContentLk: FC = () => {
 				<div
 					className={styles.block__history}
 					style={
-						isSuccess && data && data.slice(0, 0).length === 0
-							? { height: '85%' }
-							: {}
+						isSuccess && data && data.length === 0 ? { height: '85%' } : {}
 					}
 				>
 					{isViewPopup && <Popup />}
 					{isLoading && <div>Loading</div>}
-					{isSuccess && data && data.slice(0, 0).length === 0 && <NoHistory />}
+					{isSuccess && data && data.length === 0 && <NoHistory />}
 					{isSuccess &&
 						data &&
-						data.slice(0, 0).length > 0 &&
+						data.length > 0 &&
 						sortByDateDescending(data).map((el, ind) => (
 							<div key={ind} className={styles.block__day}>
 								<h3 className={styles.title__date}>{formatDate(el.date)}</h3>
