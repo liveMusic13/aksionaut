@@ -5,7 +5,6 @@ import { useCheckWidth } from '../../../hooks/useCheckWidth';
 import { useFilterFinalData } from '../../../hooks/useFilterFinalData';
 import { useFilters } from '../../../hooks/useFilters';
 import { useGetTopEstimateInCountry } from '../../../hooks/useGetTopEstimateInCountry';
-import { useGetUserId } from '../../../hooks/useGetUserId';
 import {
 	useCalendarStore,
 	useDownloadStore,
@@ -56,7 +55,7 @@ const Home: FC = () => {
 	const isViewDownload = useDownloadStore(store => store.isViewDownload);
 	const { data: data_for_all_value } = useGetTopEstimateInCountry();
 	const [isViewFilter, setIsViewFilter] = useState<boolean>(true);
-	const { data: user_id } = useGetUserId();
+	// const { data: user_id } = useGetUserId();
 
 	const moveDownload = () => setIsViewDownload(true);
 

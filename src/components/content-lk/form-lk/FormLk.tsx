@@ -10,7 +10,7 @@ const FormLk: FC = () => {
 	const {
 		windowSize: { width },
 	} = useCheckWidth();
-	const isMobile = width <= 451;
+	// const isMobile = width <= 451;
 	const isTablet = width <= 768.98;
 	const [stateInputs, setStateInputs] = useState<{
 		email: string;
