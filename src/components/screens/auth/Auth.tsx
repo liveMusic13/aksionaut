@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { colors } from '../../../app.constants';
 import { useAccountManagement } from '../../../hooks/useAccountManagement';
 import { useAuth } from '../../../hooks/useAuth';
 import { useCheckWidth } from '../../../hooks/useCheckWidth';
@@ -13,7 +14,7 @@ import styles from './Auth.module.scss';
 const Auth: FC = () => {
 	const navigate = useNavigate();
 	const { setIsAuth, isAuth } = useAuth();
-	const textAuth = 'Авторизуйтесь';
+	const textAuth = 'Авторизация';
 	const textRegistr = 'Зарегистрируйтесь';
 	const {
 		windowSize: { width },
@@ -186,7 +187,16 @@ const Auth: FC = () => {
 								/>
 							)}
 
-							<span className={styles.error}>{isViewInfo.text}</span>
+							<span
+								className={styles.error}
+								style={
+									isViewInfo.text === 'Регистрация прошла успешно!'
+										? { color: colors.green }
+										: {}
+								}
+							>
+								{isViewInfo.text}
+							</span>
 
 							<Button
 								style={{
@@ -204,7 +214,7 @@ const Auth: FC = () => {
 									(!isEmailValidAuth && stateForm === textRegistr)
 								}
 							>
-								Войти
+								{stateForm === textAuth ? 'Зарегистрироваться' : 'Войти'}
 							</Button>
 						</>
 						// )

@@ -10,6 +10,7 @@ export const colors = {
 	blue_dark: '#094ddf',
 	black: '#0d0e13',
 	grey: '#c4c4c4',
+	green: '#14AE5C',
 };
 
 export const startGraphColor = '#3E5F9F';
